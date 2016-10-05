@@ -22,10 +22,25 @@
                 <li></li>
             </ul>
         </div>
-        <div id="sign-up">
-            <form>
-                <input type="text" name="name" placeholder="ENTER YOUR NAME">
-            </form>
+        <div class="sign-up-modal animateZoom">
+            <div class="section">
+                <h3 class="white center">SIGN UP</h3>
+                <form id="sign-up">
+                    <input type="text" name="name" placeholder="ENTER YOUR NAME" autocomplete="off">
+                    <input type="text" name="email" placeholder="ENTER YOUR EMAIL" autocomplete="off">
+                    <input type="password" name="password" placeholder="CHOOSE A PASSWORD" autocomplete="off">
+                    <input type="submit" name="sign-up" value="SIGN UP">
+                </form>
+            </div>
+            <div class="section">
+                <h3 class="white center">LOGIN</h3>
+                <form id="log-in">
+                    <input type="text" name="email" placeholder="ENTER YOUR EMAIL" autocomplete="off">
+                    <input type="password" name="password" placeholder="CHOOSE A PASSWORD" autocomplete="off">
+                    <input type="submit" name="log-in" value="LOGIN">
+                </form>
+            </div>
+            <span class="fa fa-times close-sign-up" aria-hidden="true"></span>
         </div>
         <div id="overlay"></div>
     </header>

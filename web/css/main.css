@@ -16,12 +16,33 @@ h1 {
     font-size: 32px;
 }
 
+h2 {
+    text-transform: uppercase;
+    font-family: 'Ledger', serif;
+    font-size: 26px;
+}
+
+h3 {
+    text-transform: uppercase;
+    font-family: 'Ledger', serif;
+    font-size: 22px;
+}
+
+.center {
+    text-align: center;
+}
+
+.white {
+    color: #fff;
+}
+
 /*--------------------- NAVIGATION ---------------------*/
 
 nav {
     position: absolute;
     top: 5px;
     right: 20px;
+    z-index: 9;
 }
 
 nav li {
@@ -44,6 +65,7 @@ nav li span {
     width: 30px;
     font-size: 32px !important;
     text-align: center;
+    cursor: pointer;
 }
 
 /*--------------------- SIDE NAV ---------------------*/
@@ -87,54 +109,112 @@ nav li span {
     -webkit-transition: 0.2s ease;
     -moz-transition: 0.2s ease;
     -ms-transition: 0.2s ease;
+    cursor: pointer;
 }
 
 /*--------------------- TRANSITION FROM NAV OPEN ---------------------*/
 
-main {
-    transition: margin-right 0.5s;
-    -webkit-transition: margin-right 0.5s;
-    -moz-transition: margin-right 0.5s;
-    -ms-transition: margin-right 0.5s;
-}
-
 #main-content {
-    transition: margin-right 0.5s;
-    -webkit-transition: margin-right 0.5s;
-    -moz-transition: margin-right 0.5s;
-    -ms-transition: margin-right 0.5s;
+    width: 100%;
+    transition: transform 0.5s;
+    -webkit-transition: transform 0.5s;
+    -moz-transition: transform 0.5s;
+    -ms-transition: transform 0.5s;
 }
 
 /*--------------------- SIGN UP MODULE ---------------------*/
-#sign-up {
+.sign-up-modal {
+    height: 60%;
+    width: 50%;
+    position: fixed;
+    z-index: 11;
+    top: 20%;
+    right: 25%;
+    left: 25%;
+    bottom: 20%;
+    overflow-x: hidden;
+    background-color: #222127;
+    padding: 30px 10px;
+    box-sizing: border-box;
     display: none;
+    transition: 0.5s ease;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -ms-transition: 0.5s ease;
+}
+
+.section:first-child {
+    border-right: 2px solid white;
+}
+
+.section {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.close-sign-up {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    font-size: 26px;
+    transition: 0.2s ease;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -ms-transition: 0.2s ease;
+    cursor: pointer;
+}
+
+.animateZoom {
+    -webkit-animation: zoom 0.5s;
+    animation: zoom 0.5s
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes zoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
 }
 
 
-/*--------------------- OLD SIGN UP ---------------------*/
+/*--------------------- INPUT STYLE ---------------------*/
 
-#signUp {
-    height: 100vh;
-    background-color: white;
+.sign-up-modal input {
+    width: 80%;
+    display: block;
+    margin: 25px auto;
+    height: 30px;
+    outline: none;
     text-align: center;
 }
 
-#signUp button {
-    background-color:#ffffff;
-	border:3px solid #000000;
-	display:inline-block;
-	cursor:pointer;
-	color:#000000;
-    font-family: 'Ledger', serif;
-    text-transform: uppercase;
-    font-size: 36px;
-    padding: 15px;
-    margin: 25px;
-    margin-top: 200px;
-    outline: none;
+.sign-up-modal input[type="text"], .sign-up-modal input[type="password"] {
+    border: 1px solid white;
+    background-color: #222127;
+    color: white;
+    padding-left: 5px;
+    box-sizing: border-box;
 }
 
-#signUp button:hover {
-    color: white;
-    background-color: black;
+.sign-up-modal input[type="submit"] {
+    border: 1px solid #fff;
+    color: #fff;
+    display: block;
+    background-color: #222127;
+    transition: 0.5s ease;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -ms-transition: 0.5s ease;
+    cursor: pointer;
+}
+
+.sign-up-modal input[type="submit"]:hover {
+    color: #222127;
+    background-color: #fff;
 }
