@@ -1,0 +1,43 @@
+body * {
+    padding: 0;
+    margin: 0;
+    font-family: 'Ledger', serif;
+    font-size: 12px;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    text-transform: uppercase;
+    font-family: 'Ledger', serif;
+    font-size: 32px;
+}
+
+#signUp {
+    height: 100vh;
+    background-color: white;
+    text-align: center;
+}
+
+#signUp button {
+    background-color:#ffffff;
+	border:3px solid #000000;
+	display:inline-block;
+	cursor:pointer;
+	color:#000000;
+    font-family: 'Ledger', serif;
+    text-transform: uppercase;
+    font-size: 36px;
+    padding: 15px;
+    margin: 25px;
+    margin-top: 200px;
+    outline: none;
+}
+
+#signUp button:hover {
+    color: white;
+    background-color: black;
+}
