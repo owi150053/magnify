@@ -2,7 +2,7 @@ body * {
     padding: 0;
     margin: 0;
     font-family: 'Ledger', serif;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 body {
@@ -15,6 +15,103 @@ h1 {
     font-family: 'Ledger', serif;
     font-size: 32px;
 }
+
+/*--------------------- NAVIGATION ---------------------*/
+
+nav {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+}
+
+nav li {
+    display: block;
+    list-style: none;
+    font-size: 13px;
+    text-align: right;
+}
+
+nav li span {
+    margin-right: 10px;
+    font-size: 18px !important;
+}
+
+.menu-icon {
+    margin-top: 15px;
+    margin-right: 54px;
+    float: right;
+    display: block;
+    width: 30px;
+    font-size: 32px !important;
+    text-align: center;
+}
+
+/*--------------------- SIDE NAV ---------------------*/
+#side-bar {
+    height: 100vh;
+    width: 0;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    overflow-x: hidden;
+    background-color: #222127;
+    transition: 0.5s ease;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -ms-transition: 0.5s ease;
+}
+
+#overlay {
+    background-color: rgba(25, 25, 25, 0.90);
+    width: 100%;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    display: none;
+    transition: 0.1s ease;
+    -webkit-transition: 0.1s ease;
+    -moz-transition: 0.1s ease;
+    -ms-transition: 0.1s ease;
+}
+
+.close-menu {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-size: 26px;
+    transition: 0.2s ease;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -ms-transition: 0.2s ease;
+}
+
+/*--------------------- TRANSITION FROM NAV OPEN ---------------------*/
+
+main {
+    transition: margin-right 0.5s;
+    -webkit-transition: margin-right 0.5s;
+    -moz-transition: margin-right 0.5s;
+    -ms-transition: margin-right 0.5s;
+}
+
+#main-content {
+    transition: margin-right 0.5s;
+    -webkit-transition: margin-right 0.5s;
+    -moz-transition: margin-right 0.5s;
+    -ms-transition: margin-right 0.5s;
+}
+
+/*--------------------- SIGN UP MODULE ---------------------*/
+#sign-up {
+    display: none;
+}
+
+
+/*--------------------- OLD SIGN UP ---------------------*/
 
 #signUp {
     height: 100vh;
