@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/magnify/web/css/font-awesome.css">
     <link rel="stylesheet" href="/magnify/web/css/main.css">
     <link rel="stylesheet" href="/magnify/web/css/dash.css">
+    <link rel="stylesheet" href="/magnify/web/css/upload.css">
     <link href="https://fonts.googleapis.com/css?family=Ledger" rel="stylesheet">
     
     <script src="/magnify/web/js/nav.js" type="text/javascript"></script>

@@ -1,6 +1,6 @@
 <?php
     
-    $host = 'localhost:8889';
+    $host = 'localhost:8888';
     $dbname = 'magnify'; 
 
     // Note the dsn doesn't include a dbname

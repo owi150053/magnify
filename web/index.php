@@ -1,6 +1,6 @@
 <?php
     //AUTOLOAD
-    //TESTING PHPstorm
+
     require_once __DIR__.'/../vendor/autoload.php';
     require_once __DIR__.'/delegates/auth_delegate.php';
 
@@ -31,8 +31,7 @@
         //FROM THE FORM
         $email = $request->get('email');
         $password = $request->get('password');
-        
-        
+
         //VALIDATION
         $errors = array();
         $user = get_user_by_email($email);
@@ -62,6 +61,9 @@
 
     $app->get('/dashboard', function(Request $request) use ($app) {
         return $app['twig']->render('dashboard.twig', array());
+    });
+$app->get('/upload', function(Request $request) use ($app) {
+        return $app['twig']->render('upload.twig', array());
     });
     
     //RUN APP
