@@ -36,6 +36,10 @@ h3 {
     color: #fff;
 }
 
+.black {
+    color: #000;
+}
+
 /*--------------------- NAVIGATION ---------------------*/
 
 nav {
@@ -50,6 +54,7 @@ nav li {
     list-style: none;
     font-size: 13px;
     text-align: right;
+    cursor: pointer;
 }
 
 nav li span {
@@ -78,16 +83,27 @@ nav li span {
     right: 0;
     overflow-x: hidden;
     background-color: #222127;
+    padding-top: 100px;
+    box-sizing: border-box;
     transition: 0.5s ease;
     -webkit-transition: 0.5s ease;
     -moz-transition: 0.5s ease;
     -ms-transition: 0.5s ease;
 }
 
+#side-bar li {
+    width: 80%;
+    display: block;
+    margin: auto;
+    list-style: none;
+    color: #fff;
+    border: 1px solid white;
+}
+
 #overlay {
     background-color: rgba(25, 25, 25, 0.90);
     width: 100%;
-    z-index: 1;
+    z-index: 7;
     position: fixed;
     top: 0;
     right: 0;

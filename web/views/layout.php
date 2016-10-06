@@ -19,6 +19,8 @@
         <div id="side-bar">
             <span class="fa fa-times close-menu" aria-hidden="true"></span>
             <ul>
+                <li>HOME</li>
+                <li></li>
                 <li></li>
             </ul>
         </div>
@@ -34,8 +36,9 @@
             </div>
             <div class="section">
                 <h3 class="white center">LOGIN</h3>
-                <form id="log-in">
-                    <input type="text" name="email" placeholder="ENTER YOUR EMAIL" autocomplete="off">
+                <form id="log-in" action="/magnify/web/" method="post">
+                    <span class="error">{{ errors['email'] }}</span>
+                    <input type="text" name="email" placeholder="ENTER YOUR EMAIL" autocomplete="off" value="{{ email }}">
                     <input type="password" name="password" placeholder="CHOOSE A PASSWORD" autocomplete="off">
                     <input type="submit" name="log-in" value="LOGIN">
                 </form>
