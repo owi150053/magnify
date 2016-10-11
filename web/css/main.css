@@ -49,6 +49,11 @@ nav {
     z-index: 9;
 }
 
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
 nav li {
     display: block;
     list-style: none;

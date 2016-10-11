@@ -62,12 +62,18 @@
     $app->get('/dashboard', function(Request $request) use ($app) {
         $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
-            'avatar' => $app['session']->get('avatar_path'),
+            'avatar_path' => $app['session']->get('avatar_path'),
             $app['session']->get('id'));
         return $app['twig']->render('dashboard.twig', $model);
     });
+
     $app->get('/upload', function(Request $request) use ($app) {
         return $app['twig']->render('upload.twig', array());
+    });
+
+    $app->get('/logout', function(Request $request) use ($app) {
+       $app['session']->invalidate();
+        return $app->redirect('/magnify/web/');
     });
     
     //RUN APP
