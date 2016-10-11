@@ -36,7 +36,7 @@
             </div>
             <div class="section">
                 <h3 class="white center">LOGIN</h3>
-                <form id="log-in" action="/magnify/web/" method="post">
+                <form id="log-in" action="/magnify/web/login" method="post">
                     <span class="error">{{ errors['email'] }}</span>
                     <input type="text" name="email" placeholder="ENTER YOUR EMAIL" autocomplete="off" value="{{ email }}">
                     <input type="password" name="password" placeholder="CHOOSE A PASSWORD" autocomplete="off">

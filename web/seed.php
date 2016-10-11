@@ -54,4 +54,7 @@
     } catch (PDOException $exception) {
         echo 'Database error: ' . $exception->getMessage();
     }
+
+    $pdo = null;
+
 ?>

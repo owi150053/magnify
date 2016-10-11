@@ -13,6 +13,7 @@
         } else {
             return null;
         }
+        
     }
 
     function correct_password_for_user($user, $password) {

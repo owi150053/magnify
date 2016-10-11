@@ -26,7 +26,7 @@
         return $app['twig']->render('home.twig', array());
     });
 
-    $app->post('/', function(Request $request) use ($app){
+    $app->post('/login', function(Request $request) use ($app){
         
         //FROM THE FORM
         $email = $request->get('email');
@@ -62,7 +62,7 @@
     $app->get('/dashboard', function(Request $request) use ($app) {
         $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
-            'avatar_path' => $app['session']->get('avatar_path'),
+            'avatar' => $app['session']->get('avatar'),
             $app['session']->get('id'));
         return $app['twig']->render('dashboard.twig', $model);
     });
