@@ -10,18 +10,22 @@
     <link href="https://fonts.googleapis.com/css?family=Ledger" rel="stylesheet">
     
     <script src="/magnify/web/js/nav.js" type="text/javascript"></script>
+    <script src="/magnify/web/js/load.js" type="text/javascript"></script>
 </head>
 <body>
+    <div id="preload">
+        <span class="fa fa-circle-o-notch fa-spin fa-3x white"></span>
+        <b class="loading white">LOADING</b>
+    </div>
     <header>
         <nav class="white">
             <li id="logout-btn" class="dash-right"><a href="/magnify/web/logout"><span class="fa fa-sign-out" aria-hidden="true"></span>&nbsp;SIGN OUT</a></li>
             <li id="menu-btn" class="dash-right"><span class="fa fa-bars right menu-icon black" aria-hidden="true"></span></li>
-            <li class="user-name center">{{ name }} {{ surname }}</li>
         </nav>
         <div id="dash-side-bar">
-            <img class="avatar" src="/magnify/web{{ avatar }}">
+            <span class="avatar" style="background:url(/magnify/web{{ avatar }}) center;background-size:cover;"></span>
             <ul class="center white">
-                <li>TOTAL POSTS</li>
+                <li>{{ name }} {{ surname }}</li>
                 <li>TOTAL FRIENDS</li>
                 <li>TOTAL LIKES</li>
             </ul>

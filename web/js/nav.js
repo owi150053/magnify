@@ -8,6 +8,15 @@ var moveMainOpen = function() {
     "-webkit-transform": "translate(-300px)",
     "transform": "translate(-300px)"});
 }
+
+var moveSideContent = function() {
+    $('#dash-side-bar').css({"left": "-300px"});
+}
+
+var closeSideContent = function() {
+    $('#dash-side-bar').css({"left": "0px"});
+}
+
 var moveMainClose = function() {
     $('#main-content').css({"-ms-transform": "translate(0px)",
     "-webkit-transform": "translate(0px)",
@@ -19,17 +28,20 @@ $(function(){
         $('#side-bar').css({"width": "300px"});
         $('#overlay').show();
         moveMainOpen();
+        moveSideContent();
     });
     
     $('#overlay').click(function(){
         $('.sign-up-modal').fadeOut(200);
         closeMenu();
         moveMainClose();
+        closeSideContent();
     })
     
     $('.close-menu').click(function(){
         closeMenu();
         moveMainClose();
+        closeSideContent();
     });
     
     $('.close-menu').mouseenter(function(){
@@ -62,6 +74,7 @@ $(document).keyup(function(e){
         if (e.keyCode == 27) {
             closeMenu();
             moveMainClose();
+            closeSideContent();
             $('.sign-up-modal').fadeOut(200);
         }
 });

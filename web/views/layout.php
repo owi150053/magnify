@@ -9,8 +9,13 @@
     <link href="https://fonts.googleapis.com/css?family=Ledger" rel="stylesheet">
     
     <script src="/magnify/web/js/nav.js" type="text/javascript"></script>
+    <script src="/magnify/web/js/load.js" type="text/javascript"></script>
 </head>
 <body>
+    <div id="preload">
+        <span class="fa fa-circle-o-notch fa-spin fa-3x white"></span>
+        <b class="loading white">LOADING</b>
+    </div>
     <header>
         <nav>
             <li id="login-btn"><span class="fa fa-user" aria-hidden="true"></span>&nbsp;LOGIN | SIGN UP</li>
@@ -37,7 +42,7 @@
             <div class="section">
                 <h3 class="white center">LOGIN</h3>
                 <form id="log-in" action="/magnify/web/login" method="post">
-                    <span class="error">{{ errors['email'] }}</span>
+                    <span class="error white">{{ errors['email'] }}</span>
                     <input type="text" name="email" placeholder="ENTER YOUR EMAIL" autocomplete="off" value="{{ email }}">
                     <input type="password" name="password" placeholder="CHOOSE A PASSWORD" autocomplete="off">
                     <input type="submit" name="log-in" value="LOGIN">

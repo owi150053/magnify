@@ -68,7 +68,11 @@
     });
 
     $app->get('/upload', function(Request $request) use ($app) {
-        return $app['twig']->render('upload.twig', array());
+        $model = array('name' => $app['session']->get('name'),
+            'surname' => $app['session']->get('surname'),
+            'avatar' => $app['session']->get('avatar'),
+            $app['session']->get('id'));
+        return $app['twig']->render('upload.twig', $model);
     });
 
     $app->get('/logout', function(Request $request) use ($app) {

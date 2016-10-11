@@ -37,12 +37,6 @@ nav li.dash-right {
     right: 10px;
 }
 
-nav li.user-name {
-    display: inline-block;
-    margin-top: 8px;
-    width: 150px;
-}
-
 .menu-icon {
     position: absolute;
     display: block;
@@ -56,6 +50,8 @@ nav li.user-name {
 
 .avatar {
     position: absolute;
+    background-position: center;
+    background-size: cover;
     top: 45px;
     left: 10px;
     background-color: black;
@@ -74,7 +70,11 @@ nav li.user-name {
     z-index: 4;
     top: 0px;
     left: 0;
-    padding-top: 190px;
+    padding-top: 180px;
     box-sizing: border-box;
     background-color: #000;
+    transition: left 0.5s;
+    -webkit-transition: left 0.5s;
+    -moz-transition: left 0.5s;
+    -ms-transition: left 0.5s;
 }
