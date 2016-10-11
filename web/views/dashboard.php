@@ -19,7 +19,7 @@
             <li class="user-name center">{{ name }} {{ surname }}</li>
         </nav>
         <div id="dash-side-bar">
-            <img class="avatar" src="{{ avatar }}">
+            <img class="avatar" src="/magnify/web{{ avatar }}">
             <ul class="center white">
                 <li>TOTAL POSTS</li>
                 <li>TOTAL FRIENDS</li>

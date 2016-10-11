@@ -1,6 +1,6 @@
 <?php
     
-    $host = 'localhost:8888';
+    $host = 'localhost:8889';
     $dbname = 'magnify'; 
 
     // Note the dsn doesn't include a dbname
@@ -54,7 +54,5 @@
     } catch (PDOException $exception) {
         echo 'Database error: ' . $exception->getMessage();
     }
-
-    $pdo = null;
 
 ?>
