@@ -16,7 +16,7 @@
         <nav class="white">
             <li id="logout-btn" class="dash-right"><span class="fa fa-sign-out" aria-hidden="true"></span>&nbsp;SIGN OUT</li>
             <li id="menu-btn" class="dash-right"><span class="fa fa-bars right menu-icon black" aria-hidden="true"></span></li>
-            <li class="user-name center">NAME</li>
+            <li class="user-name center"> {{ name }} </li>
         </nav>
         <div id="dash-side-bar">
             <img class="avatar">

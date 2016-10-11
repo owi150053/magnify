@@ -44,7 +44,7 @@
             
             } else if (!correct_password_for_user($user, $password)) {
                 $errors['password'] = "Incorrect password.";
-                $modal = array('email' => $email, 'errors' => $errors);
+                $model = array('email' => $email, 'errors' => $errors);
                 return $app['twig']->render('home.twig', $model);
                 
             } else {
@@ -60,9 +60,13 @@
     });
 
     $app->get('/dashboard', function(Request $request) use ($app) {
-        return $app['twig']->render('dashboard.twig', array());
+        $model = array('name' => $app['session']->get('name'),
+            'surname' => $app['session']->get('surname'),
+            'avatar' => $app['session']->get('avatar_path'),
+            $app['session']->get('id'));
+        return $app['twig']->render('dashboard.twig', $model);
     });
-$app->get('/upload', function(Request $request) use ($app) {
+    $app->get('/upload', function(Request $request) use ($app) {
         return $app['twig']->render('upload.twig', array());
     });
     

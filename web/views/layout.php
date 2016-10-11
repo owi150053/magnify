@@ -28,9 +28,9 @@
             <div class="section">
                 <h3 class="white center">SIGN UP</h3>
                 <form id="sign-up">
-                    <input type="text" name="name" placeholder="ENTER YOUR NAME" autocomplete="off">
-                    <input type="text" name="email" placeholder="ENTER YOUR EMAIL" autocomplete="off">
-                    <input type="password" name="password" placeholder="CHOOSE A PASSWORD" autocomplete="off">
+                    <input type="text" name="reg-name" placeholder="ENTER YOUR NAME" autocomplete="off">
+                    <input type="text" name="reg-email" placeholder="ENTER YOUR EMAIL" autocomplete="off">
+                    <input type="password" name="reg-password" placeholder="CHOOSE A PASSWORD" autocomplete="off">
                     <input type="submit" name="sign-up" value="SIGN UP">
                 </form>
             </div>
