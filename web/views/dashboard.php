@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
     <link rel="stylesheet" href="/magnify/web/css/font-awesome.css">
     <link rel="stylesheet" href="/magnify/web/css/main.css">
     <link rel="stylesheet" href="/magnify/web/css/dash.css">
