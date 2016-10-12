@@ -3,6 +3,7 @@
 
     require_once __DIR__.'/../vendor/autoload.php';
     require_once __DIR__.'/delegates/auth_delegate.php';
+    require_once __DIR__.'/delegates/dash_delegate.php';
 
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
@@ -72,7 +73,8 @@
             $model = array('name' => $app['session']->get('name'),
                 'surname' => $app['session']->get('surname'),
                 'avatar' => $app['session']->get('avatar'),
-                $app['session']->get('id'));
+                $app['session']->get('id'),
+                           'posts' => getUserPosts($app['session']->get('id')));
             return $app['twig']->render('dashboard.twig', $model);
         } else {
             return $app->redirect('/magnify/web/login-page');
