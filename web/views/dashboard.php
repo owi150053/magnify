@@ -32,12 +32,28 @@
         </div>
         <div id="side-bar">
             <span class="fa fa-times close-menu" aria-hidden="true"></span>
-            <span class="fa fa-sign-out sign-out-menu" aria-hidden="true"></span>
             <ul>
-                <li>HOME</li>
-                <li></li>
-                <li></li>
+                <li><a href="/magnify/web/">HOME</a></li>
+                <li>LATEST POSTS</li>
+                <li>CONTACT US</li>
             </ul>
+            <div class="login-logout white">
+                {% if name is not null %}
+                <a href="/magnify/web/dashboard" class="profile-menu">
+                    <p><span class='fa fa-user fa-lg' aria-hidden='true'></span>&nbsp;&nbsp;&nbsp;PROFILE</p>
+                </a>
+                <a href="/magnify/web/logout" class="logout-menu">
+                    <p><span class='fa fa-sign-out fa-lg' aria-hidden='true'></span>&nbsp;SIGN OUT</p>
+                </a>
+                {% elseif name is null %}
+                <a href="/magnify/web/login-page" class="profile-menu black">
+                    <p><span class='fa fa-user fa-lg' aria-hidden='true'></span>&nbsp;&nbsp;&nbsp;SIGN UP</p>
+                </a>
+                <a href="/magnify/web/login-page" class="logout-menu">
+                    <p><span class='fa fa-sign-out fa-lg' aria-hidden='true'></span>&nbsp;LOG IN</p>
+                </a>
+                {% endif %}
+            </div>
         </div>
         
         <div id="overlay"></div>

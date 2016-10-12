@@ -22,6 +22,19 @@
     padding-top: 40px;
 }
 
+.home-logout a {
+    margin-right: 10px;
+    color: #000;
+}
+
+underline {
+    text-decoration: none;
+}
+
+underline:hover {
+    text-decoration: underline;
+}
+
 /*----------------- ANIMATION -----------------*/
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {

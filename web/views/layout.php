@@ -18,18 +18,41 @@
     </div>
     <header>
         <nav>
-            <li id="login-btn"><span class="fa fa-user" aria-hidden="true"></span>&nbsp;LOGIN | SIGN UP</li>
+            {% if name is not null %}
+            <li class="black inline upper hello">Hi, <a class="underline black" href="/magnify/web/dashboard">{{ name }}</a> | </li>
+                <li id='logout-btn' class='dash-right inline black home-logout'><a href='/magnify/web/logout'><span class='fa fa-sign-out' aria-hidden='true'></span>&nbsp;SIGN OUT</a></li>            
+            {% elseif name is null %}
+                <li id='login-btn'><span class='fa fa-user' aria-hidden='true'></span>&nbsp;LOGIN | SIGN UP</li>
+            {% endif %}
+            
             <li id="menu-btn"><span class="fa fa-bars menu-icon" aria-hidden="true"></span></li>
         </nav>
         <div id="side-bar">
             <span class="fa fa-times close-menu" aria-hidden="true"></span>
             <ul>
-                <li>HOME</li>
-                <li></li>
-                <li></li>
+                <a href="/magnify/web/"><li>HOME</li></a>
+                <li>LATEST POSTS</li>
+                <li>CONTACT US</li>
             </ul>
+            <div class="login-logout white">
+                {% if name is not null %}
+                <a href="/magnify/web/dashboard" class="profile-menu">
+                    <p><span class='fa fa-user fa-lg' aria-hidden='true'></span>&nbsp;&nbsp;&nbsp;PROFILE</p>
+                </a>
+                <a href="/magnify/web/logout" class="logout-menu">
+                    <p><span class='fa fa-sign-out fa-lg' aria-hidden='true'></span>&nbsp;SIGN OUT</p>
+                </a>
+                {% elseif name is null %}
+                <a href="/magnify/web/login-page" class="profile-menu black">
+                    <p><span class='fa fa-user fa-lg' aria-hidden='true'></span>&nbsp;&nbsp;&nbsp;SIGN UP</p>
+                </a>
+                <a href="/magnify/web/login-page" class="logout-menu">
+                    <p><span class='fa fa-sign-out fa-lg' aria-hidden='true'></span>&nbsp;LOG IN</p>
+                </a>
+                {% endif %}
+            </div>
         </div>
-        <div class="sign-up-modal animateZoom">
+        <div class="sign-up-modal animateZoom {{ errors['display'] }}">
             <div class="section">
                 <h3 class="white center">SIGN UP</h3>
                 <form id="sign-up">
@@ -42,8 +65,9 @@
             <div class="section">
                 <h3 class="white center">LOGIN</h3>
                 <form id="log-in" action="/magnify/web/login" method="post">
-                    <span class="error white">{{ errors['email'] }}</span>
+                    <span class="danger {{ errors['display'] }} center white">{{ errors['email'] }}</span>
                     <input type="text" name="email" placeholder="ENTER YOUR EMAIL" autocomplete="off" value="{{ email }}">
+                    <span class="danger {{ errors['display'] }} center white">{{ errors['password'] }}</span>
                     <input type="password" name="password" placeholder="CHOOSE A PASSWORD" autocomplete="off">
                     <input type="submit" name="log-in" value="LOGIN">
                 </form>

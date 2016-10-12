@@ -9,6 +9,8 @@
     use Symfony\Component\HttpFoundation\Session\Session;
 
     $app = new Silex\Application();
+
+    $app['debug'] = false;
     
     //SERVICE PROVIDER
     $app->register(new Silex\Provider\SessionServiceProvider());
@@ -23,7 +25,11 @@
 
     //ROUTES
     $app->get('/', function(Request $request) use ($app) {
-        return $app['twig']->render('home.twig', array());
+        $model = array('name' => $app['session']->get('name'),
+            'surname' => $app['session']->get('surname'),
+            'avatar' => $app['session']->get('avatar'),
+            $app['session']->get('id'));
+        return $app['twig']->render('home.twig', $model);
     });
 
     $app->post('/login', function(Request $request) use ($app){
@@ -39,11 +45,13 @@
         if (isset($_POST['log-in'])) {
             if ($user == null) {
                 $errors['email'] = "This email is invalid or unregistered.";
+                $errors['display'] = "block error";
                 $model = array('email' => $email, 'errors' => $errors);
                 return $app['twig']->render('home.twig', $model);
             
             } else if (!correct_password_for_user($user, $password)) {
                 $errors['password'] = "Incorrect password.";
+                $errors['display'] = "block error";
                 $model = array('email' => $email, 'errors' => $errors);
                 return $app['twig']->render('home.twig', $model);
                 
@@ -60,19 +68,34 @@
     });
 
     $app->get('/dashboard', function(Request $request) use ($app) {
-        $model = array('name' => $app['session']->get('name'),
-            'surname' => $app['session']->get('surname'),
-            'avatar' => $app['session']->get('avatar'),
-            $app['session']->get('id'));
-        return $app['twig']->render('dashboard.twig', $model);
+        if ($app['session']->get('name') == !null) {
+            $model = array('name' => $app['session']->get('name'),
+                'surname' => $app['session']->get('surname'),
+                'avatar' => $app['session']->get('avatar'),
+                $app['session']->get('id'));
+            return $app['twig']->render('dashboard.twig', $model);
+        } else {
+            return $app->redirect('/magnify/web/login-page');
+        }
+    });
+
+    $app->get('/login-page', function(Request $request) use ($app) {
+        $errors = array();
+        $errors['display'] = "block error";
+       $model = array('errors' => $errors);
+        return $app['twig']->render('home.twig', $model);
     });
 
     $app->get('/upload', function(Request $request) use ($app) {
-        $model = array('name' => $app['session']->get('name'),
-            'surname' => $app['session']->get('surname'),
-            'avatar' => $app['session']->get('avatar'),
-            $app['session']->get('id'));
-        return $app['twig']->render('upload.twig', $model);
+        if ($app['session']->get('name') == !null) {
+            $model = array('name' => $app['session']->get('name'),
+                'surname' => $app['session']->get('surname'),
+                'avatar' => $app['session']->get('avatar'),
+                $app['session']->get('id'));
+            return $app['twig']->render('upload.twig', $model);
+        } else {
+            return $app->redirect('/magnify/web/login-page');
+        }
     });
 
     $app->get('/logout', function(Request $request) use ($app) {
