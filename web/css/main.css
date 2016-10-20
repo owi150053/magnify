@@ -117,7 +117,7 @@ nav li span {
     top: 0;
     right: 0;
     overflow-x: hidden;
-    background-color: #000;
+    background-color: rgb(28, 44, 57);
     padding-top: 100px;
     box-sizing: border-box;
     transition: 0.5s ease;
@@ -146,12 +146,12 @@ nav li span {
 }
 
 #side-bar li:hover {
-    background-color: #fff;
-    color: #000;
+    background-color: rgb(199,86,88);
+    color: #fff;
 }
 
 #overlay {
-    background-color: rgba(25, 25, 25, 0.90);
+    background-color: rgba(199,86,88, 0.01);
     width: 100%;
     z-index: 7;
     position: fixed;
@@ -176,6 +176,10 @@ nav li span {
     -moz-transition: 0.2s ease;
     -ms-transition: 0.2s ease;
     cursor: pointer;
+}
+
+.close-menu:hover {
+    color: rgb(49, 206, 195);
 }
 
 .login-logout {
@@ -212,7 +216,7 @@ nav li span {
 }
 
 .logout-menu:hover, .profile-menu:hover {
-    background-color: #000;
+    background-color: rgb(49, 206, 195);
     color: #fff;
 }
 
@@ -399,3 +403,57 @@ nav li span {
     width: 100%;
     text-align: center;
 }
+
+/*--------------------- PRELOADER ---------------------*/
+
+.files-upload {
+    color: rgb(110,223,203);
+    text-align: center;
+    white-space: nowrap;    
+    text-overflow: ellipsis;
+    display: block;
+    height: 32px;
+    padding: 5px;
+    transition: 0.2s ease;
+    border: 1px solid rgb(110,223,203);
+    box-sizing: border-box;
+    margin: 0;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -ms-transition: 0.2s ease;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.files-upload p {
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.files-upload:hover {
+    background-color: rgb(110,223,203);
+    color: #fff;
+    height: 32px;
+}
+
+.files-upload:hover > p {
+    -webkit-animation: bounce1 0.3s ease;
+    animation: bounce1 0.3s ease;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+/*--------------------- BG ---------------------*/

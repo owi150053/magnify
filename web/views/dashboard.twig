@@ -2,9 +2,13 @@
 
 {% block content %}
 
-<main id="main-content">
+<main id="main-content" class="grad2">
     <h1>dashboard</h1>
-    
+    <div class="num-posts center">
+        <p>TOTAL POSTS</p>
+        <p class="count">{{ user_posts|length }}</p>
+        <a class="black">VIEW POSTS</a>
+    </div>
 </main>
 
 {% endblock %}

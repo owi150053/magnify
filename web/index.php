@@ -69,16 +69,47 @@
     });
 
     $app->get('/dashboard', function(Request $request) use ($app) {
-        if ($app['session']->get('name') == !null) {
-            $model = array('name' => $app['session']->get('name'),
-                'surname' => $app['session']->get('surname'),
-                'avatar' => $app['session']->get('avatar'),
-                $app['session']->get('id'),
-                           'posts' => getUserPosts($app['session']->get('id')));
-            return $app['twig']->render('dashboard.twig', $model);
-        } else {
+        if (!$app['session']->has('id')) {
             return $app->redirect('/magnify/web/login-page');
         }
+        $get_user_posts = getUserPosts($app['session']->get('id'));
+        $model = array('name' => $app['session']->get('name'),
+            'surname' => $app['session']->get('surname'),
+            'avatar' => $app['session']->get('avatar'),
+            'id' => $app['session']->get('id'),
+                       'email' => $app['session']->get('email'),
+                       'user_posts' => $get_user_posts);
+        return $app['twig']->render('dashboard.twig', $model);
+        
+    });
+
+    $app->post('/settings/avatar', function(Request $request) use($app) {
+        if (!$app['session']->has('id')) {
+            return $app->redirect('/magnify/web/login-page');
+        }
+        
+        $path = $request->get('avatarFile');
+        $avatar = $request->files->get('avatar-file');
+        
+        $avatar->move('images', $avatar->getClientOriginalName());
+        $updatePath = updateAvatar($path, $app['session']->get('id'));
+        $model = array('updatePath' => $updatePath, 'avatar' => $app['session']->set('/images/'.$path));
+        return $app['twig']->render('avatar_update.twig', $model);
+    });
+
+    $app->post('/settings/info', function(Request $request) use ($app) {
+        $id = $app['session']->get('id');
+        $name = $request->get('nameC');
+        $surname = $request->get('surnameC');
+        $email = $request->get('emailC');
+        
+        updateUserInfo($id, $name, $surname, $email);
+        $app['session']->set('name', $name);
+        $app['session']->set('surname', $surname);
+        $app['session']->set('email', $email);
+        
+        $model= array('name' => $name, 'surname' => $surname, 'email' => $email);
+        return $app['twig']->render('update-info.twig', $model);
     });
 
     $app->get('/login-page', function(Request $request) use ($app) {
@@ -93,7 +124,8 @@
             $model = array('name' => $app['session']->get('name'),
                 'surname' => $app['session']->get('surname'),
                 'avatar' => $app['session']->get('avatar'),
-                $app['session']->get('id'));
+                'id' => $app['session']->get('id'),
+                          'email' => $app['session']->get('email'));
             return $app['twig']->render('upload.twig', $model);
         } else {
             return $app->redirect('/magnify/web/login-page');

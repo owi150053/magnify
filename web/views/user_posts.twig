@@ -1,0 +1,12 @@
+{% extends "dashboard.php" %}
+
+{% block content %}
+
+    {% for post in user_posts %}
+        <div class="">
+            <h3>{{ post.title }}</h3>
+            <img src="/magnify/web/{{ post.image_path }}" width="200px">
+        </div>
+    {% endfor %}
+
+{% endblock %}

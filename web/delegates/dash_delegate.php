@@ -12,19 +12,35 @@
         $statement->execute();
         $results = $statement->fetchAll();
         
-        foreach ($results as $row) {
-            $post_id = $row['id'];
-            $post_title = $row['title'];
-            $post_content = $row['content'];
-            $post_image = $row['image_path'];
-            $user_name = $row['name'];
-            $user_surname = $row['surname'];
-            $content = "<div class='content-block'>
-             <h2>$post_title</h2>
-             <p>$post_content</p>
-             </div>";
-        }
+        return $results;
         
+    }
+
+    function updateAvatar($path, $id) {
+        require __DIR__.'/../seed.php';
+        
+        $sql = "UPDATE users SET avatar_path=:path WHERE id=:id;";
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':path', '/images/'.$path, PDO::PARAM_STR);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+        
+        $pdo = null;
+    }
+
+    function updateUserInfo($id, $name, $surname, $email) {
+        require __DIR__.'/../seed.php';
+        
+        $sql = "UPDATE users SET name=:name, surname=:surname, email=:email WHERE id=:id;";
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':id', $id, PDO::PARAM_INT);
+        $statement->bindValue(':name', $name, PDO::PARAM_STR);
+        $statement->bindValue(':surname', $surname, PDO::PARAM_STR);
+        $statement->bindValue(':email', $email, PDO::PARAM_STR);
+        
+        $statement->execute();
+        
+        $pdo = null;
     }
 
 ?>

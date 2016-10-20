@@ -1,0 +1,12 @@
+<form name="info-edit" action="/magnify/web/settings/info">
+    <p id="error"></p>
+    <label for="name-change" class="edit-label">EDIT NAME:</label>
+    <input type="text" id="name-change" class="profile-info-input" value="{{ name | default('') }}">
+    <p id="error"></p>
+    <label for="surname-change" class="edit-label">EDIT SURNAME:</label>
+    <input type="text" id="surname-change" class="profile-info-input" value="{{ surname | default('') }}">
+    <p id="error"></p>
+    <label for="email-change" class="edit-label">EDIT EMAIL:</label>
+    <input type="text" id="email-change" class="profile-info-input" value="{{ email | default('') }}">
+    <input type="submit" id="update-profile" value="UPDATE">
+</form>

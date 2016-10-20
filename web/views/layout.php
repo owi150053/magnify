@@ -19,7 +19,7 @@
     <header>
         <nav>
             {% if name is not null %}
-            <li class="black inline upper hello">Hi, <a class="underline black" href="/magnify/web/dashboard">{{ name }}</a> | </li>
+            <li class="black inline upper hello">Hi, <a class="underline black" href="/magnify/web/dashboard">{{ name | default('') }}</a> | </li>
                 <li id='logout-btn' class='dash-right inline black home-logout'><a href='/magnify/web/logout'><span class='fa fa-sign-out' aria-hidden='true'></span>&nbsp;SIGN OUT</a></li>            
             {% elseif name is null %}
                 <li id='login-btn'><span class='fa fa-user' aria-hidden='true'></span>&nbsp;LOGIN | SIGN UP</li>
@@ -52,7 +52,7 @@
                 {% endif %}
             </div>
         </div>
-        <div class="sign-up-modal animateZoom {{ errors['display'] }}">
+        <div class="sign-up-modal animateZoom grad2 {{ errors['display'] | default('') }}">
             <div class="section">
                 <h3 class="white center">SIGN UP</h3>
                 <form id="sign-up">
@@ -65,9 +65,9 @@
             <div class="section">
                 <h3 class="white center">LOGIN</h3>
                 <form id="log-in" action="/magnify/web/login" method="post">
-                    <span class="danger {{ errors['display'] }} center white">{{ errors['email'] }}</span>
-                    <input type="text" name="email" placeholder="ENTER YOUR EMAIL" autocomplete="off" value="{{ email }}">
-                    <span class="danger {{ errors['display'] }} center white">{{ errors['password'] }}</span>
+                    <span class="danger {{ errors['display'] | default('') }} center white">{{ errors['email'] | default('') }}</span>
+                    <input type="text" name="email" placeholder="ENTER YOUR EMAIL" autocomplete="off" value="{{ email | default('') }}">
+                    <span class="danger {{ errors['display'] | default('') }} center white">{{ errors['password'] | default('') }}</span>
                     <input type="password" name="password" placeholder="CHOOSE A PASSWORD" autocomplete="off">
                     <input type="submit" name="log-in" value="LOGIN">
                 </form>
