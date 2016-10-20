@@ -1,0 +1,53 @@
+@font-face {
+    font-family: 'Raleway Medium';
+    src: url(/magnify/fonts/Raleway-Medium.ttf);
+}
+
+@font-face {
+    font-family: 'Raleway Medium Italic';
+    src: url(/magnify/web/fonts/Raleway-MediumItalic.ttf);
+}
+
+@font-face {
+    font-family: 'Raleway Regular';
+    src: url(/magnify/web/fonts/Raleway-Regular.ttf);
+}
+
+@font-face {
+    font-family: 'Raleway Italic';
+    src: url(/magnify/web/fonts/Raleway-Italic.ttf);
+}
+
+@font-face {
+    font-family: 'Raleway Bold';
+    src: url(/magnify/web/fonts/Raleway-Bold.ttf);
+}
+
+@font-face {
+    font-family: 'Raleway Bold Italic';
+    src: url(/magnify/web/fonts/Raleway-BoldItalic.ttf);
+}
+
+.med {
+    font-family: 'Raleway Medium';
+}
+
+.medI {
+    font-family: 'Raleway Medium Italic';
+}
+
+.reg {
+    font-family: 'Raleway Regular';
+}
+
+.regI {
+    font-family: 'Raleway Italic';
+}
+
+.bold {
+    font-family: 'Raleway Bold';
+}
+
+.boldI {
+    font-family: 'Raleway Bold Italic';
+}

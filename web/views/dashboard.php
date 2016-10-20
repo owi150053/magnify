@@ -2,7 +2,6 @@
 <html>
 <head>
     <meta charset="utf-8">
-    
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'textarea' });</script>
@@ -11,6 +10,7 @@
     <link rel="stylesheet" href="/magnify/web/css/dash.css">
     <link rel="stylesheet" href="/magnify/web/css/upload.css">
     <link href="https://fonts.googleapis.com/css?family=Ledger" rel="stylesheet">
+    <link rel="stylesheet" href="/magnify/web/css/fonts.css">
     
     <script src="/magnify/web/js/nav.js" type="text/javascript"></script>
     <script src="/magnify/web/js/load.js" type="text/javascript"></script>

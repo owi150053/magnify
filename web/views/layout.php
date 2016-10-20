@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/magnify/web/css/main.css">
     <link rel="stylesheet" href="/magnify/web/css/home.css">
     <link href="https://fonts.googleapis.com/css?family=Ledger" rel="stylesheet">
+    <link rel="stylesheet" href="/magnify/web/css/fonts.css">
     
     <script src="/magnify/web/js/nav.js" type="text/javascript"></script>
     <script src="/magnify/web/js/load.js" type="text/javascript"></script>
