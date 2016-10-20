@@ -131,6 +131,19 @@
             return $app->redirect('/magnify/web/login-page');
         }
     });
+$app->get('/contact-us', function(Request $request) use ($app) {
+    if ($app['session']->get('name') == !null) {
+        $model = array('name' => $app['session']->get('name'),
+            'surname' => $app['session']->get('surname'),
+            'avatar' => $app['session']->get('avatar'),
+            'id' => $app['session']->get('id'),
+            'email' => $app['session']->get('email'));
+        return $app['twig']->render('contact-us.twig', $model);
+    } else {
+        return $app->redirect('/magnify/web/login-page');
+    }
+});
+
 
     $app->get('/logout', function(Request $request) use ($app) {
        $app['session']->invalidate();

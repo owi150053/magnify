@@ -4,17 +4,19 @@
     <meta charset="utf-8">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-    <script>tinymce.init({ selector:'textarea' });</script>
+    <script>tinymce.init({ selector:'#upload-text' });</script>
     <link rel="stylesheet" href="/magnify/web/css/font-awesome.css">
     <link rel="stylesheet" href="/magnify/web/css/main.css">
     <link rel="stylesheet" href="/magnify/web/css/dash.css">
     <link rel="stylesheet" href="/magnify/web/css/upload.css">
+    <link rel="stylesheet" href="/magnify/web/css/contact-us.css">
     <link href="https://fonts.googleapis.com/css?family=Ledger" rel="stylesheet">
     <link rel="stylesheet" href="/magnify/web/css/fonts.css">
     
     <script src="/magnify/web/js/nav.js" type="text/javascript"></script>
     <script src="/magnify/web/js/load.js" type="text/javascript"></script>
     <script src="/magnify/web/js/file-upload.js" type="text/javascript"></script>
+    <script src="/magnify/web/js/animation.js" type="text/javascript"></script>
 </head>
 <body>
     <div id="preload">
@@ -69,7 +71,9 @@
             <ul>
                 <li><a href="/magnify/web/">HOME</a></li>
                 <li>LATEST POSTS</li>
-                <li>CONTACT US</li>
+                <li><a href="/magnify/web/contact-us/">CONTACT US</a></li>
+
+
             </ul>
             <div class="login-logout white">
                 {% if name is not null %}

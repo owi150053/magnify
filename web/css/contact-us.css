@@ -1,0 +1,31 @@
+#contact-us{
+    width: 40%;
+    background-color: rgb(28, 44, 57);;
+    padding: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#send-message{
+    color: rgb(110,223,203);
+    background-color: transparent;
+    height: 25px;
+    text-align: center;
+    width: 80%;
+    line-height: 25px;
+    display: block;
+    margin: 20px auto;
+    transition: 0.2s ease;
+    border: 1px solid rgb(110,223,203);
+    box-sizing: border-box;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -ms-transition: 0.2s ease;
+    cursor: pointer;
+    outline: none;
+}
+#message{
+    height: 250px;
+    border: 1px solid rgb(110,223,203);
+    resize: none;
+    outline: none;
+}

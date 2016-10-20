@@ -1,0 +1,20 @@
+{% extends "dashboard.php" %}
+
+{% block content %}
+
+    <main id="main-content">
+        <form name="contact-us" action="" id="contact-us">
+            <p class="error"></p>
+            <label for="name-change" class="edit-label">NAME:</label>
+            <input type="text" id="name-change" class="profile-info-input" value="{{ name | default('') }}">
+            <p class="error"></p>
+            <label for="surname-change" class="edit-label">SURNAME:</label>
+            <input type="text" id="surname-change" class="profile-info-input" value="{{ surname | default('') }}">
+            <p class="error"></p>
+            <label for="email-change" class="edit-label">MESSAGE</label>
+            <textarea id="message" class="profile-info-input"></textarea>
+            <input type="submit" id="send-message" value="SEND">
+        </form>
+    </main>
+
+{% endblock %}
