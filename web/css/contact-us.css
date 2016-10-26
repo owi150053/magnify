@@ -5,6 +5,7 @@
     margin-left: auto;
     margin-right: auto;
 }
+/*
 #send-message{
     color: rgb(110,223,203);
     background-color: transparent;
@@ -23,6 +24,7 @@
     cursor: pointer;
     outline: none;
 }
+*/
 #message{
     height: 250px;
     border: 1px solid rgb(110,223,203);

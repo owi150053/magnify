@@ -1,8 +1,8 @@
-{% extends "dashboard.php" %}
+{% extends "layout.php" %}
 
 {% block content %}
 
-    <main id="main-content">
+    <main id="heroWrapper">
         <form name="contact-us" action="" id="contact-us">
             <p class="error"></p>
             <label for="name-change" class="edit-label">NAME:</label>
@@ -16,7 +16,7 @@
             <p class="error"></p>
             <label for="email-change" class="edit-label">MESSAGE</label>
             <textarea id="message" class="profile-info-input"></textarea>
-            <input type="submit" id="send-message" value="SEND">
+            <input type="submit" class="create-post-btn" id="send-message" value="SEND">
         </form>
     </main>
 

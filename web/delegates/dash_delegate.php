@@ -31,16 +31,31 @@
     function updateUserInfo($id, $name, $surname, $email) {
         require __DIR__.'/../seed.php';
         
-        $sql = "UPDATE users SET name=:name, surname=:surname, email=:email WHERE id=:id;";
-        $statement = $pdo->prepare($sql);
-        $statement->bindValue(':id', $id, PDO::PARAM_INT);
-        $statement->bindValue(':name', $name, PDO::PARAM_STR);
-        $statement->bindValue(':surname', $surname, PDO::PARAM_STR);
-        $statement->bindValue(':email', $email, PDO::PARAM_STR);
+        if (empty($name) || empty($surname) || empty($email)) {
+            echo "Please complete all form fields";
+                
+        } else {
         
-        $statement->execute();
-        
-        $pdo = null;
+            $sql = "UPDATE users SET name=:name, surname=:surname, email=:email WHERE id=:id;";
+            $statement = $pdo->prepare($sql);
+            $statement->bindValue(':id', $id, PDO::PARAM_INT);
+            $statement->bindValue(':name', $name, PDO::PARAM_STR);
+            $statement->bindValue(':surname', $surname, PDO::PARAM_STR);
+            $statement->bindValue(':email', $email, PDO::PARAM_STR);
+
+            $statement->execute();
+
+            $pdo = null;
+            
+        }
+    }
+
+    function checkIfAdmin($admin) {        
+        if ($admin == 1) {
+            return true;
+        } elseif ($admin == 0){
+            return false;
+        }
     }
 
 ?>

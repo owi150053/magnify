@@ -17,6 +17,7 @@
     <script src="/magnify/web/js/load.js" type="text/javascript"></script>
     <script src="/magnify/web/js/file-upload.js" type="text/javascript"></script>
     <script src="/magnify/web/js/animation.js" type="text/javascript"></script>
+    <script src="/magnify/web/js/validation.js" type="text/javascript"></script>
 </head>
 <body>
     <div id="preload">
@@ -48,15 +49,17 @@
             </div>
             <div class="info-edit">
                 <form name="info-edit" action="/magnify/web/settings/info">
-                    <p class="error"></p>
                     <label for="name-change" class="edit-label">EDIT NAME:</label>
-                    <input type="text" id="name-change" class="profile-info-input" value="{{ name | default('') }}">
+                    <span class="errN center danger none">Enter at least 3 characters</span>
+                    <input type="text" id="name-change" class="profile-info-input" value="{{ name | default('') }}" autocomplete="off">
                     <p class="error"></p>
                     <label for="surname-change" class="edit-label">EDIT SURNAME:</label>
-                    <input type="text" id="surname-change" class="profile-info-input" value="{{ surname | default('') }}">
+                    <span class="errS center danger none">Enter at least 3 characters</span>
+                    <input type="text" id="surname-change" class="profile-info-input" value="{{ surname | default('') }}" autocomplete="off">
                     <p class="error"></p>
                     <label for="email-change" class="edit-label">EDIT EMAIL:</label>
-                    <input type="text" id="email-change" class="profile-info-input" value="{{ email | default('') }}">
+                    <span class="errE danger center none">Enter at least 3 characters</span>
+                    <input type="text" id="email-change" class="profile-info-input" value="{{ email | default('') }}" autocomplete="off">
                     <input type="submit" id="update-profile" value="UPDATE">
                 </form>
                 <span class="triangle"></span>
@@ -64,15 +67,17 @@
             <!--USER NAME-->
             <ul class="center white">
                 <li><a id="username" href="/magnify/web/dashboard">{{ name | default('') }} {{ surname | default('') }}</a></li>
-            </ul><a href="/magnify/web/upload" class="create-post-btn"><p><span class='fa fa-pencil-square-o fa-lg fa-pull-left' aria-hidden='true'></span>CREATE</p></a>
+            </ul>
+            {% if admin == true %}
+            <a href="/magnify/web/upload" class="create-post-btn"><p><span class='fa fa-pencil-square-o fa-lg fa-pull-left' aria-hidden='true'></span>CREATE</p></a>
+            {% endif %}
         </div>
         <div id="side-bar">
             <span class="fa fa-times close-menu" aria-hidden="true"></span>
             <ul>
                 <li><a href="/magnify/web/">HOME</a></li>
                 <li>LATEST POSTS</li>
-                <li><a href="/magnify/web/contact-us/">CONTACT US</a></li>
-
+                <li><a href="/magnify/web/contact-us">CONTACT US</a></li>
 
             </ul>
             <div class="login-logout white">
@@ -129,7 +134,7 @@
             $.ajax({
                 url: '/magnify/web/settings/info',
                 method: 'POST',
-                data: {nameC: $('#name-change').val(), surnameC: $('#surname-change').val(), emailC: $('#email-change').val() },
+                data: {nameC: $('#name-change').val(), surnameC: $('#surname-change').val(), emailC: $('#email-change').val()}
             }).done(function(html) {
                 $("#username").html($('#name-change').val() + " " + $('#surname-change').val());
                 $('#overlay').hide().css({"z-index": "7"});
