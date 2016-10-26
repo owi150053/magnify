@@ -10,7 +10,24 @@
     outline: none;
     color: #6D7781;
     font-size: 16px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
 }
+input::-webkit-input-placeholder {
+    font-family: 'roboto', sans-serif;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+input:focus::-webkit-input-placeholder, input:valid::-webkit-input-placeholder {
+    color: #1abc9c;
+    font-size: 11px;
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+    visibility: visible !important;
+}
+
 textarea[name="post-content"]{
     outline: none;
     resize: none;
@@ -22,6 +39,8 @@ textarea[name="post-content"]{
 }
 #form{
     width: 75%;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .submit-post{
@@ -32,6 +51,252 @@ textarea[name="post-content"]{
     outline: none;
 }
 
-.header-image-button{
-    margin-top: 25px;
+/*---------------------- DASHBOARD BUTTONS ----------------------*/
+
+.edit-pic {
+    display: none;
+    cursor: pointer;
+}
+
+.edit-pic > span {
+    display: block;
+    margin: auto;
+    width: 10px;
+}
+
+.edit-pic:hover > span {
+    -webkit-animation: bounce1 0.3s ease;
+    animation: bounce1 0.3s ease;
+}
+
+.avatar:hover > .edit-pic {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    font-size: 18px;
+    width: 90%;
+    background-color: rgba(199,86,88, 0.6);
+}
+
+.edit-p {
+    display: none;
+    position: absolute;
+    right: 6px;
+    top: 70px;
+    padding: 7px 6px 7px 7px;
+    color: rgb(110,223,203);
+    border: 1px solid rgb(110,223,203);
+    background-color: transparent;
+    border-radius: 50%;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -ms-transition: 0.2s ease;
+}
+
+.edit-p:hover {
+    color: #fff;
+    border: 1px solid rgb(199,86,88);
+    background-color: rgb(199,86,88);
+    -webkit-animation: bounce1 0.3s ease;
+    animation: bounce1 0.3s ease;
+}
+
+#avatar-save {
+    color: rgb(110,223,203);
+    background-color: transparent;
+    height: 25px;
+    text-align: center;
+    width: 80%;
+    line-height: 25px;
+    display: block;
+    margin: 20px auto;
+    transition: 0.2s ease;
+    border: 1px solid rgb(110,223,203);
+    box-sizing: border-box;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -ms-transition: 0.2s ease;
+    cursor: pointer;
+}
+
+#avatar-save:hover {
+    background-color: rgb(110,223,203);
+    color: #fff;
+}
+
+.create-post-btn {
+    color: rgb(110,223,203);
+    background-color: transparent;
+    height: 25px;
+    text-align: center;
+    width: 80%;
+    line-height: 25px;
+    display: block;
+    margin: 20px auto;
+    transition: 0.2s ease;
+    border: 1px solid rgb(110,223,203);
+    box-sizing: border-box;
+    cursor: pointer;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -ms-transition: 0.2s ease;
+}
+
+.create-post-btn:hover > p {
+    -webkit-animation: bounce1 0.3s ease;
+    animation: bounce1 0.3s ease;
+}
+
+.create-post-btn:hover {
+    background-color: rgb(110,223,203);
+    color: #fff;
+}
+
+@keyframes bounce1 {
+  0%, 20%, 50%, 80%, 100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  40% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  60% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+}
+
+.fa-pull-left {
+    margin: 6px 0px 0px 8px;
+}
+
+/*---------------------- AVATAR EDIT FORM ----------------------*/
+
+.avatar-edit {
+    display: none;
+    position: absolute;
+    left: 162px;
+    top: 70px;
+    width: 200px;
+    padding: 30px;
+    background-color: rgb(28, 44, 57);
+    z-index: 2000;
+}
+
+.info-edit {
+    display: none;
+    position: absolute;
+    left: 162px;
+    top: 70px;
+    width: 250px;
+    padding: 30px;
+    background-color: rgb(28, 44, 57);
+    z-index: 2000;
+}
+
+.triangle {
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: inherit;
+    top: 45%;
+    left: -10px;
+    transform: rotate(45deg);
+}
+
+.profile-info-input {
+    outline: none;
+    display: block;
+    width: 100%;
+    margin: 5px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(110,223,203);
+    padding: 5px;
+    box-sizing: border-box;
+    color: rgb(110,223,203);
+}
+
+.edit-label {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    margin: 10px 0 0 0;
+}
+
+#update-profile {
+    color: rgb(110,223,203);
+    background-color: transparent;
+    height: 25px;
+    text-align: center;
+    width: 80%;
+    line-height: 25px;
+    display: block;
+    margin: 20px auto;
+    transition: 0.2s ease;
+    border: 1px solid rgb(110,223,203);
+    box-sizing: border-box;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -ms-transition: 0.2s ease;
+    cursor: pointer;
+}
+
+#update-profile:hover {
+    background-color: rgb(110,223,203);
+    color: #fff;
+}
+#submit-post{
+    width: 100%;
+    background-color: transparent;
+}
+#header-image{
+    width: 100%;
+    background-color: transparent;
+    margin-top: 15px;
+}
+
+
+#submit-post:hover{
+
+    background: linear-gradient(146deg, #6EDFCB, #74396f);
+    background-size: 400% 400%;
+    -webkit-animation: gradient-animation 20s ease infinite;
+    -moz-animation: gradient-animation 20s ease infinite;
+    animation: gradient-animation 20s ease infinite;
+}
+
+#header-image:hover{
+
+    background: linear-gradient(146deg, #6EDFCB, #74396f);
+    background-size: 400% 400%;
+    -webkit-animation: gradient-animation 20s ease infinite;
+    -moz-animation: gradient-animation 20s ease infinite;
+    animation: gradient-animation 20s ease infinite;
+}
+
+@-webkit-keyframes gradient-animation {
+    0%{background-position:100% 0%}
+    50%{background-position:0% 100%}
+    100%{background-position:100% 0%}
+}
+@-moz-keyframes gradient-animation {
+    0%{background-position:100% 0%}
+    50%{background-position:0% 100%}
+    100%{background-position:100% 0%}
+}
+@keyframes gradient-animation {
+    0%{background-position:100% 0%}
+    50%{background-position:0% 100%}
+    100%{background-position:100% 0%}
+}
+
+#post-title{
+    margin-left: auto;
+    margin-right: auto;
 }

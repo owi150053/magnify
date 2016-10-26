@@ -107,6 +107,7 @@ nav li a:hover {
     background-color: rgb(255, 255, 255);
     border: 5px solid rgb(199,86,88);
     width: 30%;
+    display: inline-block;
 }
 
 .count {
@@ -191,6 +192,7 @@ nav li a:hover {
 
 .create-post-btn {
     color: rgb(110,223,203);
+    background-color: transparent;
     height: 25px;
     text-align: center;
     width: 80%;
@@ -200,6 +202,7 @@ nav li a:hover {
     transition: 0.2s ease;
     border: 1px solid rgb(110,223,203);
     box-sizing: border-box;
+    cursor: pointer;
     -webkit-transition: 0.2s ease;
     -moz-transition: 0.2s ease;
     -ms-transition: 0.2s ease;

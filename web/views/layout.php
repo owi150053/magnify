@@ -6,11 +6,16 @@
     <link rel="stylesheet" href="/magnify/web/css/font-awesome.css">
     <link rel="stylesheet" href="/magnify/web/css/main.css">
     <link rel="stylesheet" href="/magnify/web/css/home.css">
+    <link rel="stylesheet" href="/magnify/web/css/contact-us.css">
+    <link rel="stylesheet" href="/magnify/web/css/upload.css">
     <link href="https://fonts.googleapis.com/css?family=Ledger" rel="stylesheet">
     <link rel="stylesheet" href="/magnify/web/css/fonts.css">
     
     <script src="/magnify/web/js/nav.js" type="text/javascript"></script>
     <script src="/magnify/web/js/load.js" type="text/javascript"></script>
+    <script src="/magnify/web/js/animation.js" type="text/javascript"></script>
+    <script src="/magnify/web/js/validation.js" type="text/javascript"></script>
+    <script src="/magnify/web/js/file-upload.js" type="text/javascript"></script>
 </head>
 <body>
     <div id="preload">
@@ -33,7 +38,7 @@
             <ul>
                 <a href="/magnify/web/"><li>HOME</li></a>
                 <li>LATEST POSTS</li>
-                <li>CONTACT US</li>
+                <a href="/magnify/web/contact-us"><li>CONTACT US</li></a>
             </ul>
             <div class="login-logout white">
                 {% if name is not null %}
@@ -53,14 +58,21 @@
                 {% endif %}
             </div>
         </div>
-        <div class="sign-up-modal animateZoom grad2 {{ errors['display'] | default('') }}">
-            <div class="section">
+        <div class="sign-up-modal animateZoom {{ errors['display'] | default('') }} {{ errors['sign-display'] | default('') }}">
+            <div id="signup-suc" class="section">
+                
                 <h3 class="white center">SIGN UP</h3>
-                <form id="sign-up">
-                    <input type="text" name="reg-name" placeholder="ENTER YOUR NAME" autocomplete="off">
-                    <input type="text" name="reg-email" placeholder="ENTER YOUR EMAIL" autocomplete="off">
-                    <input type="password" name="reg-password" placeholder="CHOOSE A PASSWORD" autocomplete="off">
-                    <input type="submit" name="sign-up" value="SIGN UP">
+                <form id="sign-up" action="/magnify/web/signup" method="post">
+                    <span class="errN danger none center white">Name must be longer than 2 characters</span>
+                    <input type="text" id="reg-name" name="reg-name" placeholder="ENTER YOUR NAME" autocomplete="off">
+                    <span class="errS danger none center white">Surname must be longer than 2 characters</span>
+                    <input type="text" id="reg-surname" name="reg-surname" placeholder="ENTER YOUR SURNAME" autocomplete="off">
+                    <span class="danger {{ errors['sign-display'] | default('') }} center white">{{ errors['email-exists'] | default('') }}</span>
+                    <span class="errE danger none center white">Surname must be longer than 2 characters</span>
+                    <input type="text" id="reg-email" name="reg-email" placeholder="ENTER YOUR EMAIL" autocomplete="off">
+                    <input type="password" id="reg-password" name="reg-password" placeholder="CHOOSE A PASSWORD" autocomplete="off">
+                    <input type="submit" id="sign-up-btn" name="sign-up" value="SIGN UP">
+                    <span id="sign-form-error" class="danger center error block">{{ errors['form'] | default('') }}</span>
                 </form>
             </div>
             <div class="section">
@@ -69,10 +81,11 @@
                     <span class="danger {{ errors['display'] | default('') }} center white">{{ errors['email'] | default('') }}</span>
                     <input type="text" name="email" placeholder="ENTER YOUR EMAIL" autocomplete="off" value="{{ email | default('') }}">
                     <span class="danger {{ errors['display'] | default('') }} center white">{{ errors['password'] | default('') }}</span>
-                    <input type="password" name="password" placeholder="CHOOSE A PASSWORD" autocomplete="off">
+                    <input type="password" name="password" placeholder="PASSWORD" autocomplete="off">
                     <input type="submit" name="log-in" value="LOGIN">
                 </form>
             </div>
+            <div class="section" id="signed-up"></div>
             <span class="fa fa-times close-sign-up" aria-hidden="true"></span>
         </div>
         <div id="overlay"></div>
@@ -80,5 +93,28 @@
     {% block content %}
     
     {% endblock %}
+    
+    <script type="text/javascript">
+        $("#sign-up-btn").click(function(event){
+            event.preventDefault();
+            if (!$(this).siblings('input').val()) {
+                $('#sign-form-error').html('Please make sure the form is filled in correctly');
+            } else {
+            
+            $.ajax({
+                url: '/magnify/web/signup',
+                method: 'POST',
+                data: {regName: $('#reg-name').val(),
+                      regSurname: $('#reg-surname').val(),
+                      regEmail: $('#reg-email').val(),
+                      regPassword: $('#reg-password').val()}
+            }).done(function(data){
+                $('#sign-form-error').html(data);
+            }).fail(function(){
+                $('#sign-form-error').html('Please make sure the form is filled in correctly');
+            });
+            }
+        });
+    </script>
 </body>
 </html>

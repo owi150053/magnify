@@ -24,6 +24,7 @@
             email varchar(255),
             avatar_path varchar(255),
             password_hash varchar(32),
+            admin int,
             PRIMARY KEY (id)
         );");
         $statement->execute();
@@ -33,8 +34,8 @@
         $statement->execute();
         $numUsers = $statement->fetchColumn();
         if ($numUsers == 0) {
-            $sql = "INSERT INTO users (name, surname, email, avatar_path, password_hash)
-                    VALUES (:name, :surname, :email, :avatar_path, :password_hash);";
+            $sql = "INSERT INTO users (name, surname, email, avatar_path, password_hash, admin)
+                    VALUES (:name, :surname, :email, :avatar_path, :password_hash, :admin);";
             $statement = $pdo->prepare($sql);
 
             $statement->bindValue(':name', 'Roger', PDO::PARAM_STR);
@@ -42,6 +43,7 @@
             $statement->bindValue(':email', 'roger@ballen.com', PDO::PARAM_STR);
             $statement->bindValue(':avatar_path', '/images/roger.jpg', PDO::PARAM_STR);
             $statement->bindValue(':password_hash', md5('roger'), PDO::PARAM_STR);
+            $statement->bindValue(':admin', 1, PDO::PARAM_INT);
             $statement->execute();
 
             $statement->bindValue(':name', 'Annie', PDO::PARAM_STR);
@@ -49,6 +51,7 @@
             $statement->bindValue(':email', 'annie@leibovitz.com', PDO::PARAM_STR);
             $statement->bindValue(':avatar_path', '/images/annie.jpg', PDO::PARAM_STR);
             $statement->bindValue(':password_hash', md5('annie'), PDO::PARAM_STR);
+            $statement->bindValue(':admin', 0, PDO::PARAM_INT);
             $statement->execute();
         }
         

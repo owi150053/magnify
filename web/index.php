@@ -4,6 +4,7 @@
     require_once __DIR__.'/../vendor/autoload.php';
     require_once __DIR__.'/delegates/auth_delegate.php';
     require_once __DIR__.'/delegates/dash_delegate.php';
+    require_once __DIR__.'/delegates/upload_delegate.php';
 
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
@@ -11,7 +12,7 @@
 
     $app = new Silex\Application();
 
-    $app['debug'] = false;
+    $app['debug'] = true;
     
     //SERVICE PROVIDER
     $app->register(new Silex\Provider\SessionServiceProvider());
@@ -62,9 +63,50 @@
                 $app['session']->set('surname', $user['surname']);
                 $app['session']->set('email', $user['email']);
                 $app['session']->set('avatar', $user['avatar_path']);
+                $app['session']->set('admin', $user['admin']);
                 return $app->redirect('/magnify/web/dashboard');
             }
         }
+        
+    });
+
+    $app->post('/signup', function(Request $request) use ($app) {
+        
+        $name = $request->get('regName');
+        $surname = $request->get('regSurname');
+        $email = $request->get('regEmail');
+        $password_hash = $request->get('regPassword');
+        $avatar_path = "";
+        $admin = 0;
+
+        $checkEmail = get_user_by_email($email);
+        
+        $errors = array();
+        
+        
+        if ($checkEmail == null && !empty($email)) {
+                createUser($name, $surname, $email, $avatar_path, $password_hash, $admin);
+                $user = get_user_by_email($email);
+                $app['session']->set('id', $user['id']);
+                $app['session']->set('name', $user['name']);
+                $app['session']->set('surname', $user['surname']);
+                $app['session']->set('email', $user['email']);
+                $app['session']->set('avatar', $user['avatar_path']);
+                
+                $app['session']->set('admin', $user['admin']);
+                return $app['twig']->render('registered.twig', array());
+                
+            } 
+        
+        if (empty($email) || empty($name) || empty($surname) || empty($password_hash)) {
+                
+                return "Please make sure all the fields are filled in";
+                
+            } 
+        
+        if ($checkEmail == !null) {
+                return "The email chosen is already registered";
+            }
         
     });
 
@@ -73,14 +115,21 @@
             return $app->redirect('/magnify/web/login-page');
         }
         $get_user_posts = getUserPosts($app['session']->get('id'));
+        $admin = checkIfAdmin($app['session']->get('admin'));
         $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
             'avatar' => $app['session']->get('avatar'),
             'id' => $app['session']->get('id'),
-                       'email' => $app['session']->get('email'),
-                       'user_posts' => $get_user_posts);
+            'email' => $app['session']->get('email'),
+            'user_posts' => $get_user_posts,
+            'admin' => $admin);
+        
         return $app['twig']->render('dashboard.twig', $model);
         
+    });
+
+    $app->get('/profile-edit', function(Request $request) use ($app){
+        return $app['twig']->render('profile-edit.twig', array());
     });
 
     $app->post('/settings/avatar', function(Request $request) use($app) {
@@ -88,13 +137,10 @@
             return $app->redirect('/magnify/web/login-page');
         }
         
-        $path = $request->get('avatarFile');
-        $avatar = $request->files->get('avatar-file');
+        $avatarFile = $request->files->get('insert-avatar');
         
-        $avatar->move('images', $avatar->getClientOriginalName());
-        $updatePath = updateAvatar($path, $app['session']->get('id'));
-        $model = array('updatePath' => $updatePath, 'avatar' => $app['session']->set('/images/'.$path));
-        return $app['twig']->render('avatar_update.twig', $model);
+        $avatarFile->move('images', $avatar->getClientOriginalName());
+        return $app->redirect('/magnify/web/dashboard');
     });
 
     $app->post('/settings/info', function(Request $request) use ($app) {
@@ -102,13 +148,13 @@
         $name = $request->get('nameC');
         $surname = $request->get('surnameC');
         $email = $request->get('emailC');
-        
-        updateUserInfo($id, $name, $surname, $email);
+
+        $info = updateUserInfo($id, $name, $surname, $email);
         $app['session']->set('name', $name);
         $app['session']->set('surname', $surname);
         $app['session']->set('email', $email);
+        $model = array('info' => $info);
         
-        $model= array('name' => $name, 'surname' => $surname, 'email' => $email);
         return $app['twig']->render('update-info.twig', $model);
     });
 
@@ -120,35 +166,60 @@
     });
 
     $app->get('/upload', function(Request $request) use ($app) {
-        if ($app['session']->get('name') == !null) {
+        if (!$app['session']->has('id')) {
+            return $app->redirect('/magnify/web/login-page');
+        }
+        $admin = checkIfAdmin($app['session']->get('admin'));
             $model = array('name' => $app['session']->get('name'),
                 'surname' => $app['session']->get('surname'),
                 'avatar' => $app['session']->get('avatar'),
                 'id' => $app['session']->get('id'),
-                          'email' => $app['session']->get('email'));
-            return $app['twig']->render('upload.twig', $model);
-        } else {
-            return $app->redirect('/magnify/web/login-page');
-        }
+                'email' => $app['session']->get('email'),
+                'admin' => $admin);
+            if ($admin == true) {
+                return $app['twig']->render('upload.twig', $model);
+            } if ($admin == false) {
+                return $app->redirect('/magnify/web/contact-us');
+            }
     });
-$app->get('/contact-us', function(Request $request) use ($app) {
-    if ($app['session']->get('name') == !null) {
+
+    $app->get('/contact-us', function(Request $request) use ($app) {
+        if (!$app['session']->has('id')) {
+            return $app->redirect('/magnify/web/guest-contact-us');
+        }
         $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
             'avatar' => $app['session']->get('avatar'),
             'id' => $app['session']->get('id'),
             'email' => $app['session']->get('email'));
         return $app['twig']->render('contact-us.twig', $model);
-    } else {
-        return $app->redirect('/magnify/web/login-page');
-    }
-});
+    });
+
+    $app->get('/restricted', function(Request $request) use ($app){
+        return $app['twig']->render('guest-contact-us.twig', array());
+    });
+    
+    $app->get('/guest-contact-us', function(Request $request) use ($app) {
+            return $app['twig']->render('guest-contact-us.twig', array());
+        
+    });
 
 
     $app->get('/logout', function(Request $request) use ($app) {
        $app['session']->invalidate();
         return $app->redirect('/magnify/web/');
     });
+
+    $app->get('/upload/post', function(Request $request) use ($app) {
+        $title = $request->get('post-title');
+        $content = $request->get('post-content');
+        $id = $app['session']->get('id');
+
+        uploadPost($title, $content, $id);
+
+        return $app->redirect('/magnify/web/dashboard');
+    });
+
     
     //RUN APP
     $app->run();

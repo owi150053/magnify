@@ -20,4 +20,23 @@
         return ($user != null && md5($password) == $user['password_hash']);
     }
 
+    function createUser($name, $surname, $email, $avatar_path, $password_hash, $admin) {
+        require __DIR__.'/../seed.php';
+        
+        $sql = "INSERT INTO users (name, surname, email, avatar_path, password_hash, admin) 
+        VALUES (:name, :surname, :email, :avatar_path, :password_hash, :admin);";
+
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':name', $name, PDO::PARAM_STR);
+        $statement->bindValue(':surname', $surname, PDO::PARAM_STR);
+        $statement->bindValue(':email', $email, PDO::PARAM_STR);
+        $statement->bindValue(':avatar_path', $avatar_path, PDO::PARAM_STR);
+        $statement->bindValue(':password_hash', md5($password_hash), PDO::PARAM_STR);
+        $statement->bindValue(':admin', $admin, PDO::PARAM_STR);
+        $statement->execute();
+            
+        
+        
+    }
+
 ?>

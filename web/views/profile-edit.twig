@@ -1,0 +1,13 @@
+{% extends 'layout.php' %}
+
+{% block content %}
+
+<main id="heroWrapper">
+    <form action="/magnify/web/settings/avatar" id="insert-avatar" method="post">
+        <input name="avatar-file" class="inputfile" id="avatar-file" type="file">
+        <label class="files-upload img-upload" for="avatar-file"><p>SELECT PICTURE</p></label>
+        <input type="submit" id="avatar-save" name="avatar-save" value="SAVE">
+    </form>
+</main>
+
+{% endblock %}
