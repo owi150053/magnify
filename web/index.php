@@ -93,7 +93,15 @@
                 $app['session']->set('avatar', $user['avatar_path']);
                 
                 $app['session']->set('admin', $user['admin']);
-                return $app['twig']->render('registered.twig', array());
+                
+                $model = array('name' => $app['session']->get('name'),
+                'surname' => $app['session']->get('surname'),
+                'avatar' => $app['session']->get('avatar'),
+                'id' => $app['session']->get('id'),
+                'email' => $app['session']->get('email'),
+                'admin' => $app['session']->get('admin'));
+                
+                return $app['twig']->render('registered.twig', $model);
                 
             } 
         
@@ -128,7 +136,13 @@
     });
 
     $app->get('/profile-edit', function(Request $request) use ($app){
-        return $app['twig']->render('profile-edit.twig', array());
+        $model = array('name' => $app['session']->get('name'),
+                'surname' => $app['session']->get('surname'),
+                'avatar' => $app['session']->get('avatar'),
+                'id' => $app['session']->get('id'),
+                'email' => $app['session']->get('email'),
+                'admin' => $app['session']->get('admin'));
+        return $app['twig']->render('profile-edit.twig', $model);
     });
 
     $app->post('/settings/avatar', function(Request $request) use($app) {
