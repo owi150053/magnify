@@ -1,0 +1,20 @@
+{% extends "layout.php" %}
+
+{% block content %}
+
+    <main id="post-page">
+        <div id="post">
+            <div id="image"><img src="Images\photo-1477511865400-09143de8796e.jpg"></div>
+            <div id="title"><h1>The spectacle before us was indeed sublime.</h1></div>
+            <div id="content"><p>Apparently we had reached a great height in the atmosphere, for the sky was a dead black, and the stars had ceased to twinkle.
+                    By the same illusion which lifts the horizon of the sea to the level of the spectator on a hillside,
+                    the sable cloud beneath was dished out, and the car seemed to float in the middle of an immense dark
+                    sphere, whose upper half was strewn with silver. Looking down into the dark gulf below, I could see a
+                    ruddy light streaming through a rift in the clouds.</p></div>
+            <div id="author"><h1>written by: {{ author }}</h1></div>
+            <div id="return"><a href="/magnify/web/dashboard"><h4><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> return back to posts page.</h4></a></div>
+        </div>
+
+    </main>
+
+{% endblock %}

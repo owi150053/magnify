@@ -1,0 +1,70 @@
+#post-page{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(270deg, #a83434, #4a8ccc);
+    background-size: 400% 400%;
+
+    -webkit-animation: post-page-gradient 30s ease infinite;
+    -moz-animation: post-page-gradient 30s ease infinite;
+    animation: post-page-gradient 30s ease infinite;
+}
+
+
+@-webkit-keyframes post-page-gradient {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes post-page-gradient {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes post-page-gradient {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+#content{
+
+}
+#title{
+padding: 8px 0px;
+    letter-spacing: 3px;
+}
+#post{
+    width: 50%;
+
+    vertical-align: middle;
+    display: inline-block;
+    height:50%;
+    position: absolute;
+    top: 0;
+    bottom:0%;
+    margin: auto;
+    margin-left: 250px;
+}
+#image{
+    overflow: hidden;
+    width: 100%;
+    height: 250px;
+    min-height: 250px;
+}
+#image img {
+    height: auto;
+    width: 100%;
+}
+#author > h1{
+    padding-top: 25px;
+    text-align: right;
+    font-size: 12px;
+}
+#return{
+    padding-top: 5px;
+    text-align: right;
+    font-size: 12px;
+}
+#return:hover{
+   cursor: pointer;
+}

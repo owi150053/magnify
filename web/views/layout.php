@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/magnify/web/css/home.css">
     <link rel="stylesheet" href="/magnify/web/css/contact-us.css">
     <link rel="stylesheet" href="/magnify/web/css/upload.css">
+    <link rel="stylesheet" href="/magnify/web/css/post.css">
     <link href="https://fonts.googleapis.com/css?family=Ledger" rel="stylesheet">
     <link rel="stylesheet" href="/magnify/web/css/fonts.css">
     

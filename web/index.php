@@ -234,6 +234,11 @@
         return $app->redirect('/magnify/web/dashboard');
     });
 
+    $app->get('/post', function(Request $request) use ($app) {
+        return $app['twig']->render('post.twig', array());
+
+    });
+
     
     //RUN APP
     $app->run();
