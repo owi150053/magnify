@@ -4,6 +4,7 @@
     require_once __DIR__.'/../vendor/autoload.php';
     require_once __DIR__.'/delegates/auth_delegate.php';
     require_once __DIR__.'/delegates/dash_delegate.php';
+    require_once __DIR__.'/delegates/upload_delegate.php';
 
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
@@ -222,6 +223,17 @@
        $app['session']->invalidate();
         return $app->redirect('/magnify/web/');
     });
+
+    $app->post('/upload/post', function(Request $request) use ($app) {
+        $title = $request->get('post-title');
+        $content = $request->get('upload-text');
+        $id = $app['session']->get('id');
+
+        uploadPost($title, $content, $id);
+
+        return $app->redirect('/magnify/web/dashboard');
+    });
+
     
     //RUN APP
     $app->run();

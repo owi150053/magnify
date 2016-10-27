@@ -41,6 +41,20 @@ $(function(){
         }
     });
     
+    $('#reg-password').keydown(function(){
+        if ($(this).val().length < 7) {
+            $('#sign-up-btn').prop('disabled', true);
+            $('#sign-up-btn').addClass('danger-btn');
+            $('.errP').addClass('block error');
+            $('.errP').removeClass('none');
+        } else if($(this).val().length > 7) {
+            $('#sign-up-btn').prop('disabled', false);
+            $('#sign-up-btn').removeClass('danger-btn');
+            $('.errP').removeClass('block error');
+            $('.errP').addClass('none');
+        }
+    });
+    
     $('#name-change').keyup(function(){
         if ($(this).val().length < 3) {
             $('#update-profile').prop('disabled', true).addClass('danger-btn');

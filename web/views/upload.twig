@@ -5,26 +5,32 @@
 <main id="main-content">
     <h1 class="upload-h1">Upload</h1>
     <div id="form">
-        <form>
-
-
-
-
-
-        </form>
-
-        <form name="form-upload" action="/magnify/web/post" method="POST" enctype="multipart/form-data">
-            <label class="post-title">Post Title:</label>
-            <input type="text" class="post-input" name="post-title" required oninvalid="this.setCustomValidity('Please enter a post title.')"><br>
-            <label for="post-content" class="post-content">Post Content:</label><br>
-            <textarea name="post-content" placeholder="Enter post content here" required oninvalid="this.setCustomValidity('Please enter post content.')" id="upload-text"></textarea>
+        <form name="form-upload" action="/magnify/web/upload/post" method="POST" enctype="multipart/form-data">
+            <div > <input type="text" id="post-title" class="post-input" name="post-title" placeholder="POST TITLE"></div>
+           <br>
+            <textarea name="upload-text" id="upload-text"></textarea>
             <div class="header-image-button">
-                <label for="header-image-file" class="img-upload files-upload"><p>CHOOSE HEADER IMAGE</p></label>
+                <label for="header-image-file" id="header-image" class="files-upload"><p class="submit-post-hover">CHOOSE HEADER IMAGE</p></label>
                 <input name="header-image-file" id="header-image-file" type="file" class="inputfile"><br>
             </div>
-            <input type="submit" value="SUBMIT POST" class="submit-post">
+
+            <input type="submit" id="submit-post" class="files-upload" value="SUBMIT"><p class="submit-post-hover"></p></input>
         </form>
+    <div id="test"></div>
     </div>
+
+<script>
+    
+    function getContent() {
+        var tiny = tinymce.activeEditor.getContent();
+        $('#upload-text').html(tiny);
+    }
+    $('#submit-post').mouseenter(function() {
+        getContent();
+    });
+    
+    
+</script>
 
 </main>
 

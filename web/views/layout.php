@@ -68,8 +68,9 @@
                     <span class="errS danger none center white">Surname must be longer than 2 characters</span>
                     <input type="text" id="reg-surname" name="reg-surname" placeholder="ENTER YOUR SURNAME" autocomplete="off">
                     <span class="danger {{ errors['sign-display'] | default('') }} center white">{{ errors['email-exists'] | default('') }}</span>
-                    <span class="errE danger none center white">Surname must be longer than 2 characters</span>
+                    <span class="errE danger none center white"> Please enter a valid email</span>
                     <input type="text" id="reg-email" name="reg-email" placeholder="ENTER YOUR EMAIL" autocomplete="off">
+                    <span class="errP danger none center white">Please make sure your passwoord is longer then 8 characters</span>
                     <input type="password" id="reg-password" name="reg-password" placeholder="CHOOSE A PASSWORD" autocomplete="off">
                     <input type="submit" id="sign-up-btn" name="sign-up" value="SIGN UP">
                     <span id="sign-form-error" class="danger center error block">{{ errors['form'] | default('') }}</span>
