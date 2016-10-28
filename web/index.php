@@ -235,7 +235,12 @@
     });
 
     $app->get('/post', function(Request $request) use ($app) {
-        return $app['twig']->render('post.twig', array());
+          $model = array('name' => $app['session']->get('name'),
+            'surname' => $app['session']->get('surname'),
+            'avatar' => $app['session']->get('avatar'),
+            'id' => $app['session']->get('id'),
+            'email' => $app['session']->get('email'));
+        return $app['twig']->render('post.twig', $model);
 
     });
 
