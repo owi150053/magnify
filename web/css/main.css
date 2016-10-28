@@ -81,10 +81,9 @@ nav {
 }
 
 nav li {
-    display: block;
+    display: inline-block;
     list-style: none;
     font-size: 13px;
-    text-align: right;
     cursor: pointer;
 }
 
@@ -94,8 +93,8 @@ nav li span {
 }
 
 .menu-icon {
-    margin-top: 15px;
-    margin-right: 54px;
+    margin-top: 3px;
+    margin-left: 8px;
     float: right;
     display: block;
     width: 30px;
@@ -552,4 +551,59 @@ nav li span {
     max-width: 200%;
     min-height: 100%;
     max-height: 150%;
+}
+
+#nav-avatar {
+    display: inline-block;
+    float: left;
+    margin: 0 auto;
+    background-color: black;
+    border-radius: 80%;
+    width: 40px;
+    height: 40px;
+    z-index: 6;
+    border: 3px solid rgb(199,86,88);
+    box-sizing: border-box;
+    position: relative;
+    cursor: pointer;
+}
+
+.user-drop {
+    display: none;
+    position: absolute;
+    top: 52px;
+    width: 110px;
+    background-color: rgb(28, 44, 57);
+    left: -35px;
+    text-align: center !important;
+    padding: 5px;
+}
+
+.triangle-home {
+    display: block;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    background-color: inherit;
+    top: -7px;
+    left: 46px;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+ul.user-drop li {
+    padding: 3px 0px;
+    box-sizing: border-box;
+    color: white;
+    width: 100%;
+}
+
+.user-drop li:hover {
+    background-color: rgb(199,86,88);
+    color: #fff;
+}
+
+#login-btn {
+    vertical-align: top;
+    margin-top: 10px;
 }

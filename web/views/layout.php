@@ -25,14 +25,19 @@
     </div>
     <header>
         <nav>
-            <div id="nav-avatar" style="background:url(/magnify/web{{ avatar }}) center;background-size:cover;">
-                <ul>
-                    <li>VIEW PROFILE</li>
-                </ul>
-            </div>
+            
             {% if name is not null %}
-            <li class="black inline upper hello">Hi, <a class="underline black" href="/magnify/web/dashboard">{{ name | default('') }}</a> | </li>
-                <li id='logout-btn' class='dash-right inline black home-logout'><a href='/magnify/web/logout'><span class='fa fa-sign-out' aria-hidden='true'></span>&nbsp;SIGN OUT</a></li>            
+            
+            <div id="nav-avatar" style="background:url(/magnify/web{{ avatar }}) center;background-size:cover;">
+                <ul class="user-drop center">
+                    <a href="/magnify/web/{% if admin == true %}dashboard{% else %}profile-edit{% endif %}"><li>VIEW PROFILE</li></a>
+                    {% if admin == true %}
+                    <a href="/magnify/web/upload"><li>CREATE POST</li></a>
+                    {% endif %}
+                    <a href="/magnify/web/logout"><li>SIGN OUT</li></a>
+                    <span class="triangle-home"></span>
+                </ul>
+            </div>          
             {% elseif name is null %}
                 <li id='login-btn'><span class='fa fa-user' aria-hidden='true'></span>&nbsp;LOGIN | SIGN UP</li>
             {% endif %}

@@ -27,10 +27,12 @@
 
     //ROUTES
     $app->get('/', function(Request $request) use ($app) {
+        $admin = checkIfAdmin($app['session']->get('admin'));
         $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
             'avatar' => $app['session']->get('avatar'),
-            $app['session']->get('id'));
+            $app['session']->get('id'),
+                      'admin' => $admin);
         return $app['twig']->render('home.twig', $model);
     });
 
@@ -64,7 +66,13 @@
                 $app['session']->set('email', $user['email']);
                 $app['session']->set('avatar', $user['avatar_path']);
                 $app['session']->set('admin', $user['admin']);
-                return $app->redirect('/magnify/web/dashboard');
+                
+                $admin = checkIfAdmin($app['session']->get('admin'));
+                if ($admin == true) {
+                    return $app->redirect('/magnify/web/dashboard');
+                } else {
+                    return $app->redirect('/magnify/web/profile-edit');
+                }
             }
         }
         
@@ -119,8 +127,12 @@
     });
 
     $app->get('/dashboard', function(Request $request) use ($app) {
+        $admin = checkIfAdmin($app['session']->get('admin'));
         if (!$app['session']->has('id')) {
             return $app->redirect('/magnify/web/login-page');
+        }
+        if ($admin == false) {
+            return $app->redirect('/magnify/web/profile-edit');
         }
         $get_user_posts = getUserPosts($app['session']->get('id'));
         $admin = checkIfAdmin($app['session']->get('admin'));
@@ -151,6 +163,9 @@
             return $app->redirect('/magnify/web/login-page');
         }
         $avatarFile = $request->files->get('file');
+        
+        if ($avatarFile == !null) {
+        
         $avatarFile->move('images', $avatarFile->getClientOriginalName());
         $id = $app['session']->get('id');
 //        $file = $request->files->get('file');
@@ -165,6 +180,16 @@
         updateAvatar($path, $id);
         $app['session']->set('avatar', $path);
         return $app->redirect('/magnify/web/dashboard');
+        } else {
+            $model = array('error' => 'Please select a file', 'display' => 'block error',
+                          'name' => $app['session']->get('name'),
+                'surname' => $app['session']->get('surname'),
+                'avatar' => $app['session']->get('avatar'),
+                'id' => $app['session']->get('id'),
+                'email' => $app['session']->get('email'),
+                'admin' => $app['session']->get('admin'));
+            return $app['twig']->render('profile-edit.twig', $model);
+        }
     });
 
     $app->post('/settings/info', function(Request $request) use ($app) {
@@ -245,11 +270,13 @@
     });
 
     $app->get('/post', function(Request $request) use ($app) {
+        $admin = checkIfAdmin($app['session']->get('admin'));
           $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
             'avatar' => $app['session']->get('avatar'),
             'id' => $app['session']->get('id'),
-            'email' => $app['session']->get('email'));
+            'email' => $app['session']->get('email'),
+            'admin' => $admin);
         return $app['twig']->render('post.twig', $model);
 
     });

@@ -39,6 +39,11 @@ $(function(){
         $('.avatar-edit').fadeOut(200);
     });
     
+    $('#nav-avatar').click(function(){
+        $('#overlay').show().css({"z-index": "3"});
+        $('.user-drop').fadeIn(200);
+    });
+    
     $('.edit-pic').click(function(){
         $('#overlay').show().css({"z-index": "3"});
         $('#side-bar').css({"z-index":"2"});
@@ -63,6 +68,7 @@ $(function(){
         $('#side-bar').css({"z-index":"9"});
         $('nav').css({"z-index":"5"});
         $('.info-edit').fadeOut(200);
+        $('.user-drop').fadeOut(200);
     })
     
     $('.close-menu').click(function(){
@@ -107,5 +113,6 @@ $(document).keyup(function(e){
             $('#side-bar').css({"z-index":"9"});
             $('nav').css({"z-index":"5"});
             $('.info-edit').fadeOut(200);
+            $('.user-drop').fadeOut(200);
         }
 });
