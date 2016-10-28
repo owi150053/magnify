@@ -510,3 +510,38 @@ nav li span {
 .none {
     display: none;
 }
+
+/*--------------------- REGISTER UPLOAD PAGE ---------------------*/
+
+#register-update-picture {
+    padding: 50px;
+    box-sizing: border-box;
+    width: 45%;
+    display: block;
+    margin: 150px auto 0px auto;
+    background-color: rgb(28, 44, 57);
+}
+
+.register-update-picture {
+    width: 60%;
+    display: block;
+    margin: 300px auto 0px auto;
+}
+
+.reg-upload {
+    width: 80% !important;
+    margin: 20px auto 0 auto;
+}
+
+.avatar {
+    display: block;
+    margin: 20px auto;
+    background-color: black;
+    border-radius: 80%;
+    width: 128px;
+    height: 128px;
+    z-index: 6;
+    border: 3px solid rgb(199, 86, 88);
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;

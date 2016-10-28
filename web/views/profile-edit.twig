@@ -2,12 +2,40 @@
 
 {% block content %}
 
-<main id="heroWrapper">
-    <form action="/magnify/web/settings/avatar" id="insert-avatar" method="post">
-        <input name="avatar-file" class="inputfile" id="avatar-file" type="file">
-        <label class="files-upload img-upload" for="avatar-file"><p>SELECT PICTURE</p></label>
-        <input type="submit" id="avatar-save" name="avatar-save" value="SAVE">
-    </form>
+<main id="main-content">
+    <div id="heroWrapper">
+        <div id="register-update-picture">
+            <h1 class="white center">SELECT A PROFILE PICTURE</h1>
+            <div class="avatar" style="background:url(/magnify/web{{ avatar }}) center;background-size:cover;">
+                <img id="img" src="">
+            </div>
+        <form action="/magnify/web/settings/avatar" id="insert-avatar" method="post" enctype="multipart/form-data">
+            <input name="file" class="inputfile" id="file" type="file">
+            <label class="files-upload img-upload reg-upload" for="file"><p>SELECT PICTURE</p></label>
+            <input type="submit" id="avatar-save" name="avatar-save" value="SAVE">
+        </form>
+            <div id="img-success"></div>
+        </div>
+    </div>
 </main>
-
+<script>
+$("#avatar-save").click(function(event){
+    event.preventDefault();
+    var input = $('#file').val().split('\\').pop();
+    console.log(input);
+    $.ajax({
+        url: '/magnify/web/settings/avatar',
+        method: 'POST',
+        data: new FormData(this),
+        contentType: false,
+        cache: false,
+        processData: false
+    }).done(function(html) {
+        $('#img-success').html(html);
+        $('#img').attr('src', '/magnify/web/images/'+input);
+    }).fail(function() {
+        
+    });
+});
+</script>
 {% endblock %}

@@ -17,11 +17,11 @@
     }
 
     function updateAvatar($path, $id) {
-        require __DIR__.'/../seed.php';
+        require __DIR__.'/../seed.php';        
         
         $sql = "UPDATE users SET avatar_path=:path WHERE id=:id;";
         $statement = $pdo->prepare($sql);
-        $statement->bindValue(':path', '/images/'.$path, PDO::PARAM_STR);
+        $statement->bindValue(':path', $path, PDO::PARAM_STR);
         $statement->bindValue(':id', $id, PDO::PARAM_INT);
         $statement->execute();
         

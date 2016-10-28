@@ -76,7 +76,7 @@
         $surname = $request->get('regSurname');
         $email = $request->get('regEmail');
         $password_hash = $request->get('regPassword');
-        $avatar_path = "";
+        $avatar_path = "/images/default-pp.jpg";
         $admin = 0;
 
         $checkEmail = get_user_by_email($email);
@@ -151,10 +151,18 @@
             return $app->redirect('/magnify/web/login-page');
         }
         
-        $avatarFile = $request->files->get('insert-avatar');
+        $id = $app['session']->get('id');
+        $file = $request->files->get('file');
+        $fileName = $_FILES['file']['name'];
+        $tempName = $_FILES['file']['tmp_name'];
+        $folder = '/images/';
         
-        $avatarFile->move('images', $avatar->getClientOriginalName());
-        return $app->redirect('/magnify/web/dashboard');
+        $path = $folder.$fileName;
+        $file->move($path);
+//        move_uploaded_file($tempName, "/magnify/web".$folder.$fileName);
+        
+            updateAvatar($path, $id);
+        return $app['twig']->render('avatar_update.twig', array());
     });
 
     $app->post('/settings/info', function(Request $request) use ($app) {
