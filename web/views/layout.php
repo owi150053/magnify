@@ -25,6 +25,11 @@
     </div>
     <header>
         <nav>
+            <div id="nav-avatar" style="background:url(/magnify/web{{ avatar }}) center;background-size:cover;">
+                <ul>
+                    <li>VIEW PROFILE</li>
+                </ul>
+            </div>
             {% if name is not null %}
             <li class="black inline upper hello">Hi, <a class="underline black" href="/magnify/web/dashboard">{{ name | default('') }}</a> | </li>
                 <li id='logout-btn' class='dash-right inline black home-logout'><a href='/magnify/web/logout'><span class='fa fa-sign-out' aria-hidden='true'></span>&nbsp;SIGN OUT</a></li>            

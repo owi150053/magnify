@@ -8,6 +8,7 @@
             <h1 class="white center">SELECT A PROFILE PICTURE</h1>
             <div class="avatar" style="background:url(/magnify/web{{ avatar }}) center;background-size:cover;">
                 <img id="img" src="">
+                <img id="tmp_img" src="">
             </div>
         <form action="/magnify/web/settings/avatar" id="insert-avatar" method="post" enctype="multipart/form-data">
             <input name="file" class="inputfile" id="file" type="file">
@@ -18,6 +19,12 @@
         </div>
     </div>
 </main>
+
+<script>
+
+</script>
+
+<!--
 <script>
 $("#avatar-save").click(function(event){
     event.preventDefault();
@@ -38,4 +45,5 @@ $("#avatar-save").click(function(event){
     });
 });
 </script>
+-->
 {% endblock %}

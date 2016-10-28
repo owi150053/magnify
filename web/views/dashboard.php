@@ -35,14 +35,15 @@
             <div id="update-avatar">
                 <div class="avatar" style="background:url(/magnify/web{{ avatar }}) center;background-size:cover;">
                     <div class="edit-pic"><span class='fa fa-pencil white' aria-hidden='true'></span></div>
+                    <img id="img" src="">
                 </div>
             </div>
             <!--PROFILE EDIT-->
             <div class="avatar-edit">
                 <p id="error"></p>
-                <form name="avatar-edit" action="/magnify/web/settings/avatar" enctype="multipart/form-data">
-                    <input name="avatar-file" class="inputfile" id="avatar-file" type="file">
-                    <label class="files-upload img-upload" for="avatar-file"><p>SELECT PICTURE</p></label>
+                <form name="avatar-edit" action="/magnify/web/settings/avatar" enctype="multipart/form-data" method="post">
+                    <input name="file" class="inputfile" id="file" type="file">
+                    <label class="files-upload img-upload" for="file"><p>SELECT PICTURE</p></label>
                     <input type="submit" id="avatar-save" name="avatar-save" value="SAVE">
                 </form>
                 <span class="triangle"></span>
@@ -107,27 +108,6 @@
     
     
     <script type="text/javascript">
-        $("#avatar-save").click(function(event){
-            event.preventDefault();
-            var input = $('#avatar-file').val().split('\\').pop();
-            console.log($('input[name="avatar-file"]')[0].files[0]);
-            console.log('/images/' + input);
-            $.ajax({
-                url: '/magnify/web/settings/avatar',
-                method: 'POST',
-                data: {avatarFile: input, fileUrl: $('input[name="avatar-file"]')[0].files[0]},
-                contentType: "application/x-www-form-urlencoded",
-                processData: false,
-                enctype: "multipart/form-data"
-            }).done(function(html) {
-               $("#update-avatar").html(html);
-                console.log(input);
-            }).fail(function() {
-                $('#error').html(
-                "The upload failed please try again.");
-            });
-        });
-        
         
         $("#update-profile").click(function(event){
             event.preventDefault();

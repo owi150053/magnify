@@ -150,19 +150,21 @@
         if (!$app['session']->has('id')) {
             return $app->redirect('/magnify/web/login-page');
         }
-        
+        $avatarFile = $request->files->get('file');
+        $avatarFile->move('images', $avatarFile->getClientOriginalName());
         $id = $app['session']->get('id');
-        $file = $request->files->get('file');
-        $fileName = $_FILES['file']['name'];
-        $tempName = $_FILES['file']['tmp_name'];
-        $folder = '/images/';
-        
-        $path = $folder.$fileName;
-        $file->move($path);
+//        $file = $request->files->get('file');
+//        $fileName = $_FILES['file']['name'];
+//        $tempName = $_FILES['file']['tmp_name'];
+//        $folder = '/images/';
+//        
+//        $path = $folder.$fileName;
+//        $file->move($path);
 //        move_uploaded_file($tempName, "/magnify/web".$folder.$fileName);
-        
-            updateAvatar($path, $id);
-        return $app['twig']->render('avatar_update.twig', array());
+        $path = "/images/".$avatarFile->getClientOriginalName();
+        updateAvatar($path, $id);
+        $app['session']->set('avatar', $path);
+        return $app->redirect('/magnify/web/dashboard');
     });
 
     $app->post('/settings/info', function(Request $request) use ($app) {
