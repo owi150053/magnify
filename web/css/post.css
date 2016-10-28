@@ -1,8 +1,8 @@
 #post-page{
     width: 100%;
     height: 100vh;
-    background: linear-gradient(270deg, #a83434, #4a8ccc);
-    background-size: 400% 400%;
+    background: linear-gradient(270deg, #6edfcb, #c75658);
+    background-size: 200% 200%;
 
     -webkit-animation: post-page-gradient 30s ease infinite;
     -moz-animation: post-page-gradient 30s ease infinite;
@@ -31,19 +31,30 @@
 }
 #title{
 padding: 8px 0px;
-    letter-spacing: 3px;
-}
-#post{
-    width: 50%;
-    color: white;
-    vertical-align: middle;
-    display: inline-block;
-    height:50%;
+letter-spacing: 1px;
     position: absolute;
+    top: 180px;
+    left: 50px;
+}
+#post-image{
+    width: 100%;
+    color: white;
+    display: block;
+    position: relative;
     top: 0;
     bottom:0%;
     margin: auto;
-    margin-left: 425px;
+}
+#post{
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    padding: 30px;
+    height: auto;
+    box-sizing: border-box;
+    margin-top: 25px;
 }
 #image{
     overflow: hidden;
@@ -68,4 +79,50 @@ padding: 8px 0px;
 }
 #return:hover{
    cursor: pointer;
+}
+
+#comments{
+    border-radius: 15px;
+    border: 1px solid white;
+    padding: 7px;
+    background: transparent;
+    color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 55px;
+    outline: none;
+}
+.comment-arrow{
+    display: none;
+    padding-top: 15px;
+
+}
+#comments:hover + .comment-arrow{
+    display: inline;
+    display: block;
+    margin: auto;
+    width: 10px;
+    text-align: center;
+    margin-top: 10px;
+    animation: bounce3 2s infinite;
+
+}
+.post-logo{
+    position: absolute;
+    width: 120px;
+    top: 138px;
+    left: 50px;
+}
+
+@keyframes bounce3 {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }
