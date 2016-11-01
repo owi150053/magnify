@@ -12,6 +12,7 @@
     border-radius: 10px;
     overflow: hidden;
     border: 3px solid rgb(199,86,88);
+    position: relative;
 }
 
 .post-bg {
@@ -41,11 +42,9 @@
     border-radius: 80%;
     width: 40px;
     height: 40px;
-    z-index: 6;
     border: 3px solid rgb(199,86,88);
     box-sizing: border-box;
     position: relative;
-    cursor: pointer;
 }
 
 #search-txt {
@@ -87,4 +86,32 @@
     display: block;
     width: 300px;
     margin: 10px auto;
+}
+
+.single-post:hover > .view {
+    display: block;
+}
+
+.view {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.view input[type=submit] {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 104%;
+    height: 104%;
+    background-color: transparent;
+    outline: none;
+    color: #ffffff;
+    font-size: 25px;
+    border: none;
+    cursor: pointer;
 }

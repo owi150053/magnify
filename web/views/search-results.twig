@@ -5,6 +5,12 @@
         <div class="av">
             <div class="post-avatar" style="background:url('/magnify/web{{ post.avatar_path }}') center;background-size:cover;"></div>
         </div>
+        <div class="view">
+            <form id="view-post" action="/magnify/web/view" method="post">
+                <input type="hidden" name="postid" id="post-id" value="{{ post.id }}">
+                <input type="submit" id="view-btn" value="VIEW POST">
+            </form>
+        </div>
     </div>
     {% else %}
         <h3 class="center">Your search did not match anything...please be more specific.</h3>

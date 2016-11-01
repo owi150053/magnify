@@ -169,14 +169,7 @@
         
         $avatarFile->move('images', $avatarFile->getClientOriginalName());
         $id = $app['session']->get('id');
-//        $file = $request->files->get('file');
-//        $fileName = $_FILES['file']['name'];
-//        $tempName = $_FILES['file']['tmp_name'];
-//        $folder = '/images/';
-//        
-//        $path = $folder.$fileName;
-//        $file->move($path);
-//        move_uploaded_file($tempName, "/magnify/web".$folder.$fileName);
+
         $path = "/images/".$avatarFile->getClientOriginalName();
         updateAvatar($path, $id);
         $app['session']->set('avatar', $path);
@@ -283,14 +276,17 @@
         return $app['twig']->render('recent_posts.twig', $model);
     });
 
-    $app->get('/post', function(Request $request) use ($app) {
+    $app->post('/view', function(Request $request) use ($app) {
         $admin = checkIfAdmin($app['session']->get('admin'));
+        $id = $request->get('postid');
+        $postD = getPostDetail($id);
           $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
             'avatar' => $app['session']->get('avatar'),
             'id' => $app['session']->get('id'),
             'email' => $app['session']->get('email'),
-            'admin' => $admin);
+            'admin' => $admin,
+              'post' => $postD);
         return $app['twig']->render('post.twig', $model);
 
     });
@@ -299,7 +295,7 @@
         if (!$app['session']->has('id')) {
             return $app->redirect('/magnify/web/login-page');
         }
-        $searchTxt = $request->get(search);
+        $searchTxt = $request->get('search');
         $result = search($searchTxt);
         $model = array('results' => $result);
 

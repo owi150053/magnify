@@ -23,6 +23,7 @@
     
     function getContent() {
         var tiny = tinymce.activeEditor.getContent();
+        console.log(tiny);
         $('#upload-text').html(tiny);
     }
     $('#submit-post').mouseenter(function() {

@@ -5,30 +5,25 @@
     <main id="post-page">
         <div id="post-image">
             <a href="/magnify/web" ><img src="/magnify/web/images/logos/LogoWhite-01.png" class="post-logo"></a>
-            <div id="image"><img src="Images\photo-1477511865400-09143de8796e.jpg"></div>
-            <div id="title"><h1>The spectacle before us was indeed sublime.</h1></div>
+            <div id="image" style="background-image: url('/magnify/web{{ post.image_path }}'); background-size:cover; background-position:center;"></div>
+            <div id="title"><h1>{{ post.title }}</h1></div>
         </div>
         <div id="post">
-            <div id="content"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisis felis sit amet arcu lobortis consequat at sit amet quam. Integer lobortis purus vel tincidunt scelerisque. Cras bibendum tincidunt odio, vitae consequat augue euismod vitae. Mauris elementum turpis nec finibus ultricies. Morbi malesuada lacus nec sodales facilisis. Pellentesque magna metus, mattis imperdiet placerat id, tempor nec urna. Nullam ut quam vitae eros accumsan tempus. Aliquam euismod mattis dolor non dapibus. Suspendisse auctor sed augue id iaculis. Vivamus nisl enim, consectetur sed accumsan ut, elementum in lacus. Sed faucibus orci mi, a tempus dui molestie ut. Proin faucibus consequat consectetur. Sed euismod nulla sed elit aliquam, a egestas ipsum efficitur.
-
-Aliquam accumsan, quam at viverra mattis, eros tortor efficitur ante, in ultricies ante metus at nulla. Aliquam interdum nec mi sed cursus. Phasellus tempus metus efficitur lacus dapibus, sit amet ornare tortor dictum. Sed luctus iaculis maximus. Mauris a lorem cursus turpis posuere fringilla nec quis augue. Donec vel dui venenatis massa molestie gravida in nec nulla. Nullam ut tortor ut urna dignissim ultricies. Fusce lobortis dignissim metus et pretium. Donec id ullamcorper neque, at pretium nunc. Aenean at justo non eros convallis consectetur eu non orci. Cras vitae magna venenatis, ultricies nunc ut, tempus diam. Proin mollis euismod nunc, eget eleifend ex molestie at. Curabitur vel mi mi. Nulla pulvinar lacinia elit non mattis. Phasellus vitae odio vel augue congue vulputate vitae nec diam. Sed auctor metus ut imperdiet tincidunt.
-
-Nam molestie, nunc vel imperdiet accumsan, mi leo sodales nisl, sed mollis sem mauris non ipsum. Sed condimentum convallis tempus. Vivamus dictum accumsan efficitur. Donec bibendum suscipit sapien. Curabitur pharetra ante arcu, sed posuere massa consectetur ac. Phasellus risus velit, laoreet sit amet mattis et, luctus et odio. Aliquam cursus venenatis volutpat. Nam ultrices leo vel eros convallis, eu vulputate neque scelerisque. Suspendisse eu erat eu magna tincidunt posuere. Nam sit amet tincidunt dui, eu interdum dolor. Praesent ex urna, posuere eget vehicula nec, placerat at turpis. Duis posuere tellus at hendrerit pellentesque. Sed in dapibus risus, sit amet suscipit lacus. Nam quis lorem faucibus, lobortis sem non, sodales libero. Ut placerat purus ut egestas rhoncus.
-
-Sed nisl lectus, semper eu tincidunt a, posuere sed risus. Morbi tristique, eros nec facilisis semper, lacus ex efficitur leo, et consequat est ipsum quis justo. Vivamus sagittis mi ipsum, et pharetra purus dignissim in. Aliquam et quam vitae erat elementum dignissim. Suspendisse finibus malesuada blandit. Integer bibendum sit amet erat nec venenatis. Curabitur euismod pulvinar ipsum eget tincidunt. Fusce at lacus feugiat, placerat magna ac, imperdiet ex. Vivamus nisl odio, vehicula ut viverra vitae, gravida non sapien. Nunc pharetra magna vitae elit eleifend, eu tincidunt turpis fringilla. Donec tellus leo, luctus a eros et, dapibus dignissim erat. Curabitur scelerisque, neque ac commodo congue, urna lectus pellentesque dolor, scelerisque laoreet neque nisl id nunc. Vivamus condimentum nec risus vel egestas. Mauris vitae interdum ex.
-
-</p></div>
-            <div id="author"><h1>written by: {{ author }}</h1></div>
+            <div id="content">
+                {{ post.content }}
+            </div>
+            <div id="author"><h1>written by: {{ post.name }} {{ post.surname }} | {{ post.post_date }}</h1></div>
             <div id="return"><a href="/magnify/web/dashboard"><h4><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> return back to posts page.</h4></a></div>
              <div id=""><button id="comments">VIEW COMMENTS</button><span class="fa fa-arrow-down comment-arrow" aria-hidden="true"></span></div>
         </div>
         
        
     </main>
-<script>
- $(function(){
-    $('#comments').mouseenter 
- });
-</script>
+    <script>
+        $(function () {
+            $('#content').text().replace(/['"]+/g, '');
+        });
+
+    </script>
 {% endblock %}
 

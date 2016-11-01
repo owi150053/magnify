@@ -61,6 +61,7 @@
             content longtext,
             image_path varchar(255),
             author_id int,
+            post_date DATE,
             PRIMARY KEY (id)
         );");
         $statement->execute();
@@ -69,8 +70,8 @@
         $statement->execute();
         $postCount = $statement->fetchColumn();
         if ($postCount == 0) {
-            $sql = "INSERT INTO posts (title, content, image_path, author_id)
-                    VALUES (:title, :content, :image_path, :author_id);";
+            $sql = "INSERT INTO posts (title, content, image_path, author_id, post_date)
+                    VALUES (:title, :content, :image_path, :author_id, CURRENT_DATE );";
             $statement = $pdo->prepare($sql);
 
             $statement->bindValue(':title', 'Lorem Ipsum', PDO::PARAM_STR);
