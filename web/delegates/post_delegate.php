@@ -12,4 +12,20 @@
 
         return $results;
     }
+
+    function search($search) {
+        require __DIR__.'/../seed.php';
+
+        $s = '%'.$search.'%';
+
+        $sql = "SELECT * FROM posts
+                INNER JOIN users
+                ON author_id=users.id
+                WHERE title LIKE :search;";
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':search', $s, PDO::PARAM_STR);
+        $statement->execute();
+
+        return $statement->fetchAll();
+    }
 ?>

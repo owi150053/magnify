@@ -3,6 +3,14 @@
 {%  block content %}
 
     <main id="main-content" class="post-main">
+        <div id="search-box">
+            <form id="search" method="post" action="/magnify/web/search">
+                <input type="text" id="search-txt" placeholder="SEARCH FOR POSTS">
+                <input type="submit" id="search-btn" value="SEARCH">
+            </form>
+            <h4 id="empty" class="danger center"></h4>
+        </div>
+        <div id="results">
         {% for post in posts %}
                 <div class="single-post">
                     <div class="post-bg" style="background: url('/magnify/web{{ post.image_path }}'); background-size: cover; background-position: center;"></div>
@@ -12,6 +20,29 @@
                     </div>
                 </div>
         {% endfor %}
+        </div>
     </main>
+
+    <script>
+        $('#search-btn').click(function (e) {
+            e.preventDefault();
+            if (!$('#search-txt').val()) {
+                $('#empty').html("Please enter a search term");
+            } else {
+                $('#empty').html("");
+                $.ajax({
+                    url: '/magnify/web/search',
+                    method: 'POST',
+                    data: {search: $('#search-txt').val()}
+                }).done(function (html) {
+                    $('#results').html(html);
+                }).fail(function () {
+                    $('#results').html(
+                            "<h2>Looks like something went wrong. Please check your internet connection.</h2>"
+                    );
+                });
+            }
+        });
+    </script>
 
 {% endblock %}

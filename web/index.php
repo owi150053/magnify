@@ -295,6 +295,17 @@
 
     });
 
+    $app->post('/search', function (Request $request) use ($app) {
+        if (!$app['session']->has('id')) {
+            return $app->redirect('/magnify/web/login-page');
+        }
+        $searchTxt = $request->get(search);
+        $result = search($searchTxt);
+        $model = array('results' => $result);
+
+        return $app['twig']->render('search-results.twig', $model);
+    });
+
     
     //RUN APP
     $app->run();
