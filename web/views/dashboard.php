@@ -77,7 +77,7 @@
             <span class="fa fa-times close-menu" aria-hidden="true"></span>
             <ul>
                 <li><a href="/magnify/web/">HOME</a></li>
-                <li>LATEST POSTS</li>
+                <a href="/magnify/web/recent-posts"><li>LATEST POSTS</li></a>
                 <li><a href="/magnify/web/contact-us">CONTACT US</a></li>
 
             </ul>

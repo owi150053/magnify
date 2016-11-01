@@ -5,6 +5,7 @@
     require_once __DIR__.'/delegates/auth_delegate.php';
     require_once __DIR__.'/delegates/dash_delegate.php';
     require_once __DIR__.'/delegates/upload_delegate.php';
+    require_once __DIR__.'/delegates/post_delegate.php';
 
     use Symfony\Component\HttpFoundation\Request;
     use Symfony\Component\HttpFoundation\Response;
@@ -267,6 +268,19 @@
         uploadPost($title, $content, $id);
 
         return $app->redirect('/magnify/web/dashboard');
+    });
+
+    $app->get('/recent-posts', function(Request $request) use ($app) {
+        $admin = checkIfAdmin($app['session']->get('admin'));
+        $getPosts = getPosts();
+        $model = array('name' => $app['session']->get('name'),
+            'surname' => $app['session']->get('surname'),
+            'avatar' => $app['session']->get('avatar'),
+            'id' => $app['session']->get('id'),
+            'email' => $app['session']->get('email'),
+            'admin' => $admin,
+            'posts' => $getPosts);
+        return $app['twig']->render('recent_posts.twig', $model);
     });
 
     $app->get('/post', function(Request $request) use ($app) {

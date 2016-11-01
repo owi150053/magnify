@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/magnify/web/css/contact-us.css">
     <link rel="stylesheet" href="/magnify/web/css/upload.css">
     <link rel="stylesheet" href="/magnify/web/css/post.css">
+    <link rel="stylesheet" href="/magnify/web/css/recent-posts.css">
     <link href="https://fonts.googleapis.com/css?family=Ledger" rel="stylesheet">
     <link rel="stylesheet" href="/magnify/web/css/fonts.css">
     
@@ -48,7 +49,7 @@
             <span class="fa fa-times close-menu" aria-hidden="true"></span>
             <ul>
                 <a href="/magnify/web/"><li>HOME</li></a>
-                <li>LATEST POSTS</li>
+                <a href="/magnify/web/recent-posts"><li>LATEST POSTS</li></a>
                 <a href="/magnify/web/contact-us"><li>CONTACT US</li></a>
             </ul>
             <div class="login-logout white">
