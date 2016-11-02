@@ -1,5 +1,5 @@
 {% for post in results %}
-    <div class="single-post">
+    <div class="single-post"  data-date="{{ post.post_date }}">
         <div class="post-bg" style="background: url('/magnify/web{{ post.image_path }}'); background-size: cover; background-position: center;"></div>
         <h4 class="white">{{ post.title }}</h4>
         <div class="av">

@@ -1,11 +1,15 @@
 .post-main {
-    padding: 50px;
+    padding: 70px 50px 50px 50px;
+    box-sizing: border-box;
+    float: left;
 }
 
 .single-post {
     display: block;
     width: 19%;
-    margin-right: 0.24%;
+    margin-top: 10px;
+    margin-right: 0.25%;
+    margin-left: 0.25%;
     float: left;
     min-height: 400px;
     background-color: rgb(28, 44, 57);
@@ -82,10 +86,29 @@
     color: #fff;
 }
 
-#search-box {
+#search {
+    display: inline-block;
+}
+
+#sort {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+#sort > li {
+    display: inline-block;
+    list-style: none;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+#content-box {
     display: block;
-    width: 300px;
+    width: 800px;
     margin: 10px auto;
+    position: absolute;
+    top: 10px;
+    left: 30%;
 }
 
 .single-post:hover > .view {

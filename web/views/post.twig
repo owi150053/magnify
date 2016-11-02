@@ -10,7 +10,7 @@
         </div>
         <div id="post">
             <div id="content">
-                {{ post.content }}
+                {{ post.content|raw }}
             </div>
             <div id="author"><h1>written by: {{ post.name }} {{ post.surname }} | {{ post.post_date }}</h1></div>
             <div id="return"><a href="/magnify/web/dashboard"><h4><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> return back to posts page.</h4></a></div>
@@ -19,11 +19,5 @@
         
        
     </main>
-    <script>
-        $(function () {
-            $('#content').text().replace(/['"]+/g, '');
-        });
-
-    </script>
 {% endblock %}
 

@@ -212,6 +212,7 @@
         if (!$app['session']->has('id')) {
             return $app->redirect('/magnify/web/login-page');
         }
+
         $admin = checkIfAdmin($app['session']->get('admin'));
             $model = array('name' => $app['session']->get('name'),
                 'surname' => $app['session']->get('surname'),
@@ -254,13 +255,37 @@
     });
 
     $app->post('/upload/post', function(Request $request) use ($app) {
+        $admin = checkIfAdmin($app['session']->get('admin'));
         $title = $request->get('post-title');
         $content = $request->get('upload-text');
         $id = $app['session']->get('id');
 
-        uploadPost($title, $content, $id);
 
-        return $app->redirect('/magnify/web/dashboard');
+        $avatarFile = $request->files->get('header-image-file');
+
+        if ($avatarFile == !null && $title == !null && $content == !null) {
+            $avatarFile->move('images/content', $avatarFile->getClientOriginalName());
+            $image_path = "/images/content/" . $avatarFile->getClientOriginalName();
+
+            uploadPost($title, $content, $image_path, $id);
+
+            return $app->redirect('/magnify/web/recent-posts');
+        } else {
+            $admin = checkIfAdmin($app['session']->get('admin'));
+            $error = "Please make sure the form is filled in correctly";
+            $model = array('name' => $app['session']->get('name'),
+                'surname' => $app['session']->get('surname'),
+                'avatar' => $app['session']->get('avatar'),
+                'id' => $app['session']->get('id'),
+                'email' => $app['session']->get('email'),
+                'admin' => $admin,
+                'error' => $error);
+            if ($admin == true) {
+                return $app['twig']->render('upload.twig', $model);
+            } if ($admin == false) {
+                return $app->redirect('/magnify/web/contact-us');
+            }
+        }
     });
 
     $app->get('/recent-posts', function(Request $request) use ($app) {

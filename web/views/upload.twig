@@ -6,15 +6,18 @@
     <h1 class="upload-h1">Upload</h1>
     <div id="form">
         <form name="form-upload" action="/magnify/web/upload/post" method="POST" enctype="multipart/form-data">
-            <div > <input type="text" id="post-title" class="post-input" name="post-title" placeholder="POST TITLE"></div>
+            <input type="hidden" value="{{ id }}" id="user-post-id">
+            <div > <input type="text" id="post-title" class="post-input" name="post-title" placeholder="POST TITLE"><span class="danger titleErr"></span></div>
            <br>
             <textarea name="upload-text" id="upload-text"></textarea>
+            <br><span class="danger textErr"></span><br>
             <div class="header-image-button">
-                <label for="header-image-file" id="header-image" class="files-upload"><p class="submit-post-hover">CHOOSE HEADER IMAGE</p></label>
+                <label for="header-image-file" id="header-image" class="files-upload"><p class="submit-post-hover imgTitle">CHOOSE HEADER IMAGE</p></label>
                 <input name="header-image-file" id="header-image-file" type="file" class="inputfile"><br>
             </div>
 
             <input type="submit" id="submit-post" class="files-upload" value="SUBMIT"><p class="submit-post-hover"></p></input>
+            <span class="danger center">{{ error }}</span>
         </form>
     <div id="test"></div>
     </div>

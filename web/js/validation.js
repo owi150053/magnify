@@ -93,5 +93,27 @@ $(function(){
             $('.errE').addClass('none');
         }
     });
+
+    $('#post-title').keyup(function () {
+        if ($(this).val().length < 5) {
+            $('#submit-post').prop('disabled', true).addClass('danger-btn');
+            $('.titleErr').html("Title must be more than 4 characters");
+        } else {
+            $('#submit-post').prop('disabled', false)
+            $('#submit-post').removeClass('danger-btn');
+            $('.titleErr').html("");
+        }
+    });
+
+    $('#header-image').mouseenter(function () {
+        if ($('#header-image-file').files.length == 0) {
+            $('#submit-post').prop('disabled', true).addClass('danger-btn');
+            $('.textErr').html("Please select an image");
+        } else {
+            $('#submit-post').prop('disabled', false)
+            $('#submit-post').removeClass('danger-btn');
+            $('.textErr').html("");
+        }
+    });
     
 });
