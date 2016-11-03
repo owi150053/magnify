@@ -42,6 +42,7 @@ underline:hover {
     text-decoration: underline;
 }
 
+
 /*----------------- ANIMATION -----------------*/
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {

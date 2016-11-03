@@ -606,3 +606,31 @@ ul.user-drop li {
     vertical-align: top;
     margin-top: 10px;
 }
+
+#banned-content{
+    background-color: rgb(28, 44, 57);
+    width: 40%;
+    height: 600px;
+    margin: auto;
+    margin-top: 80px;
+}
+.banned-user-img{
+    margin: auto;
+    display: block;
+    padding-top: 50px;
+}
+.banned-user-text-h1{
+    margin: auto;
+    display: block;
+    padding-top: 50px;
+    color: white;
+    text-align: center;
+}
+.banned-user-text-h4{
+    margin: auto;
+    display: block;
+    padding-top: 25px;
+    color: white;
+    text-align: center;
+    width: 50%;
+}
