@@ -13,7 +13,7 @@
 
     $app = new Silex\Application();
 
-    $app['debug'] = true;
+    $app['debug'] = false;
     
     //SERVICE PROVIDER
     $app->register(new Silex\Provider\SessionServiceProvider());
@@ -384,13 +384,17 @@
         $admin = checkIfAdmin($app['session']->get('admin'));
         $id = $request->get('postid');
         $postD = getPostDetail($id);
+        $totalLikes = getTotalLikes($id);
+        $totalDislikes = getTotalDislikes($id);
           $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
             'avatar' => $app['session']->get('avatar'),
             'id' => $app['session']->get('id'),
             'email' => $app['session']->get('email'),
             'admin' => $admin,
-              'post' => $postD);
+              'post' => $postD,
+              'likes' => $totalLikes,
+              'dislikes' => $totalDislikes);
         return $app['twig']->render('post.twig', $model);
 
     });
@@ -419,13 +423,49 @@
     });
 
     $app->post('/like', function(Request $request) use ($app) {
+
         $user_like = $request->get('like');
         $user_id = $app['session']->get('id');
         $post_id = $request->get('postId');
-        getLike($post_id, )
-        updateLike($post_id, $user_id, $user_like);
-        return $app['twig']->render('like.twig', array());
+        $postD = getPostDetail($post_id);
+        $getLike = getLike($post_id, $user_id);
+        if ($getLike >= 1) {
+            removeLike($post_id, $user_id);
+            $totalLikes = getTotalLikes($post_id);
+            $totalDislikes = getTotalDislikes($post_id);
+            $model = array('post' => $postD,
+                'likes' => $totalLikes,
+                'dislikes' => $totalDislikes);
+            return $app['twig']->render('like.twig', $model);
+        } elseif ($getLike < 1) {
+            updateLike($post_id, $user_id, $user_like);
+            $totalLikes = getTotalLikes($post_id);
+            $totalDislikes = getTotalDislikes($post_id);
+            $model = array('post' => $postD,
+                'likes' => $totalLikes,
+                'dislikes' => $totalDislikes);
+            return $app['twig']->render('like.twig', $model);
+        }
     });
+
+    $app->post('/dislike', function(Request $request) use ($app) {
+
+        $user_like = $request->get('dislike');
+        $user_id = $app['session']->get('id');
+        $post_id = $request->get('postId');
+        $postD = getPostDetail($post_id);
+        $getLike = getLike($post_id, $user_id);
+        $model = array('post' => $postD);
+        if ($getLike >= 1) {
+            removeLike($post_id, $user_id);
+            return $app['twig']->render('like.twig',$model);
+        } elseif ($getLike < 1) {
+            updateLike($post_id, $user_id, $user_like);
+            return $app['twig']->render('like.twig', $model);
+        }
+    });
+
+
 
     $app->get('/banned', function(Request $request) use ($app) {
         $admin = checkIfAdmin($app['session']->get('admin'));

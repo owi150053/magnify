@@ -42,6 +42,55 @@
 
     }
 
+    function getLike($post_id, $user_id) {
+        require __DIR__.'/../seed.php';
+
+        $sql = "SELECT * FROM likes WHERE post_id=:post_id AND user_id=:user_id;";
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':post_id', $post_id, PDO::PARAM_INT);
+        $statement->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $statement->execute();
+        $results = $statement->fetch();
+
+        return $results;
+    }
+
+    function getTotalLikes($post_id) {
+        require __DIR__.'/../seed.php';
+
+        $sql = "SELECT * FROM likes WHERE post_id=:post_id AND user_like=1";
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':post_id', $post_id, PDO::PARAM_INT);
+        $statement->execute();
+
+        $results = $statement->fetchAll();
+
+        return $results;
+    }
+
+    function getTotalDislikes($post_id) {
+        require __DIR__.'/../seed.php';
+
+        $sql = "SELECT * FROM likes WHERE post_id=:post_id AND user_like=0";
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':post_id', $post_id, PDO::PARAM_INT);
+        $statement->execute();
+
+        $results = $statement->fetchAll();
+
+        return $results;
+    }
+
+    function removeLike($post_id, $user_id) {
+        require __DIR__.'/../seed.php';
+
+        $sql = "DELETE FROM likes WHERE post_id=:post_id AND user_id=:user_id;";
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':post_id', $post_id, PDO::PARAM_INT);
+        $statement->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $statement->execute();
+    }
+
     function updateLike($post_id, $user_id, $user_like) {
         require __DIR__.'/../seed.php';
 
