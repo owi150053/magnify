@@ -58,4 +58,15 @@
         }
     }
 
+    function getUsers() {
+        require __DIR__.'/../seed.php';
+
+        $sql = "SELECT * FROM users";
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $result = $statement->fetchAll();
+
+        return $result;
+    }
+
 ?>

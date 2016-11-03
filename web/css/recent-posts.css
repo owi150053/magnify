@@ -93,13 +93,53 @@
 #sort {
     display: inline-block;
     margin-left: 40px;
+    position: relative;
+    padding: 5px 10px;
+    box-sizing: border-box;
 }
 
-#sort > li {
-    display: inline-block;
+.sort-btn {
+    outline: none;
+    display: block;
+    background-color: transparent;
+    border: none;
+    border: 1px solid rgb(110,223,203);
+    box-sizing: border-box;
+    color: rgb(110,223,203);
+}
+
+#sort li {
+    display: block;
     list-style: none;
-    margin-left: 10px;
     cursor: pointer;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+}
+
+#sort li:hover {
+    background-color: rgb(199,86,88);
+}
+
+#sort > #sort-type {
+    display: none;
+    position: absolute;
+    top: 35px;
+    background-color: rgb(28, 44, 57);
+    width: 120px;
+    left: -13px;
+}
+
+.triangle-sort {
+    display: block;
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    background-color: inherit;
+    top: -2.5px;
+    left: 57.5px;
+    transform: rotate(45deg);
+    z-index: -1;
 }
 
 #content-box {

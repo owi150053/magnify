@@ -135,6 +135,7 @@
         if ($admin == false) {
             return $app->redirect('/magnify/web/profile-edit');
         }
+        $getUsers = getUsers();
         $get_user_posts = getUserPosts($app['session']->get('id'));
         $admin = checkIfAdmin($app['session']->get('admin'));
         $model = array('name' => $app['session']->get('name'),
@@ -143,7 +144,8 @@
             'id' => $app['session']->get('id'),
             'email' => $app['session']->get('email'),
             'user_posts' => $get_user_posts,
-            'admin' => $admin);
+            'admin' => $admin,
+            'users' => $getUsers);
         
         return $app['twig']->render('dashboard.twig', $model);
         
@@ -196,19 +198,34 @@
         $email = $request->get('email');
         $id = $app['session']->get('id');
 
-        if ($avatarFile == !null && $name == !null && $surname == !null && $email == !null) {
-
-            updateUserInfo($id, $name, $surname, $email);
-
+        if ($avatarFile == !null) {
             $avatarFile->move('images', $avatarFile->getClientOriginalName());
             $id = $app['session']->get('id');
 
             $path = "/images/".$avatarFile->getClientOriginalName();
             updateAvatar($path, $id);
             $app['session']->set('avatar', $path);
-            return $app->redirect('/magnify/web/dashboard');
-        } else {
-            $model = array('error' => 'Please make sure the form is filled in correctly', 'display' => 'block error',
+        }
+
+        if ($name == !null && $surname == !null && $email == !null) {
+
+            updateUserInfo($id, $name, $surname, $email);
+
+
+            $app['session']->set('name', $name);
+            $app['session']->set('surname', $surname);
+            $app['session']->set('email', $email);
+            $model = array('error' => 'Thank you for updating!', 'display' => 'block',
+                'name' => $app['session']->get('name'),
+                'surname' => $app['session']->get('surname'),
+                'avatar' => $app['session']->get('avatar'),
+                'id' => $app['session']->get('id'),
+                'email' => $app['session']->get('email'),
+                'admin' => $app['session']->get('admin'));
+            return $app['twig']->render('profile-edit.twig', $model);
+        }
+        if ($name == null || $surname == null || $email == null) {
+            $model = array('error' => 'Please make sure the form is filled in correctly', 'display' => 'block danger error',
                 'name' => $app['session']->get('name'),
                 'surname' => $app['session']->get('surname'),
                 'avatar' => $app['session']->get('avatar'),
@@ -358,6 +375,10 @@
         $model = array('results' => $result);
 
         return $app['twig']->render('search-results.twig', $model);
+    });
+
+    $app->post('/like', function(Request $request) use ($app) {
+
     });
 
     

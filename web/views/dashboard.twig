@@ -9,6 +9,14 @@
         <p class="count reg">{{ user_posts|length }}</p>
         <a class="black reg">VIEW POSTS</a>
     </div>
+
+    <div class="user-list">
+        <ul class="user-c">
+            {% for user in users %}
+            <li class="user-li">{{ user.name }} {{ user.surname }}<span class="ban"></span></li>
+            {% endfor %}
+        </ul>
+    </div>
 </main>
 
 {% endblock %}
