@@ -16,8 +16,14 @@
             <div id="return"><a href="/magnify/web/recent-posts"><h4><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> return back to posts page.</h4></a></div>
             <div id="like-dislike">
                 <h4 class="likes">{{ post.likes }}</h4>
-                <button class="dislike"><span class="fa fa-thumbs-o-down fa-lg" aria-hidden="true"></span></button>
-                <button class="like"><span class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></span></button>
+                <form id="like-form" action="/magnify/web/like" method="post">
+                    <input type="hidden" name="post-id" id="post-id" value="{{ post.id }}">
+                    <input type="hidden" name="post-like" id="post-like" value="1">
+                    <button type="submit" class="like" id="post-like"form="like-form" ><span class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></span></button>
+                    {#<button type="submit" class="dislike"  id="post-dislike" value="1"><span class="fa fa-thumbs-o-down fa-lg" aria-hidden="true"></span></button>#}
+                </form>
+                <button class="dislike" id="post-like" value="1"><span class="fa fa-thumbs-o-down fa-lg" aria-hidden="true"></span></button>
+                {#<button class="like" id="post-dislike"  value="0"><span class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></span></button>#}
             </div>
              <div id=""><button id="comments">VIEW COMMENTS</button><span class="fa fa-arrow-down comment-arrow" aria-hidden="true"></span></div>
 
@@ -29,21 +35,26 @@
        
     </main>
     <script>
-        $('.like').click(function(){
+        $('.like').click(function(e){
             if($(this).hasClass('like-checked')){
                 $(this).removeClass('like-checked');
             }else{
                 $(this).addClass('like-checked');
             }
             $('.dislike').removeClass('dislike-checked');
+            e.preventDefault();
 
             $.ajax({
-                type:"POST",
-                url:"magnify/web/like",
-                data:'',
-                success: function(){
-                }
-            });
+                method:"POST",
+                url:"/magnify/web/like",
+                data: {like: $('#post-like').val(), postId: $('#post-id').val()}
+            }).done(function (html) {
+                $('#like-form').html(html);
+            }).fail(function () {
+                $('#results').html(
+                    "<h2>Looks like something went wrong</h2>"
+            );
+        });
         });
         $('.dislike').click(function(){
             if($(this).hasClass('dislike-checked')){

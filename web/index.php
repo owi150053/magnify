@@ -415,7 +415,11 @@
     });
 
     $app->post('/like', function(Request $request) use ($app) {
-
+        $user_like = $request->get('like');
+        $user_id = $app['session']->get('id');
+        $post_id = $request->get('postId');
+        updateLike($post_id, $user_id, $user_like);
+        return $app['twig']->render('like.twig', array());
     });
 
     
