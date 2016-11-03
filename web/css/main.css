@@ -270,6 +270,7 @@ nav li span {
     -webkit-transition: transform 0.5s;
     -moz-transition: transform 0.5s;
     -ms-transition: transform 0.5s;
+    background: url(/magnify/web/images/Violet-watercolor-flower-wallpapers-download-large-screen.jpg);
 }
 
 /*--------------------- SIGN UP MODULE ---------------------*/
@@ -605,4 +606,47 @@ ul.user-drop li {
 #login-btn {
     vertical-align: top;
     margin-top: 10px;
+}
+
+#banned-content{
+    background-color: rgb(28, 44, 57);
+    width: 40%;
+    height: 600px;
+    margin: auto;
+    margin-top: 80px;
+}
+.banned-user-img{
+    margin: auto;
+    display: block;
+    padding-top: 50px;
+}
+.banned-user-text-h1{
+    margin: auto;
+    display: block;
+    padding-top: 50px;
+    color: white;
+    text-align: center;
+}
+.banned-user-text-h4{
+    margin: auto;
+    display: block;
+    padding-top: 25px;
+    color: white;
+    text-align: center;
+    width: 50%;
+}
+.contact-us-btn{
+    padding-top: 5px;
+    margin: auto;
+    color: rgb(110,223,203);
+    background-color: transparent;
+    text-align: center;
+    width: 140px;
+    height: 30px;
+    display: block;
+    margin-top: 30px;
+    border: 2px solid rgb(110,223,203);
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
 }
