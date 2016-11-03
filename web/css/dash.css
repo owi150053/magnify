@@ -353,6 +353,7 @@ nav li a:hover {
     padding: 5px 10px;
     height: 100%;
     display: inline-block;
+    cursor: pointer;
 
 }
 
@@ -364,6 +365,7 @@ nav li a:hover {
     padding: 5px 10px;
     height: 100%;
     display: inline-block;
+    cursor: pointer;
 }
 
 .ban {
@@ -378,4 +380,63 @@ nav li a:hover {
     height: 100%;
     display: inline-block;
     float: right;
+}
+
+#search-txt6 {
+    padding-left: 4px;
+    box-sizing: border-box;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(110,223,203);
+    padding: 3px;
+    box-sizing: border-box;
+    color: rgb(110,223,203);
+    width: 206px;
+}
+
+#search-btn6 {
+    outline: none;
+    color: rgb(110,223,203);
+    background-color: white;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    transition: 0.2s ease;
+    border: 1px solid rgb(110,223,203);
+    box-sizing: border-box;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -ms-transition: 0.2s ease;
+    cursor: pointer;
+    width: 90px;
+}
+
+#search-btn6:hover {
+    background-color: rgb(110,223,203);
+    color: #fff;
+}
+
+#search-user {
+    display: block;
+    margin: 10px auto;
+    width: 300px;
+}
+
+.triangle-sort {
+    display: block;
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    background-color: inherit;
+    top: -2.5px;
+    left: 57.5px;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+#error6 {
+    width: 100%;
+    display: block;
+    padding: 5px;
 }

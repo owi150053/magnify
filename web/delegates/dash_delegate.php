@@ -103,7 +103,7 @@
     function getUsers() {
         require __DIR__.'/../seed.php';
 
-        $sql = "SELECT * FROM users";
+        $sql = "SELECT * FROM users ORDER BY users.name ASC";
         $statement = $pdo->prepare($sql);
         $statement->execute();
         $result = $statement->fetchAll();
@@ -116,8 +116,8 @@ function searchUser($search) {
 
     $s = '%'.$search.'%';
 
-    $sql = "SELECT users.name, users.surname, users.email FROM users
-                WHERE title LIKE :search;";
+    $sql = "SELECT * FROM users
+                WHERE users.name LIKE :search;";
     $statement = $pdo->prepare($sql);
     $statement->bindValue(':search', $s, PDO::PARAM_STR);
     $statement->execute();

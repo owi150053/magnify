@@ -15,7 +15,7 @@
             <input type="text" id="search-txt6" placeholder="SEARCH FOR USERS">
             <input type="submit" id="search-btn6" value="SEARCH">
         </form>
-        <span id="error6" class="danger"></span>
+        <span id="error6" class="danger center"></span>
         <ul class="user-c">
             {% for user in users %}
             <li class="user-li"><span class="ban-list-name">{{ user.name }} {{ user.surname }}</span>
@@ -59,6 +59,7 @@
                 });
             }
         });
+
     </script>
 
 </main>
