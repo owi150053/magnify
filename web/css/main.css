@@ -634,3 +634,18 @@ ul.user-drop li {
     text-align: center;
     width: 50%;
 }
+.contact-us-btn{
+    padding-top: 5px;
+    margin: auto;
+    color: rgb(110,223,203);
+    background-color: transparent;
+    text-align: center;
+    width: 140px;
+    height: 30px;
+    display: block;
+    margin-top: 30px;
+    border: 2px solid rgb(110,223,203);
+    box-sizing: border-box;
+    outline: none;
+    cursor: pointer;
+}
