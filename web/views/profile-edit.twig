@@ -5,14 +5,17 @@
 <main id="main-content">
     <div id="heroWrapper">
         <div id="register-update-picture">
-            <h1 class="white center">SELECT A PROFILE PICTURE</h1>
+            <h1 class="white center">UPDATE PROFILE INFORMATION</h1>
             <div class="avatar" style="background:url(/magnify/web{{ avatar }}) center;background-size:cover;">
                 <img id="img" src="">
                 <img id="tmp_img" src="">
             </div>
-        <form action="/magnify/web/settings/avatar" id="insert-avatar" method="post" enctype="multipart/form-data">
+        <form action="/magnify/web/update-profile" id="insert-avatar" method="post" enctype="multipart/form-data">
             <input name="file" class="inputfile" id="file" type="file">
             <label class="files-upload img-upload reg-upload" for="file"><p>SELECT PICTURE</p></label>
+            <input name="name" id="name" type="text" placeholder="NAME" value="{{ name }}" class="profile-info-input center">
+            <input type="text" name="surname" id="surname" placeholder="SURNAME" value="{{ surname }}" class="profile-info-input center">
+            <input type="text" name="email" id="email" placeholder="EMAIL" value="{{ email }}" class="profile-info-input center">
             <input type="submit" id="avatar-save" name="avatar-save" value="SAVE">
         </form>
             <div class="danger center {{ display }}">{{ error }}</div>

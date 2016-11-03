@@ -186,6 +186,39 @@
         }
     });
 
+    $app->post('/update-profile', function(Request $request) use ($app) {
+        if (!$app['session']->has('id')) {
+            return $app->redirect('/magnify/web/login-page');
+        }
+        $avatarFile = $request->files->get('file');
+        $name = $request->get('name');
+        $surname = $request->get('surname');
+        $email = $request->get('email');
+        $id = $app['session']->get('id');
+
+        if ($avatarFile == !null && $name == !null && $surname == !null && $email == !null) {
+
+            updateUserInfo($id, $name, $surname, $email);
+
+            $avatarFile->move('images', $avatarFile->getClientOriginalName());
+            $id = $app['session']->get('id');
+
+            $path = "/images/".$avatarFile->getClientOriginalName();
+            updateAvatar($path, $id);
+            $app['session']->set('avatar', $path);
+            return $app->redirect('/magnify/web/dashboard');
+        } else {
+            $model = array('error' => 'Please make sure the form is filled in correctly', 'display' => 'block error',
+                'name' => $app['session']->get('name'),
+                'surname' => $app['session']->get('surname'),
+                'avatar' => $app['session']->get('avatar'),
+                'id' => $app['session']->get('id'),
+                'email' => $app['session']->get('email'),
+                'admin' => $app['session']->get('admin'));
+            return $app['twig']->render('profile-edit.twig', $model);
+        }
+    });
+
     $app->post('/settings/info', function(Request $request) use ($app) {
         $id = $app['session']->get('id');
         $name = $request->get('nameC');
