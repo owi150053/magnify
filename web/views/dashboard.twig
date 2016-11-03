@@ -11,12 +11,56 @@
     </div>
 
     <div class="user-list">
+        <form id="search-user" method="post" action="/magnify/web/search/user">
+            <input type="text" id="search-txt6" placeholder="SEARCH FOR USERS">
+            <input type="submit" id="search-btn6" value="SEARCH">
+        </form>
+        <span id="error6" class="danger"></span>
         <ul class="user-c">
             {% for user in users %}
-            <li class="user-li">{{ user.name }} {{ user.surname }}<span class="ban"></span></li>
+            <li class="user-li"><span class="ban-list-name">{{ user.name }} {{ user.surname }}</span>
+                <span class="ban">
+                   <form id="banning" action="/magnify/web/ban" method="post">
+                        <input type="hidden" name="ban-id" id="ban-id" value="{{ user.id }}">
+                        <input type="hidden" name="ban-val" id="ban-val" value="{{ user.ban }}">
+                        <input type="submit" class="ban-btn" id="ban" value="{% if user.ban == 0 %}&times;  BAN{% else %}&times;  UNBAN{% endif %}">
+                   </form>
+                </span>
+                <span class="make-admin">
+                    <form id="admin-auth" action="/magnify/web/auth" method="post">
+                        <input type="hidden" name="admin-id" id="admin-id" value="{{ user.id }}">
+                        <input type="hidden" name="admin-val" id="admin-val" value="{{ user.admin }}">
+                        <input type="submit" id="mkAdmin" value="{% if user.admin == 0 %}MAKE ADMIN{% elseif user.admin == 1 %}&times;  REMOVE ADMIN{% endif %}">
+                    </form>
+                </span>
+            </li>
             {% endfor %}
         </ul>
     </div>
+
+
+    <script type="text/javascript">
+        $('#search-btn6').click(function (e) {
+            e.preventDefault();
+            if (!$('#search-txt6').val()) {
+                $('#error6').html("Please enter a user name");
+            } else {
+                $('#error6').html("");
+                $.ajax({
+                    url: '/magnify/web/search/user',
+                    method: 'POST',
+                    data: {search: $('#search-txt6').val()}
+                }).done(function (html) {
+                    $('.user-c').html(html);
+                }).fail(function () {
+                    $('#error6').html(
+                            "<h2>Looks like something went wrong. Please try again</h2>"
+                    );
+                });
+            }
+        });
+    </script>
+
 </main>
 
 {% endblock %}

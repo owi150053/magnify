@@ -67,6 +67,7 @@
                 $app['session']->set('email', $user['email']);
                 $app['session']->set('avatar', $user['avatar_path']);
                 $app['session']->set('admin', $user['admin']);
+                $app['session']->set('ban', $user['ban']);
                 
                 $admin = checkIfAdmin($app['session']->get('admin'));
                 if ($admin == true) {
@@ -87,6 +88,7 @@
         $password_hash = $request->get('regPassword');
         $avatar_path = "/images/default-pp.jpg";
         $admin = 0;
+        $ban = 0;
 
         $checkEmail = get_user_by_email($email);
         
@@ -94,7 +96,7 @@
         
         
         if ($checkEmail == null && !empty($email)) {
-                createUser($name, $surname, $email, $avatar_path, $password_hash, $admin);
+                createUser($name, $surname, $email, $avatar_path, $password_hash, $admin, $ban);
                 $user = get_user_by_email($email);
                 $app['session']->set('id', $user['id']);
                 $app['session']->set('name', $user['name']);
@@ -103,13 +105,15 @@
                 $app['session']->set('avatar', $user['avatar_path']);
                 
                 $app['session']->set('admin', $user['admin']);
-                
+                $app['session']->set('ban', $user['ban']);
+
                 $model = array('name' => $app['session']->get('name'),
                 'surname' => $app['session']->get('surname'),
                 'avatar' => $app['session']->get('avatar'),
                 'id' => $app['session']->get('id'),
                 'email' => $app['session']->get('email'),
-                'admin' => $app['session']->get('admin'));
+                'admin' => $app['session']->get('admin'),
+                    'ban' => $app['session']->get('ban'));
                 
                 return $app['twig']->render('registered.twig', $model);
                 
@@ -129,6 +133,7 @@
 
     $app->get('/dashboard', function(Request $request) use ($app) {
         $admin = checkIfAdmin($app['session']->get('admin'));
+        $ban = checkIfBanned($app['session']->get('ban'));
         if (!$app['session']->has('id')) {
             return $app->redirect('/magnify/web/login-page');
         }
@@ -145,7 +150,8 @@
             'email' => $app['session']->get('email'),
             'user_posts' => $get_user_posts,
             'admin' => $admin,
-            'users' => $getUsers);
+            'users' => $getUsers,
+            'ban' => $ban);
         
         return $app['twig']->render('dashboard.twig', $model);
         
@@ -157,8 +163,23 @@
                 'avatar' => $app['session']->get('avatar'),
                 'id' => $app['session']->get('id'),
                 'email' => $app['session']->get('email'),
-                'admin' => $app['session']->get('admin'));
+                'admin' => $app['session']->get('admin'),
+            'ban' => $app['session']->get('ban'));
         return $app['twig']->render('profile-edit.twig', $model);
+    });
+
+    $app->post('/ban', function(Request $request) use ($app) {
+        $id = $request->get('ban-id');
+        $banVal = $request->get('ban-val');
+        banUser($id, $banVal);
+        return $app->redirect('/magnify/web/dashboard');
+    });
+
+    $app->post('/auth', function(Request $request) use ($app) {
+        $id = $request->get('admin-id');
+        $adminVal = $request->get('admin-val');
+        makeAdmin($id, $adminVal);
+        return $app->redirect('/magnify/web/dashboard');
     });
 
     $app->post('/settings/avatar', function(Request $request) use($app) {
@@ -183,7 +204,8 @@
                 'avatar' => $app['session']->get('avatar'),
                 'id' => $app['session']->get('id'),
                 'email' => $app['session']->get('email'),
-                'admin' => $app['session']->get('admin'));
+                'admin' => $app['session']->get('admin'),
+                'ban' => $app['session']->get('ban'));
             return $app['twig']->render('profile-edit.twig', $model);
         }
     });
@@ -221,7 +243,8 @@
                 'avatar' => $app['session']->get('avatar'),
                 'id' => $app['session']->get('id'),
                 'email' => $app['session']->get('email'),
-                'admin' => $app['session']->get('admin'));
+                'admin' => $app['session']->get('admin'),
+                'ban' => $app['session']->get('ban'));
             return $app['twig']->render('profile-edit.twig', $model);
         }
         if ($name == null || $surname == null || $email == null) {
@@ -231,7 +254,8 @@
                 'avatar' => $app['session']->get('avatar'),
                 'id' => $app['session']->get('id'),
                 'email' => $app['session']->get('email'),
-                'admin' => $app['session']->get('admin'));
+                'admin' => $app['session']->get('admin'),
+                'ban' => $app['session']->get('ban'));
             return $app['twig']->render('profile-edit.twig', $model);
         }
     });
@@ -269,7 +293,8 @@
                 'avatar' => $app['session']->get('avatar'),
                 'id' => $app['session']->get('id'),
                 'email' => $app['session']->get('email'),
-                'admin' => $admin);
+                'admin' => $admin,
+                'ban' => $app['session']->get('ban'));
             if ($admin == true) {
                 return $app['twig']->render('upload.twig', $model);
             } if ($admin == false) {
@@ -375,6 +400,18 @@
         $model = array('results' => $result);
 
         return $app['twig']->render('search-results.twig', $model);
+    });
+
+    $app->post('/search/user', function (Request $request) use ($app) {
+        if (!$app['session']->has('id')) {
+            return $app->redirect('/magnify/web/login-page');
+        }
+        $searchTxt = $request->get('search');
+        $result = searchUser($searchTxt);
+
+        $model = array('results' => $result);
+
+        return $app['twig']->render('user-search.twig', $model);
     });
 
     $app->post('/like', function(Request $request) use ($app) {

@@ -58,6 +58,48 @@
         }
     }
 
+    function makeAdmin($id, $admin) {
+        require __DIR__.'/../seed.php';
+        if ($admin == 0) {
+            $sql = "UPDATE users SET admin=1 WHERE id=:id;";
+            $statement = $pdo->prepare($sql);
+            $statement->bindValue(':id', $id, PDO::PARAM_INT);
+            $statement->execute();
+
+        } elseif ($admin == 1) {
+            $sql = "UPDATE users SET admin=0 WHERE id=:id;";
+            $statement = $pdo->prepare($sql);
+            $statement->bindValue(':id', $id, PDO::PARAM_INT);
+            $statement->execute();
+
+        }
+    }
+
+    function checkIfBanned($ban) {
+        if ($ban == 1) {
+            return true;
+        } elseif ($ban == 0){
+            return false;
+        }
+    }
+
+    function banUser($id, $ban) {
+        require __DIR__.'/../seed.php';
+        if ($ban == 0) {
+            $sql = "UPDATE users SET ban=1 WHERE id=:id;";
+            $statement = $pdo->prepare($sql);
+            $statement->bindValue(':id', $id, PDO::PARAM_INT);
+            $statement->execute();
+
+        } elseif ($ban == 1) {
+            $sql = "UPDATE users SET ban=0 WHERE id=:id;";
+            $statement = $pdo->prepare($sql);
+            $statement->bindValue(':id', $id, PDO::PARAM_INT);
+            $statement->execute();
+
+        }
+    }
+
     function getUsers() {
         require __DIR__.'/../seed.php';
 
@@ -68,5 +110,19 @@
 
         return $result;
     }
+
+function searchUser($search) {
+    require __DIR__.'/../seed.php';
+
+    $s = '%'.$search.'%';
+
+    $sql = "SELECT users.name, users.surname, users.email FROM users
+                WHERE title LIKE :search;";
+    $statement = $pdo->prepare($sql);
+    $statement->bindValue(':search', $s, PDO::PARAM_STR);
+    $statement->execute();
+
+    return $statement->fetchAll();
+}
 
 ?>

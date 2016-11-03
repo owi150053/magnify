@@ -318,6 +318,7 @@ nav li a:hover {
 
 .user-list {
     width: 40%;
+    display: inline-block;
 }
 
 .user-li {
@@ -325,10 +326,56 @@ nav li a:hover {
     display: block;
     background-color: rgb(28, 44, 57);
     color: #fff;
+    box-sizing: border-box;
+    border-bottom: 1px solid white;
+}
+
+.user-li:nth-child(even) {
+    background-color: rgb(110,223,203);
+}
+
+#banning {
+    display: inline-block;
+}
+
+.ban-list-name {
+    display: inline-block;
+    width: 50%;
     padding: 5px;
     box-sizing: border-box;
 }
 
-.user-li:nth-child(even) {
-    background-color: rgb(199,86,88);
+.ban-btn {
+    background-color: red;
+    outline: none;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    height: 100%;
+    display: inline-block;
+
+}
+
+#mkAdmin {
+    background-color: deepskyblue;
+    outline: none;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    height: 100%;
+    display: inline-block;
+}
+
+.ban {
+    background: white;
+    height: 100%;
+    display: inline-block;
+    float: right;
+}
+
+.make-admin {
+    background: white;
+    height: 100%;
+    display: inline-block;
+    float: right;
 }
