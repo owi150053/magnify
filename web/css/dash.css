@@ -6,12 +6,20 @@ li {
     list-style: none;
 }
 
+h3 {
+    font-family: 'Raleway Regular', sans-serif;
+    color: rgb(28, 44, 57);
+    margin-bottom: 15px;
+}
+
 #main-content {
     padding-top: 45px;
     padding-left: 170px;
     box-sizing: border-box;
     height: 100vh;
     overflow-y: auto;
+    background: none !important;
+    background-color: #ffffff !important;
 }
 
 .menu-icon {
@@ -105,14 +113,223 @@ nav li a:hover {
 
 .num-posts {
     background-color: rgb(255, 255, 255);
-    border: 5px solid rgb(199,86,88);
-    width: 30%;
+    border-top: 5px solid rgb(199,86,88);
+    border-bottom: 5px solid rgb(199,86,88);
+    width: 92%;
+    height: 40%;
+    box-sizing: border-box;
     display: inline-block;
+    margin-bottom: 30px;
 }
 
 .count {
     font-family: 'Ledger', serif;
     font-size: 80px;
+}
+
+.user-list {
+    width: 45%;
+    vertical-align: top;
+    display: inline-block;
+    height: 50%;
+    max-height: 50%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.user-li {
+    width: 100%;
+    display: block;
+    background-color: rgb(28, 44, 57);
+    color: #fff;
+    box-sizing: border-box;
+    border-bottom: 1px solid white;
+}
+
+.user-li:nth-child(even) {
+    background-color: rgb(110,223,203);
+}
+
+#banning {
+    display: inline-block;
+}
+
+.ban-list-name {
+    display: inline-block;
+    width: 50%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.ban-btn {
+    background-color: red;
+    outline: none;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    height: 100%;
+    display: inline-block;
+    cursor: pointer;
+
+}
+
+#mkAdmin {
+    background-color: deepskyblue;
+    outline: none;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    height: 100%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.ban {
+    background: white;
+    height: 100%;
+    display: inline-block;
+    float: right;
+}
+
+.make-admin {
+    background: white;
+    height: 100%;
+    display: inline-block;
+    float: right;
+}
+
+#search-txt6 {
+    padding-left: 4px;
+    box-sizing: border-box;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(110,223,203);
+    padding: 3px;
+    box-sizing: border-box;
+    color: rgb(110,223,203);
+    width: 206px;
+}
+
+#search-btn6 {
+    outline: none;
+    color: rgb(110,223,203);
+    background-color: white;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    transition: 0.2s ease;
+    border: 1px solid rgb(110,223,203);
+    box-sizing: border-box;
+    -webkit-transition: 0.2s ease;
+    -moz-transition: 0.2s ease;
+    -ms-transition: 0.2s ease;
+    cursor: pointer;
+    width: 90px;
+}
+
+#search-btn6:hover {
+    background-color: rgb(110,223,203);
+    color: #fff;
+}
+
+#search-user {
+    display: block;
+    margin: 10px auto;
+    width: 300px;
+}
+
+.triangle-sort {
+    display: block;
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    background-color: inherit;
+    top: -2.5px;
+    left: 57.5px;
+    transform: rotate(45deg);
+    z-index: -1;
+}
+
+#error6 {
+    width: 100%;
+    display: block;
+    padding: 5px;
+}
+
+.single-post {
+    display: block;
+    width: 19%;
+    margin-top: 2.5%;
+    margin-right: 0.25%;
+    margin-left: 0.25%;
+    float: left;
+    height: 80%;
+    background-color: rgb(28, 44, 57);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 3px solid rgb(199,86,88);
+    position: relative;
+}
+
+.post-bg {
+    height: 70%;
+    width: 100%;
+}
+
+.single-post h4 {
+    width: 70%;
+    float: left;
+    display: inline-block;
+    padding: 15px 10px 10px 10px;
+    box-sizing: border-box;
+}
+
+.av {
+    display: inline-block;
+    float: right;
+    width: 20%;
+}
+
+.post-avatar {
+    display: inline-block;
+    float: right;
+    margin: 10px 10px 0 0;
+    background-color: black;
+    border-radius: 80%;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgb(199,86,88);
+    box-sizing: border-box;
+    position: relative;
+}
+
+.single-post:hover > .view {
+    display: block;
+}
+
+.view {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.view input[type=submit] {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 104%;
+    height: 104%;
+    background-color: transparent;
+    outline: none;
+    color: #ffffff;
+    font-size: 25px;
+    border: none;
+    cursor: pointer;
 }
 
 /*---------------------- DASHBOARD BUTTONS ----------------------*/
@@ -316,127 +533,3 @@ nav li a:hover {
     color: #fff;
 }
 
-.user-list {
-    width: 40%;
-    display: inline-block;
-}
-
-.user-li {
-    width: 100%;
-    display: block;
-    background-color: rgb(28, 44, 57);
-    color: #fff;
-    box-sizing: border-box;
-    border-bottom: 1px solid white;
-}
-
-.user-li:nth-child(even) {
-    background-color: rgb(110,223,203);
-}
-
-#banning {
-    display: inline-block;
-}
-
-.ban-list-name {
-    display: inline-block;
-    width: 50%;
-    padding: 5px;
-    box-sizing: border-box;
-}
-
-.ban-btn {
-    background-color: red;
-    outline: none;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    height: 100%;
-    display: inline-block;
-    cursor: pointer;
-
-}
-
-#mkAdmin {
-    background-color: deepskyblue;
-    outline: none;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    height: 100%;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.ban {
-    background: white;
-    height: 100%;
-    display: inline-block;
-    float: right;
-}
-
-.make-admin {
-    background: white;
-    height: 100%;
-    display: inline-block;
-    float: right;
-}
-
-#search-txt6 {
-    padding-left: 4px;
-    box-sizing: border-box;
-    outline: none;
-    background-color: transparent;
-    border: none;
-    border-bottom: 1px solid rgb(110,223,203);
-    padding: 3px;
-    box-sizing: border-box;
-    color: rgb(110,223,203);
-    width: 206px;
-}
-
-#search-btn6 {
-    outline: none;
-    color: rgb(110,223,203);
-    background-color: white;
-    height: 25px;
-    text-align: center;
-    line-height: 25px;
-    transition: 0.2s ease;
-    border: 1px solid rgb(110,223,203);
-    box-sizing: border-box;
-    -webkit-transition: 0.2s ease;
-    -moz-transition: 0.2s ease;
-    -ms-transition: 0.2s ease;
-    cursor: pointer;
-    width: 90px;
-}
-
-#search-btn6:hover {
-    background-color: rgb(110,223,203);
-    color: #fff;
-}
-
-#search-user {
-    display: block;
-    margin: 10px auto;
-    width: 300px;
-}
-
-.triangle-sort {
-    display: block;
-    width: 5px;
-    height: 5px;
-    position: absolute;
-    background-color: inherit;
-    top: -2.5px;
-    left: 57.5px;
-    transform: rotate(45deg);
-    z-index: -1;
-}
-
-#error6 {
-    width: 100%;
-    display: block;
-    padding: 5px;
-}
