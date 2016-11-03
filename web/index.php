@@ -13,7 +13,7 @@
 
     $app = new Silex\Application();
 
-    $app['debug'] = false;
+    $app['debug'] = true;
     
     //SERVICE PROVIDER
     $app->register(new Silex\Provider\SessionServiceProvider());
@@ -427,8 +427,16 @@
         return $app['twig']->render('like.twig', array());
     });
 
-    $app->post('/banned', function(Request $request) use ($app) {
-        return $app['twig']->render('banned.twig', array());
+    $app->get('/banned', function(Request $request) use ($app) {
+        $admin = checkIfAdmin($app['session']->get('admin'));
+        $model = array('name' => $app['session']->get('name'),
+            'surname' => $app['session']->get('surname'),
+            'avatar' => $app['session']->get('avatar'),
+            'id' => $app['session']->get('id'),
+            'email' => $app['session']->get('email'),
+            'admin' => $admin,
+            'ban' => $app['session']->get('ban'));
+        return $app['twig']->render('banned.twig', $model);
     });
 
     
