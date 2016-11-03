@@ -1,7 +1,7 @@
 {% extends "layout.php" %}
 
 {% block content %}
-
+    {% block title %}<title>{{ post.title }}</title>{% endblock %}
     <main id="post-page">
         <div id="post-image">
             <a href="/magnify/web" ><img src="/magnify/web/images/logos/LogoWhite-01.png" class="post-logo"></a>
