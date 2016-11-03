@@ -44,7 +44,7 @@
 
     function updateLike($post_id, $user_id, $user_like) {
         require __DIR__.'/../seed.php';
-        
+
         $sql = "INSERT INTO likes (post_id, user_id, user_like) VALUES(:post_id, :user_id, :user_like) ";
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':post_id', $post_id, PDO::PARAM_INT);

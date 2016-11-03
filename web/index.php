@@ -140,6 +140,10 @@
         if ($admin == false) {
             return $app->redirect('/magnify/web/profile-edit');
         }
+
+        if ($ban == true) {
+            return $app->redirect('/magnify/web/banned');
+        }
         $getUsers = getUsers();
         $get_user_posts = getUserPosts($app['session']->get('id'));
         $admin = checkIfAdmin($app['session']->get('admin'));
@@ -420,6 +424,10 @@
         $post_id = $request->get('postId');
         updateLike($post_id, $user_id, $user_like);
         return $app['twig']->render('like.twig', array());
+    });
+
+    $app->post('/banned', function(Request $request) use ($app) {
+        return $app['twig']->render('banned.twig', array());
     });
 
     
