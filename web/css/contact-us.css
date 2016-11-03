@@ -4,6 +4,7 @@
     padding: 30px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 200px;
 }
 /*
 #send-message{
@@ -30,4 +31,8 @@
     border: 1px solid rgb(110,223,203);
     resize: none;
     outline: none;
+}
+
+#main{
+
 }

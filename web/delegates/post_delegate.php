@@ -31,14 +31,13 @@
     function getPostDetail($id) {
         require __DIR__.'/../seed.php';
 
-        $sql = "SELECT posts.id, posts.title, posts.content, posts.image_path, posts.author_id, posts.post_date, users.name, users.surname, users.avatar_path, users.id as user_id FROM posts
+        $sql = "SELECT posts.id, posts.title, posts.content, posts.image_path, posts.author_id, posts.post_date, posts.likes, posts.dislikes, users.name, users.surname, users.avatar_path, users.id as user_id FROM posts
                 INNER JOIN users
                 ON author_id=users.id
                 WHERE posts.id=:post_id;";
         $statement = $pdo->prepare($sql);
         $statement->bindValue(':post_id', $id, PDO::PARAM_INT);
         $statement->execute();
-
         return $statement->fetch();
 
     }

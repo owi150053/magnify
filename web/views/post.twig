@@ -13,11 +13,53 @@
                 {{ post.content|raw }}
             </div>
             <div id="author"><h1>written by: {{ post.name }} {{ post.surname }} | {{ post.post_date }}</h1></div>
-            <div id="return"><a href="/magnify/web/dashboard"><h4><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> return back to posts page.</h4></a></div>
+            <div id="return"><a href="/magnify/web/recent-posts"><h4><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> return back to posts page.</h4></a></div>
+            <div id="like-dislike">
+                <h4 class="likes">{{ post.likes }}</h4>
+                <button class="dislike"><span class="fa fa-thumbs-o-down fa-lg" aria-hidden="true"></span></button>
+                <button class="like"><span class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></span></button>
+            </div>
              <div id=""><button id="comments">VIEW COMMENTS</button><span class="fa fa-arrow-down comment-arrow" aria-hidden="true"></span></div>
+
+
+
+
         </div>
         
        
     </main>
+    <script>
+        $('.like').click(function(){
+            if($(this).hasClass('like-checked')){
+                $(this).removeClass('like-checked');
+            }else{
+                $(this).addClass('like-checked');
+            }
+            $('.dislike').removeClass('dislike-checked');
+
+            $.ajax({
+                type:"POST",
+                url:"magnify/web/like",
+                data:'',
+                success: function(){
+                }
+            });
+        });
+        $('.dislike').click(function(){
+            if($(this).hasClass('dislike-checked')){
+                $(this).removeClass('dislike-checked');
+            }else {
+                $(this).addClass('dislike-checked');
+            }
+            $('.like').removeClass('like-checked');
+            $.ajax({
+                type:"POST",
+                url:"magnify/web/like",
+                data:'',
+                success: function(){
+                }
+            });
+        });
+    </script>
 {% endblock %}
 

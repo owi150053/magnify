@@ -65,6 +65,8 @@
             image_path varchar(255),
             author_id int,
             post_date DATE,
+            likes int,
+            dislikes int,
             PRIMARY KEY (id)
         );");
         $statement->execute();
@@ -73,8 +75,8 @@
         $statement->execute();
         $postCount = $statement->fetchColumn();
         if ($postCount == 0) {
-            $sql = "INSERT INTO posts (title, content, image_path, author_id, post_date)
-                    VALUES (:title, :content, :image_path, :author_id, CURRENT_DATE );";
+            $sql = "INSERT INTO posts (title, content, image_path, author_id, post_date, likes, dislikes)
+                    VALUES (:title, :content, :image_path, :author_id, CURRENT_DATE, :likes, :dislikes );";
             $statement = $pdo->prepare($sql);
 
             $statement->bindValue(':title', 'Lorem Ipsum', PDO::PARAM_STR);
@@ -87,10 +89,21 @@ Over the past thirty years his distinctive style of photography has evolved usin
 ', PDO::PARAM_STR);
             $statement->bindValue(':image_path', '/images/content/roger_ballen.jpg', PDO::PARAM_STR);
             $statement->bindValue(':author_id', 1, PDO::PARAM_INT);
+            $statement->bindValue(':likes', 153, PDO::PARAM_INT);
+            $statement->bindValue(':dislikes', 4, PDO::PARAM_INT);
             $statement->execute();
 
             
         }
+
+        $statement = $pdo->prepare("CREATE TABLE IF NOT EXISTS likes (
+            id int NOT NULL AUTO_INCREMENT,
+            post_id int,
+            user_id int,
+            user_like int,
+            PRIMARY KEY (id)
+        );");
+        $statement->execute();
         
     } catch (PDOException $exception) {
         echo 'Database error: ' . $exception->getMessage();
