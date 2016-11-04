@@ -178,3 +178,8 @@
     border: none;
     cursor: pointer;
 }
+
+.recent-main {
+    background: none !important;
+    color: #fff !important;
+}
