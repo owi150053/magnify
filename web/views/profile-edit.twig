@@ -6,11 +6,11 @@
     <div id="heroWrapper">
         <div id="register-update-picture">
             <h1 class="white center">UPDATE PROFILE INFORMATION</h1>
-            <div class="avatar" style="background:url(/magnify/web{{ avatar }}) center;background-size:cover;">
+            <div class="avatar" style="background:url({{ webroot }}{{ avatar }}) center;background-size:cover;">
                 <img id="img" src="">
                 <img id="tmp_img" src="">
             </div>
-        <form action="/magnify/web/update-profile" id="insert-avatar" method="post" enctype="multipart/form-data">
+        <form action="{{ webroot }}/update-profile" id="insert-avatar" method="post" enctype="multipart/form-data">
             <input name="file" class="inputfile" id="file" type="file">
             <label class="files-upload img-upload reg-upload" for="file"><p>SELECT PICTURE</p></label>
             <input name="name" id="name" type="text" placeholder="NAME" value="{{ name }}" class="profile-info-input center">
@@ -34,7 +34,7 @@ $("#avatar-save").click(function(event){
     var input = $('#file').val().split('\\').pop();
     console.log(input);
     $.ajax({
-        url: '/magnify/web/settings/avatar',
+        url: '{{ webroot }}/settings/avatar',
         method: 'POST',
         data: new FormData(this),
         contentType: false,
@@ -42,7 +42,7 @@ $("#avatar-save").click(function(event){
         processData: false
     }).done(function(html) {
         $('#img-success').html(html);
-        $('#img').attr('src', '/magnify/web/images/'+input);
+        $('#img').attr('src', '{{ webroot }}/images/'+input);
     }).fail(function() {
         
     });

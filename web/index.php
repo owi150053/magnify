@@ -13,7 +13,7 @@
 
     $app = new Silex\Application();
 
-    $app['debug'] = true;
+    $app['debug'] = false;
     
     //SERVICE PROVIDER
     $app->register(new Silex\Provider\SessionServiceProvider());
@@ -456,16 +456,16 @@
             $totalLikes = getTotalLikes($post_id);
             $totalDislikes = getTotalDislikes($post_id);
             $model = array('post' => $postD,
-                'likes' => $totalLikes,
-                'dislikes' => $totalDislikes);
-            return $app['twig']->render('like.twig', $model);
+                'Tlikes' => $totalLikes,
+                'Tdislikes' => $totalDislikes);
+            return $app['twig']->render('like.twig',$model);
         } elseif ($getLike < 1) {
             updateLike($post_id, $user_id, $user_like);
             $totalLikes = getTotalLikes($post_id);
             $totalDislikes = getTotalDislikes($post_id);
             $model = array('post' => $postD,
-                'likes' => $totalLikes,
-                'dislikes' => $totalDislikes);
+                'Tlikes' => $totalLikes,
+                'Tdislikes' => $totalDislikes);
             return $app['twig']->render('like.twig', $model);
         }
     });
@@ -477,13 +477,22 @@
         $post_id = $request->get('postId');
         $postD = getPostDetail($post_id);
         $getLike = getLike($post_id, $user_id);
-        $model = array('post' => $postD);
         if ($getLike >= 1) {
             removeLike($post_id, $user_id);
-            return $app['twig']->render('like.twig',$model);
+            $totalLikes = getTotalLikes($post_id);
+            $totalDislikes = getTotalDislikes($post_id);
+            $model = array('post' => $postD,
+                'Tlikes' => $totalLikes,
+                'Tdislikes' => $totalDislikes);
+            return $app['twig']->render('dislike.twig',$model);
         } elseif ($getLike < 1) {
             updateLike($post_id, $user_id, $user_like);
-            return $app['twig']->render('like.twig', $model);
+            $totalLikes = getTotalLikes($post_id);
+            $totalDislikes = getTotalDislikes($post_id);
+            $model = array('post' => $postD,
+                'Tlikes' => $totalLikes,
+                'Tdislikes' => $totalDislikes);
+            return $app['twig']->render('dislike.twig', $model);
         }
     });
 

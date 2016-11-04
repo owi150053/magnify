@@ -5,7 +5,7 @@
 <main id="main-content">
     <h1 class="upload-h1">Upload</h1>
     <div id="form">
-        <form name="form-upload" action="/magnify/web/upload/post" method="POST" enctype="multipart/form-data">
+        <form name="form-upload" action="{{ webroot }}/upload/post" method="POST" enctype="multipart/form-data">
             <input type="hidden" value="{{ id }}" id="user-post-id">
             <div > <input type="text" id="post-title" class="post-input" name="post-title" placeholder="POST TITLE"><span class="danger titleErr"></span></div>
            <br>

@@ -1,4 +1,4 @@
-<form name="info-edit" action="/magnify/web/settings/info">
+<form name="info-edit" action="{{ webroot }}/settings/info">
     <p id="err" class="error center danger block"></p>
     <label for="name-change" class="edit-label">EDIT NAME:</label>
     <input type="text" id="name-change" class="profile-info-input" value="{{ name | default('') }}">

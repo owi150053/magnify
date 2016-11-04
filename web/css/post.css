@@ -1,9 +1,8 @@
 #post-page{
     width: 100%;
-    height: 100vh;
+    height: auto;
     background: linear-gradient(270deg, #6edfcb, #c75658);
     background-size: 200% 200%;
-
     -webkit-animation: post-page-gradient 30s ease infinite;
     -moz-animation: post-page-gradient 30s ease infinite;
     animation: post-page-gradient 30s ease infinite;

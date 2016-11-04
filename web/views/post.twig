@@ -5,8 +5,8 @@
     <main id="post-page">
         <div id="entire-post">
             <div id="post-image">
-                <a href="/magnify/web" ><img src="/magnify/web/images/logos/LogoWhite-01.png" class="post-logo"></a>
-                <div id="image" style="background-image: url('/magnify/web{{ post.image_path }}'); background-size:cover; background-position:center;"></div>
+                <a href="{{ webroot }}" ><img src="{{ webroot }}/images/logos/LogoWhite-01.png" class="post-logo"></a>
+                <div id="image" style="background-image: url('{{ webroot }}{{ post.image_path }}'); background-size:cover; background-position:center;"></div>
                 <div id="title"><h1>{{ post.title }}</h1></div>
             </div>
             <div id="post">
@@ -14,25 +14,25 @@
                     {{ post.content|raw }}
                 </div>
                 <div id="author"><h1>written by: {{ post.name }} {{ post.surname }} | {{ post.post_date }}</h1></div>
-                <div id="return"><a href="/magnify/web/recent-posts"><h4><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> return back to posts page.</h4></a></div>
+                <div id="return"><a href="{{ webroot }}/recent-posts"><h4><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> return back to posts page.</h4></a></div>
                 <div id="like-dislike">
 
 
-                    <form id="like-form" action="/magnify/web/like" method="post">
-                        <input type="hidden" name="post-id" id="post-id" value="{{ post.id }}">
-                        <input type="hidden" name="post-like" id="post-like" value="1">
-                    </form>
-
-                    <form id="dislike-form" action="/magnify/web/like" method="post">
+                    <form id="dislike-form" action="{{ webroot }}/dislike" method="post">
                         <input type="hidden" name="post-id" id="post-id" value="{{ post.id }}">
                         <input type="hidden" name="post-dislike" id="post-dislike" value="0">
-                    </form>
-                    <h4 class="likes">{{ dislikes | length }}</h4>
-                    <button type="submit" class="dislike" id="post-like" form="dislike-form"><span class="fa fa-thumbs-o-down fa-lg" aria-hidden="true"></span></button>
-                    <h4 class="likes">{{ likes | length }}</h4>
-                    <button type="submit" class="like" id="post-like"form="like-form" ><span class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></span></button>
 
-                    {#<button class="like" id="post-dislike"  value="0"><span class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></span></button>#}
+                        <h4 class="likes a-dislike">{{ dislikes | length }}</h4>
+                    </form>
+                    <button type="submit" class="dislike" id="post-like8" form="dislike-form"><span class="fa fa-thumbs-o-down fa-lg" aria-hidden="true"></span></button>
+
+
+                    <form id="like-form" action="{{ webroot }}/like" method="post">
+                        <input type="hidden" name="post-id" id="post-id" value="{{ post.id }}">
+                        <input type="hidden" name="post-like" id="post-like" value="1">
+                        <h4 class="likes a-like">{{ likes | length }}</h4>
+                    </form>
+                    <button type="submit" class="like" id="post-like9"form="like-form" ><span class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></span></button>
                 </div>
 
 
@@ -53,11 +53,12 @@
             </div>
             {% endfor %}
             <div>
-                <form style="margin-top: 35px" method="post" action="/magnify/web/comment">
+                <form style="margin-top: 35px" method="post" action="{{ webroot }}/comment">
                     <textarea placeholder="Comment here..." class="comment-text-field" wrap="hard" name="comment-text" id="comment-text"></textarea>
                     <input type="hidden" id="user-id" value="{{ id }}" name="user-id">
                     <input type="hidden" id="post-id" value="{{ post.id }}" name="post-id">
                     <input type="submit" class="submit-comment-btn" style="margin-top: 10px; padding-top: -10px;">
+                    <span class="danger"></span>
                 </form>
             </div>
         </div>
@@ -75,7 +76,7 @@
 
                 $.ajax({
                     method:"POST",
-                    url:"/magnify/web/like",
+                    url:"{{ webroot }}/like",
                     data: {like: $('#post-like').val(), postId: $('#post-id').val()}
                     }).done(function (data) {
                         $('#like-form').html(data);
@@ -95,7 +96,7 @@
                 e.preventDefault();
                 $.ajax({
                     method:"POST",
-                    url:"/magnify/web/dislike",
+                    url:"{{ webroot }}/dislike",
                     data: {dislike: $('#post-dislike').val(), postId: $('#post-id').val()}
                 }).done(function (data) {
                     $('#dislike-form').html(data);
@@ -104,6 +105,16 @@
                             "<h2>Looks like something went wrong</h2>"
                     );
                 });
+            });
+
+            $('#comment-text').change(function () {
+                if ($(this).val().length < 10) {
+                    $('#submit-comment-btn').prop('disabled', true);
+                    $('error-txt').html('Comment needs to be at least 10 characters');
+                } else {
+                    $('#submit-comment-btn').prop('disabled', false);
+                    $('error-txt').html('');
+                }
             });
         });
     </script>

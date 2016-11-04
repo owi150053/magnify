@@ -1,14 +1,14 @@
 {% for user in results %}
     <li class="user-li"><span class="ban-list-name">{{ user.name }} {{ user.surname }}</span>
         <span class="ban">
-           <form id="banning" action="/magnify/web/ban" method="post">
+           <form id="banning" action="{{ webroot }}/ban" method="post">
                 <input type="hidden" name="ban-id" id="ban-id" value="{{ user.id }}">
                 <input type="hidden" name="ban-val" id="ban-val" value="{{ user.ban }}">
                 <input type="submit" class="ban-btn" id="ban" value="{% if user.ban == 0 %}&times;  BAN{% else %}&times;  UNBAN{% endif %}">
            </form>
         </span>
         <span class="make-admin">
-            <form id="admin-auth" action="/magnify/web/auth" method="post">
+            <form id="admin-auth" action="{{ webroot }}/auth" method="post">
                 <input type="hidden" name="admin-id" id="admin-id" value="{{ user.id }}">
                 <input type="hidden" name="admin-val" id="admin-val" value="{{ user.admin }}">
                 <input type="submit" id="mkAdmin" value="{% if user.admin == 0 %}MAKE ADMIN{% elseif user.admin == 1 %}&times;  REMOVE ADMIN{% endif %}">

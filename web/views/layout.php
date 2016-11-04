@@ -3,22 +3,22 @@
 <head>
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="/magnify/web/css/font-awesome.css">
-    <link rel="stylesheet" href="/magnify/web/css/main.css">
-    <link rel="stylesheet" href="/magnify/web/css/home.css">
-    <link rel="stylesheet" href="/magnify/web/css/contact-us.css">
-    <link rel="stylesheet" href="/magnify/web/css/upload.css">
-    <link rel="stylesheet" href="/magnify/web/css/post.css">
-    <link rel="stylesheet" href="/magnify/web/css/recent-posts.css">
+    <link rel="stylesheet" href="{{ webroot }}/css/font-awesome.css">
+    <link rel="stylesheet" href="{{ webroot }}/css/main.css">
+    <link rel="stylesheet" href="{{ webroot }}/css/home.css">
+    <link rel="stylesheet" href="{{ webroot }}/css/contact-us.css">
+    <link rel="stylesheet" href="{{ webroot }}/css/upload.css">
+    <link rel="stylesheet" href="{{ webroot }}/css/post.css">
+    <link rel="stylesheet" href="{{ webroot }}/css/recent-posts.css">
     <link href="https://fonts.googleapis.com/css?family=Ledger" rel="stylesheet">
-    <link rel="stylesheet" href="/magnify/web/css/fonts.css">
+    <link rel="stylesheet" href="{{ webroot }}/css/fonts.css">
     
-    <script src="/magnify/web/js/nav.js" type="text/javascript"></script>
-    <script src="/magnify/web/js/load.js" type="text/javascript"></script>
-    <script src="/magnify/web/js/animation.js" type="text/javascript"></script>
-    <script src="/magnify/web/js/validation.js" type="text/javascript"></script>
-    <script src="/magnify/web/js/file-upload.js" type="text/javascript"></script>
-    <script src="/magnify/web/js/jquery.scrollify.js" type="text/javascript"></script>
+    <script src="{{ webroot }}/js/nav.js" type="text/javascript"></script>
+    <script src="{{ webroot }}/js/load.js" type="text/javascript"></script>
+    <script src="{{ webroot }}/js/animation.js" type="text/javascript"></script>
+    <script src="{{ webroot }}/js/validation.js" type="text/javascript"></script>
+    <script src="{{ webroot }}/js/file-upload.js" type="text/javascript"></script>
+    <script src="{{ webroot }}/js/jquery.scrollify.js" type="text/javascript"></script>
 </head>
 <body>
     <div id="preload">
@@ -30,13 +30,13 @@
             
             {% if name is not null %}
             
-            <div id="nav-avatar" style="background:url(/magnify/web{{ avatar }}) center;background-size:cover;">
+            <div id="nav-avatar" style="background:url({{ webroot }}{{ avatar }}) center;background-size:cover;">
                 <ul class="user-drop center">
-                    <a href="/magnify/web/{% if admin == true %}dashboard{% else %}profile-edit{% endif %}"><li>VIEW PROFILE</li></a>
+                    <a href="{{ webroot }}/{% if admin == true %}dashboard{% else %}profile-edit{% endif %}"><li>VIEW PROFILE</li></a>
                     {% if admin == true %}
-                    <a href="/magnify/web/upload"><li>CREATE POST</li></a>
+                    <a href="{{ webroot }}/upload"><li>CREATE POST</li></a>
                     {% endif %}
-                    <a href="/magnify/web/logout"><li>SIGN OUT</li></a>
+                    <a href="{{ webroot }}/logout"><li>SIGN OUT</li></a>
                     <span class="triangle-home"></span>
                 </ul>
             </div>          
@@ -49,23 +49,23 @@
         <div id="side-bar">
             <span class="fa fa-times close-menu" aria-hidden="true"></span>
             <ul>
-                <a href="/magnify/web/"><li>HOME</li></a>
-                <a href="/magnify/web/recent-posts"><li>LATEST POSTS</li></a>
-                <a href="/magnify/web/contact-us"><li>CONTACT US</li></a>
+                <a href="{{ webroot }}/"><li>HOME</li></a>
+                <a href="{{ webroot }}/recent-posts"><li>LATEST POSTS</li></a>
+                <a href="{{ webroot }}/contact-us"><li>CONTACT US</li></a>
             </ul>
             <div class="login-logout white">
                 {% if name is not null %}
-                <a href="/magnify/web/dashboard" class="profile-menu">
+                <a href="{{ webroot }}/dashboard" class="profile-menu">
                     <p><span class='fa fa-user fa-lg' aria-hidden='true'></span>&nbsp;&nbsp;&nbsp;PROFILE</p>
                 </a>
-                <a href="/magnify/web/logout" class="logout-menu">
+                <a href="{{ webroot }}/logout" class="logout-menu">
                     <p><span class='fa fa-sign-out fa-lg' aria-hidden='true'></span>&nbsp;SIGN OUT</p>
                 </a>
                 {% elseif name is null %}
-                <a href="/magnify/web/login-page" class="profile-menu black">
+                <a href="{{ webroot }}/login-page" class="profile-menu black">
                     <p><span class='fa fa-user fa-lg' aria-hidden='true'></span>&nbsp;&nbsp;&nbsp;SIGN UP</p>
                 </a>
-                <a href="/magnify/web/login-page" class="logout-menu">
+                <a href="{{ webroot }}/login-page" class="logout-menu">
                     <p><span class='fa fa-sign-out fa-lg' aria-hidden='true'></span>&nbsp;LOG IN</p>
                 </a>
                 {% endif %}
@@ -75,7 +75,7 @@
             <div id="signup-suc" class="section">
                 
                 <h3 class="white center">SIGN UP</h3>
-                <form id="sign-up" action="/magnify/web/signup" method="post">
+                <form id="sign-up" action="{{ webroot }}/signup" method="post">
                     <span class="errN danger none center white">Name must be longer than 2 characters</span>
                     <input type="text" id="reg-name" name="reg-name" placeholder="ENTER YOUR NAME" autocomplete="off">
                     <span class="errS danger none center white">Surname must be longer than 2 characters</span>
@@ -91,7 +91,7 @@
             </div>
             <div class="section">
                 <h3 class="white center">LOGIN</h3>
-                <form id="log-in" action="/magnify/web/login" method="post">
+                <form id="log-in" action="{{ webroot }}/login" method="post">
                     <span class="danger {{ errors['display'] | default('') }} center white">{{ errors['email'] | default('') }}</span>
                     <input type="text" name="email" placeholder="ENTER YOUR EMAIL" autocomplete="off" value="{{ email | default('') }}">
                     <span class="danger {{ errors['display'] | default('') }} center white">{{ errors['password'] | default('') }}</span>
@@ -116,7 +116,7 @@
             } else {
             
             $.ajax({
-                url: '/magnify/web/signup',
+                url: '{{ webroot }}/signup',
                 method: 'POST',
                 data: {regName: $('#reg-name').val(),
                       regSurname: $('#reg-surname').val(),

@@ -4,7 +4,7 @@
 
     <main id="main-content" class="post-main">
         <div id="content-box">
-            <form id="search" method="post" action="/magnify/web/search">
+            <form id="search" method="post" action="{{ webroot }}/search">
                 <input type="text" id="search-txt" placeholder="SEARCH FOR POSTS">
                 <input type="submit" id="search-btn" value="SEARCH">
             </form>
@@ -21,15 +21,15 @@
         <div id="results">
         {% for post in posts %}
                 <div class="single-post" data-date="{{ post.post_date }}">
-                    <div class="post-bg" style="background: url('/magnify/web{{ post.image_path }}'); background-size: cover; background-position: center;">
+                    <div class="post-bg" style="background: url('{{ webroot }}{{ post.image_path }}'); background-size: cover; background-position: center;">
 
                     </div>
                     <h4 class="white">{{ post.title }} <br> {{ post.post_date }}</h4>
                     <div class="av">
-                        <div class="post-avatar" style="background:url('/magnify/web{{ post.avatar_path }}') center;background-size:cover;"></div>
+                        <div class="post-avatar" style="background:url('{{ webroot }}{{ post.avatar_path }}') center;background-size:cover;"></div>
                     </div>
                     <div class="view">
-                        <form id="view-post" action="/magnify/web/view" method="post">
+                        <form id="view-post" action="{{ webroot }}/view" method="post">
                             <input type="hidden" name="postid" id="postid" value="{{ post.id }}">
                             <input type="submit" id="view-btn" value="VIEW POST">
                         </form>
@@ -47,7 +47,7 @@
             } else {
                 $('#empty').html("");
                 $.ajax({
-                    url: '/magnify/web/search',
+                    url: '{{ webroot }}/search',
                     method: 'POST',
                     data: {search: $('#search-txt').val()}
                 }).done(function (html) {
