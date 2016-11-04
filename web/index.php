@@ -13,7 +13,7 @@
 
     $app = new Silex\Application();
 
-    $app['debug'] = false;
+    $app['debug'] = true;
     
     //SERVICE PROVIDER
     $app->register(new Silex\Provider\SessionServiceProvider());
@@ -406,6 +406,7 @@
         $postD = getPostDetail($id);
         $totalLikes = getTotalLikes($id);
         $totalDislikes = getTotalDislikes($id);
+        $getComments = getComments($post_id);
           $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
             'avatar' => $app['session']->get('avatar'),
@@ -414,7 +415,8 @@
             'admin' => $admin,
               'post' => $postD,
               'likes' => $totalLikes,
-              'dislikes' => $totalDislikes);
+              'dislikes' => $totalDislikes,
+          'comments' => $getComments);
         return $app['twig']->render('post.twig', $model);
 
     });
@@ -498,6 +500,29 @@
             'ban' => $app['session']->get('ban'));
         return $app['twig']->render('banned.twig', $model);
     });
+
+    $app->post('/comment', function(Request $request) use ($app){
+        $user_id = $request->get("user-id");
+        $post_id = $request->get("post-id");
+        $comment_text = $request->get("comment-text");
+        postComment($post_id, $user_id, $comment_text);
+        $postD = getPostDetail($post_id);
+        $totalLikes = getTotalLikes($post_id);
+        $totalDislikes = getTotalDislikes($post_id);
+        $getComments = getComments($post_id);
+        $model = array('name' => $app['session']->get('name'),
+            'surname' => $app['session']->get('surname'),
+            'avatar' => $app['session']->get('avatar'),
+            'id' => $app['session']->get('id'),
+            'email' => $app['session']->get('email'),
+            'admin' => $admin,
+            'post' => $postD,
+            'likes' => $totalLikes,
+            'dislikes' => $totalDislikes,
+            'comments' => $getComments);
+
+        return $app['twig']->render("post.twig", $model);
+});
 
     
     //RUN APP

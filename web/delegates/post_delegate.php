@@ -112,4 +112,13 @@
         $statement->bindValue(':comment_text', $comment_text, PDO::PARAM_STR);
         $statement->execute();
     }
+
+    function getComments($post_id){
+        require __DIR__.'/../seed.php';
+        $sql = "SELECT comments.*, users.*, posts.* FROM comments INNER JOIN users ON users.id = user_id INNER JOIN posts ON comments.post_id = posts.id";
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':post_id', $post_id, PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetchAll();
+    }
 ?>

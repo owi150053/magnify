@@ -201,7 +201,11 @@ letter-spacing: 1px;
     color: white;
     display: block;
     margin: auto;
+    margin-top: 15px;
 
+}
+#comment-wrapper:nth-child(even) {
+    background-color: rgba(199, 88, 91, 0.68);
 }
 #comment-header{
     width: auto;

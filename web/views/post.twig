@@ -46,14 +46,17 @@
 
         <div id="comment-section">
             <h1 id="comment-header">Comments</h1>
+            {% for comment in comments %}
             <div id="comment-wrapper">
-                <h4 class="comment-text">Comment Comment Comment Comment Comment Comment Comment Comment Comment Comment Comment Comment</h4>
+                <h4 class="comment-text">{{ comment.comment }}</h4>
+                <h4 class="comment-user-name">{{ comment.name }}</h4>
             </div>
+            {% endfor %}
             <div>
-                <form style="margin-top: 35px">
-                    <textarea placeholder="Comment here..." class="comment-text-field" wrap="hard"></textarea>
-                    <input type="hidden" id="user-id" value="{{ id }}">
-                    <input type="hidden" id="post-id" value="{{ post.id }}">
+                <form style="margin-top: 35px" method="post" action="/magnify/web/comment">
+                    <textarea placeholder="Comment here..." class="comment-text-field" wrap="hard" name="comment-text" id="comment-text"></textarea>
+                    <input type="hidden" id="user-id" value="{{ id }}" name="user-id">
+                    <input type="hidden" id="post-id" value="{{ post.id }}" name="post-id">
                     <input type="submit" class="submit-comment-btn" style="margin-top: 10px; padding-top: -10px;">
                 </form>
             </div>
