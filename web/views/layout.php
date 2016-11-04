@@ -3,22 +3,22 @@
 <head>
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link rel="stylesheet" href="{{ webroot }}/css/font-awesome.css">
-    <link rel="stylesheet" href="{{ webroot }}/css/main.css">
-    <link rel="stylesheet" href="{{ webroot }}/css/home.css">
-    <link rel="stylesheet" href="{{ webroot }}/css/contact-us.css">
-    <link rel="stylesheet" href="{{ webroot }}/css/upload.css">
-    <link rel="stylesheet" href="{{ webroot }}/css/post.css">
-    <link rel="stylesheet" href="{{ webroot }}/css/recent-posts.css">
+    <link rel="stylesheet" href="{{ webroot }}css/font-awesome.css">
+    <link rel="stylesheet" href="{{ webroot }}css/main.css">
+    <link rel="stylesheet" href="{{ webroot }}css/home.css">
+    <link rel="stylesheet" href="{{ webroot }}css/contact-us.css">
+    <link rel="stylesheet" href="{{ webroot }}css/upload.css">
+    <link rel="stylesheet" href="{{ webroot }}css/post.css">
+    <link rel="stylesheet" href="{{ webroot }}css/recent-posts.css">
     <link href="https://fonts.googleapis.com/css?family=Ledger" rel="stylesheet">
-    <link rel="stylesheet" href="{{ webroot }}/css/fonts.css">
+    <link rel="stylesheet" href="{{ webroot }}css/fonts.css">
     
-    <script src="{{ webroot }}/js/nav.js" type="text/javascript"></script>
-    <script src="{{ webroot }}/js/load.js" type="text/javascript"></script>
-    <script src="{{ webroot }}/js/animation.js" type="text/javascript"></script>
-    <script src="{{ webroot }}/js/validation.js" type="text/javascript"></script>
-    <script src="{{ webroot }}/js/file-upload.js" type="text/javascript"></script>
-    <script src="{{ webroot }}/js/jquery.scrollify.js" type="text/javascript"></script>
+    <script src="{{ webroot }}js/nav.js" type="text/javascript"></script>
+    <script src="{{ webroot }}js/load.js" type="text/javascript"></script>
+    <script src="{{ webroot }}js/animation.js" type="text/javascript"></script>
+    <script src="{{ webroot }}js/validation.js" type="text/javascript"></script>
+    <script src="{{ webroot }}js/file-upload.js" type="text/javascript"></script>
+    <script src="{{ webroot }}js/jquery.scrollify.js" type="text/javascript"></script>
 </head>
 <body>
     <div id="preload">

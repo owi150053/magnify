@@ -5,19 +5,19 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>tinymce.init({ selector:'#upload-text' });</script>
-    <link rel="stylesheet" href="{{ webroot }}/css/font-awesome.css">
-    <link rel="stylesheet" href="{{ webroot }}/css/main.css">
-    <link rel="stylesheet" href="{{ webroot }}/css/dash.css">
-    <link rel="stylesheet" href="{{ webroot }}/css/upload.css">
-    <link rel="stylesheet" href="{{ webroot }}/css/contact-us.css">
+    <link rel="stylesheet" href="{{ webroot }}css/font-awesome.css">
+    <link rel="stylesheet" href="{{ webroot }}css/main.css">
+    <link rel="stylesheet" href="{{ webroot }}css/dash.css">
+    <link rel="stylesheet" href="{{ webroot }}css/upload.css">
+    <link rel="stylesheet" href="{{ webroot }}css/contact-us.css">
     <link href="https://fonts.googleapis.com/css?family=Ledger" rel="stylesheet">
-    <link rel="stylesheet" href="{{ webroot }}/css/fonts.css">
+    <link rel="stylesheet" href="{{ webroot }}css/fonts.css">
     
-    <script src="{{ webroot }}/js/nav.js" type="text/javascript"></script>
-    <script src="{{ webroot }}/js/load.js" type="text/javascript"></script>
-    <script src="{{ webroot }}/js/file-upload.js" type="text/javascript"></script>
-    <script src="{{ webroot }}/js/animation.js" type="text/javascript"></script>
-    <script src="{{ webroot }}/js/validation.js" type="text/javascript"></script>
+    <script src="{{ webroot }}js/nav.js" type="text/javascript"></script>
+    <script src="{{ webroot }}js/load.js" type="text/javascript"></script>
+    <script src="{{ webroot }}js/file-upload.js" type="text/javascript"></script>
+    <script src="{{ webroot }}js/animation.js" type="text/javascript"></script>
+    <script src="{{ webroot }}js/validation.js" type="text/javascript"></script>
 </head>
 <body>
     <div id="preload">
