@@ -13,7 +13,7 @@
 
     $app = new Silex\Application();
 
-    $app['debug'] = false;
+    $app['debug'] = true;
     
     //SERVICE PROVIDER
     $app->register(new Silex\Provider\SessionServiceProvider());
@@ -23,7 +23,7 @@
 
     $app['webroot'] = getenv('WEBROOT');
     if ($app['webroot'] == false ) {
-        $app['webroot'] = '/magnify/web';
+        $app['webroot'] = '/magnify/web/';
     }
     $app['twig']->addGlobal('webroot', $app['webroot']);
 
