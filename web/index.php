@@ -522,6 +522,7 @@
         $totalLikes = getTotalLikes($post_id);
         $totalDislikes = getTotalDislikes($post_id);
         $getComments = getComments($post_id);
+        $admin = checkIfAdmin($app['session']->get('admin'));
         $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
             'avatar' => $app['session']->get('avatar'),

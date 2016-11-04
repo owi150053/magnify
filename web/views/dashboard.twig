@@ -12,7 +12,7 @@
                 </div>
                 <h4 class="white">{{ post.title }}</h4>
                 <div class="av">
-                    <div class="post-avatar" style="background:url('/magnify/web{{ post.avatar_path }}') center;background-size:cover;"></div>
+                    <div class="post-avatar" style="background:url('{{ webroot }}{{ post.avatar_path }}') center;background-size:cover;"></div>
                 </div>
                 <div class="view">
                     <form id="view-post" action="{{ webroot }}view" method="post">
