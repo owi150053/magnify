@@ -3,7 +3,8 @@
 {% block content %}
 
     <main id="main-content">
-        <form name="contact-us" action="" id="contact-us" style="margin-top: 50px">
+        <div id="background">
+            <form name="contact-us" action="" id="contact-us" style="margin-top: 50px">
             <p class="error"></p>
             <label for="name-change" class="edit-label">NAME:</label>
             <input type="text" id="name-change" class="profile-info-input" value="{{ name | default('') }}">
@@ -15,6 +16,8 @@
             <textarea id="message" class="profile-info-input"></textarea>
             <input type="submit" id="send-message" value="SEND" class="create-post-btn">
         </form>
+        </div>
+        
     </main>
 
 {% endblock %}

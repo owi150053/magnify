@@ -49,7 +49,7 @@
         <div id="side-bar">
             <span class="fa fa-times close-menu" aria-hidden="true"></span>
             <ul>
-                <a href="{{ webroot }}/"><li>HOME</li></a>
+                <a href="{{ webroot }}"><li>HOME</li></a>
                 <a href="{{ webroot }}recent-posts"><li>LATEST POSTS</li></a>
                 <a href="{{ webroot }}contact-us"><li>CONTACT US</li></a>
             </ul>

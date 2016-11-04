@@ -33,7 +33,7 @@
     });
 
     //ROUTES
-    $app->get('/', function(Request $request) use ($app) {
+    $app->get("/", function(Request $request) use ($app) {
         $admin = checkIfAdmin($app['session']->get('admin'));
         $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
@@ -77,9 +77,9 @@
                 
                 $admin = checkIfAdmin($app['session']->get('admin'));
                 if ($admin == true) {
-                    return $app->redirect($app['webroot'].'/dashboard');
+                    return $app->redirect($app['webroot'].'dashboard');
                 } else {
-                    return $app->redirect($app['webroot'].'/profile-edit');
+                    return $app->redirect($app['webroot'].'profile-edit');
                 }
             }
         }
@@ -141,14 +141,14 @@
         $admin = checkIfAdmin($app['session']->get('admin'));
         $ban = checkIfBanned($app['session']->get('ban'));
         if (!$app['session']->has('id')) {
-            return $app->redirect($app['webroot'].'/login-page');
+            return $app->redirect($app['webroot'].'login-page');
         }
         if ($admin == false) {
-            return $app->redirect($app['webroot'].'/profile-edit');
+            return $app->redirect($app['webroot'].'profile-edit');
         }
 
         if ($ban == true) {
-            return $app->redirect($app['webroot'].'/banned');
+            return $app->redirect($app['webroot'].'banned');
         }
         $getUsers = getUsers();
         $get_user_posts = getUserPosts($app['session']->get('id'));
@@ -182,19 +182,19 @@
         $id = $request->get('ban-id');
         $banVal = $request->get('ban-val');
         banUser($id, $banVal);
-        return $app->redirect($app['webroot'].'/dashboard');
+        return $app->redirect($app['webroot'].'dashboard');
     });
 
     $app->post('/auth', function(Request $request) use ($app) {
         $id = $request->get('admin-id');
         $adminVal = $request->get('admin-val');
         makeAdmin($id, $adminVal);
-        return $app->redirect($app['webroot'].'/dashboard');
+        return $app->redirect($app['webroot'].'dashboard');
     });
 
     $app->post('/settings/avatar', function(Request $request) use($app) {
         if (!$app['session']->has('id')) {
-            return $app->redirect($app['webroot'].'/login-page');
+            return $app->redirect($app['webroot'].'login-page');
         }
         $avatarFile = $request->files->get('file');
         
@@ -206,7 +206,7 @@
         $path = "/images/".$avatarFile->getClientOriginalName();
         updateAvatar($path, $id);
         $app['session']->set('avatar', $path);
-        return $app->redirect($app['webroot'].'/dashboard');
+        return $app->redirect($app['webroot'].'dashboard');
         } else {
             $model = array('error' => 'Please select a file', 'display' => 'block error',
                           'name' => $app['session']->get('name'),
@@ -222,7 +222,7 @@
 
     $app->post('/update-profile', function(Request $request) use ($app) {
         if (!$app['session']->has('id')) {
-            return $app->redirect($app['webroot'].'/login-page');
+            return $app->redirect($app['webroot'].'login-page');
         }
         $avatarFile = $request->files->get('file');
         $name = $request->get('name');
@@ -295,10 +295,10 @@
     $app->get('/upload', function(Request $request) use ($app) {
         $ban = checkIfBanned($app['session']->get('ban'));
         if ($ban == true) {
-            return $app->redirect($app['webroot'].'/banned');
+            return $app->redirect($app['webroot'].'banned');
         }
         if (!$app['session']->has('id')) {
-            return $app->redirect($app['webroot'].'/login-page');
+            return $app->redirect($app['webroot'].'login-page');
         }
 
         $admin = checkIfAdmin($app['session']->get('admin'));
@@ -312,13 +312,13 @@
             if ($admin == true) {
                 return $app['twig']->render('upload.twig', $model);
             } if ($admin == false) {
-                return $app->redirect($app['webroot'].'/contact-us');
+                return $app->redirect($app['webroot'].'contact-us');
             }
     });
 
     $app->get('/contact-us', function(Request $request) use ($app) {
         if (!$app['session']->has('id')) {
-            return $app->redirect($app['webroot'].'/guest-contact-us');
+            return $app->redirect($app['webroot'].'guest-contact-us');
         }
         $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
@@ -346,7 +346,7 @@
     $app->post('/upload/post', function(Request $request) use ($app) {
         $ban = checkIfBanned($app['session']->get('ban'));
         if ($ban == true) {
-            return $app->redirect($app['webroot'].'/banned');
+            return $app->redirect($app['webroot'].'banned');
         }
         $admin = checkIfAdmin($app['session']->get('admin'));
         $title = $request->get('post-title');
@@ -362,7 +362,7 @@
 
             uploadPost($title, $content, $image_path, $id);
 
-            return $app->redirect($app['webroot'].'/recent-posts');
+            return $app->redirect($app['webroot'].'recent-posts');
         } else {
             $admin = checkIfAdmin($app['session']->get('admin'));
             $error = "Please make sure the form is filled in correctly";
@@ -376,15 +376,18 @@
             if ($admin == true) {
                 return $app['twig']->render('upload.twig', $model);
             } if ($admin == false) {
-                return $app->redirect($app['webroot'].'/contact-us');
+                return $app->redirect($app['webroot'].'contact-us');
             }
         }
     });
 
     $app->get('/recent-posts', function(Request $request) use ($app) {
+        if (!$app['session']->has('id')) {
+            return $app->redirect($app['webroot'].'guest-contact-us');
+        }
         $ban = checkIfBanned($app['session']->get('ban'));
         if ($ban == true) {
-            return $app->redirect($app['webroot'].'/banned');
+            return $app->redirect($app['webroot'].'banned');
         }
         $admin = checkIfAdmin($app['session']->get('admin'));
         $getPosts = getPosts();
@@ -423,7 +426,7 @@
 
     $app->post('/search', function (Request $request) use ($app) {
         if (!$app['session']->has('id')) {
-            return $app->redirect($app['webroot'].'/login-page');
+            return $app->redirect($app['webroot'].'login-page');
         }
         $searchTxt = $request->get('search');
         $result = search($searchTxt);
@@ -434,7 +437,7 @@
 
     $app->post('/search/user', function (Request $request) use ($app) {
         if (!$app['session']->has('id')) {
-            return $app->redirect($app['webroot'].'/login-page');
+            return $app->redirect($app['webroot'].'login-page');
         }
         $searchTxt = $request->get('search');
         $result = searchUser($searchTxt);
