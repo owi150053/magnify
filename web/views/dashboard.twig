@@ -15,7 +15,7 @@
                     <div class="post-avatar" style="background:url('/magnify/web{{ post.avatar_path }}') center;background-size:cover;"></div>
                 </div>
                 <div class="view">
-                    <form id="view-post" action="/magnify/web/view" method="post">
+                    <form id="view-post" action="{{ webroot }}view" method="post">
                         <input type="hidden" name="postid" id="postid" value="{{ post.id }}">
                         <input type="submit" id="view-btn" value="VIEW POST">
                     </form>
@@ -26,7 +26,7 @@
 
     <div class="user-list">
         <h3 class="center bold">SEARCH | BAN | ADMIN</h3>
-        <form id="search-user" method="post" action="{{ webroot }}/search/user">
+        <form id="search-user" method="post" action="{{ webroot }}search/user">
             <input type="text" id="search-txt6" placeholder="SEARCH FOR USERS">
             <input type="submit" id="search-btn6" value="SEARCH">
         </form>
@@ -35,14 +35,14 @@
             {% for user in users %}
             <li class="user-li"><span class="ban-list-name">{{ user.name }} {{ user.surname }}</span>
                 <span class="ban">
-                   <form id="banning" action="{{ webroot }}/ban" method="post">
+                   <form id="banning" action="{{ webroot }}ban" method="post">
                         <input type="hidden" name="ban-id" id="ban-id" value="{{ user.id }}">
                         <input type="hidden" name="ban-val" id="ban-val" value="{{ user.ban }}">
                         <input type="submit" class="ban-btn" id="ban" value="{% if user.ban == 0 %}&times;  BAN{% else %}&times;  UNBAN{% endif %}">
                    </form>
                 </span>
                 <span class="make-admin">
-                    <form id="admin-auth" action="{{ webroot }}/auth" method="post">
+                    <form id="admin-auth" action="{{ webroot }}auth" method="post">
                         <input type="hidden" name="admin-id" id="admin-id" value="{{ user.id }}">
                         <input type="hidden" name="admin-val" id="admin-val" value="{{ user.admin }}">
                         <input type="submit" id="mkAdmin" value="{% if user.admin == 0 %}MAKE ADMIN{% elseif user.admin == 1 %}&times;  REMOVE ADMIN{% endif %}">
@@ -62,7 +62,7 @@
             } else {
                 $('#error6').html("");
                 $.ajax({
-                    url: '{{ webroot }}/search/user',
+                    url: '{{ webroot }}search/user',
                     method: 'POST',
                     data: {search: $('#search-txt6').val()}
                 }).done(function (html) {

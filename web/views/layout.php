@@ -32,11 +32,11 @@
             
             <div id="nav-avatar" style="background:url({{ webroot }}{{ avatar }}) center;background-size:cover;">
                 <ul class="user-drop center">
-                    <a href="{{ webroot }}/{% if admin == true %}dashboard{% else %}profile-edit{% endif %}"><li>VIEW PROFILE</li></a>
+                    <a href="{{ webroot }}{% if admin == true %}dashboard{% else %}profile-edit{% endif %}"><li>VIEW PROFILE</li></a>
                     {% if admin == true %}
-                    <a href="{{ webroot }}/upload"><li>CREATE POST</li></a>
+                    <a href="{{ webroot }}upload"><li>CREATE POST</li></a>
                     {% endif %}
-                    <a href="{{ webroot }}/logout"><li>SIGN OUT</li></a>
+                    <a href="{{ webroot }}logout"><li>SIGN OUT</li></a>
                     <span class="triangle-home"></span>
                 </ul>
             </div>          
@@ -50,22 +50,22 @@
             <span class="fa fa-times close-menu" aria-hidden="true"></span>
             <ul>
                 <a href="{{ webroot }}/"><li>HOME</li></a>
-                <a href="{{ webroot }}/recent-posts"><li>LATEST POSTS</li></a>
-                <a href="{{ webroot }}/contact-us"><li>CONTACT US</li></a>
+                <a href="{{ webroot }}recent-posts"><li>LATEST POSTS</li></a>
+                <a href="{{ webroot }}contact-us"><li>CONTACT US</li></a>
             </ul>
             <div class="login-logout white">
                 {% if name is not null %}
-                <a href="{{ webroot }}/dashboard" class="profile-menu">
+                <a href="{{ webroot }}dashboard" class="profile-menu">
                     <p><span class='fa fa-user fa-lg' aria-hidden='true'></span>&nbsp;&nbsp;&nbsp;PROFILE</p>
                 </a>
-                <a href="{{ webroot }}/logout" class="logout-menu">
+                <a href="{{ webroot }}logout" class="logout-menu">
                     <p><span class='fa fa-sign-out fa-lg' aria-hidden='true'></span>&nbsp;SIGN OUT</p>
                 </a>
                 {% elseif name is null %}
-                <a href="{{ webroot }}/login-page" class="profile-menu black">
+                <a href="{{ webroot }}login-page" class="profile-menu black">
                     <p><span class='fa fa-user fa-lg' aria-hidden='true'></span>&nbsp;&nbsp;&nbsp;SIGN UP</p>
                 </a>
-                <a href="{{ webroot }}/login-page" class="logout-menu">
+                <a href="{{ webroot }}login-page" class="logout-menu">
                     <p><span class='fa fa-sign-out fa-lg' aria-hidden='true'></span>&nbsp;LOG IN</p>
                 </a>
                 {% endif %}
@@ -75,7 +75,7 @@
             <div id="signup-suc" class="section">
                 
                 <h3 class="white center">SIGN UP</h3>
-                <form id="sign-up" action="{{ webroot }}/signup" method="post">
+                <form id="sign-up" action="{{ webroot }}signup" method="post">
                     <span class="errN danger none center white">Name must be longer than 2 characters</span>
                     <input type="text" id="reg-name" name="reg-name" placeholder="ENTER YOUR NAME" autocomplete="off">
                     <span class="errS danger none center white">Surname must be longer than 2 characters</span>
@@ -91,7 +91,7 @@
             </div>
             <div class="section">
                 <h3 class="white center">LOGIN</h3>
-                <form id="log-in" action="{{ webroot }}/login" method="post">
+                <form id="log-in" action="{{ webroot }}login" method="post">
                     <span class="danger {{ errors['display'] | default('') }} center white">{{ errors['email'] | default('') }}</span>
                     <input type="text" name="email" placeholder="ENTER YOUR EMAIL" autocomplete="off" value="{{ email | default('') }}">
                     <span class="danger {{ errors['display'] | default('') }} center white">{{ errors['password'] | default('') }}</span>
@@ -116,7 +116,7 @@
             } else {
             
             $.ajax({
-                url: '{{ webroot }}/signup',
+                url: '{{ webroot }}signup',
                 method: 'POST',
                 data: {regName: $('#reg-name').val(),
                       regSurname: $('#reg-surname').val(),

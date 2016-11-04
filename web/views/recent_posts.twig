@@ -4,7 +4,7 @@
 
     <main id="main-content" class="post-main">
         <div id="content-box">
-            <form id="search" method="post" action="{{ webroot }}/search">
+            <form id="search" method="post" action="{{ webroot }}search">
                 <input type="text" id="search-txt" placeholder="SEARCH FOR POSTS">
                 <input type="submit" id="search-btn" value="SEARCH">
             </form>
@@ -29,7 +29,7 @@
                         <div class="post-avatar" style="background:url('{{ webroot }}{{ post.avatar_path }}') center;background-size:cover;"></div>
                     </div>
                     <div class="view">
-                        <form id="view-post" action="{{ webroot }}/view" method="post">
+                        <form id="view-post" action="{{ webroot }}view" method="post">
                             <input type="hidden" name="postid" id="postid" value="{{ post.id }}">
                             <input type="submit" id="view-btn" value="VIEW POST">
                         </form>
@@ -47,7 +47,7 @@
             } else {
                 $('#empty').html("");
                 $.ajax({
-                    url: '{{ webroot }}/search',
+                    url: '{{ webroot }}search',
                     method: 'POST',
                     data: {search: $('#search-txt').val()}
                 }).done(function (html) {

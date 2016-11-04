@@ -1,12 +1,12 @@
 {% for post in results %}
     <div class="single-post"  data-date="{{ post.post_date }}">
-        <div class="post-bg" style="background: url('/magnify/web{{ post.image_path }}'); background-size: cover; background-position: center;"></div>
+        <div class="post-bg" style="background: url('{{ webroot }}{{ post.image_path }}'); background-size: cover; background-position: center;"></div>
         <h4 class="white">{{ post.title }}</h4>
         <div class="av">
             <div class="post-avatar" style="background:url('/magnify/web{{ post.avatar_path }}') center;background-size:cover;"></div>
         </div>
         <div class="view">
-            <form id="view-post" action="{{ webroot }}/view" method="post">
+            <form id="view-post" action="{{ webroot }}view" method="post">
                 <input type="hidden" name="postid" id="post-id" value="{{ post.id }}">
                 <input type="submit" id="view-btn" value="VIEW POST">
             </form>

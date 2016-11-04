@@ -5,7 +5,7 @@
     {% for post in user_posts %}
         <div class="">
             <h3>{{ post.title }}</h3>
-            <img src="{{ webroot }}/{{ post.image_path }}" width="200px">
+            <img src="{{ webroot }}{{ post.image_path }}" width="200px">
         </div>
     {% endfor %}
 
