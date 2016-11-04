@@ -1,12 +1,18 @@
 <?php
     
     $host = 'localhost:8889';
-    $dbname = 'magnify'; 
-
-    // Note the dsn doesn't include a dbname
-    $dsn = "mysql:host=$host;charset=utf8";
+    $dbname = 'magnify';
     $username = "root";
     $password = "root";
+
+if (getenv('CLEARDB_DATABASE_URL')) {
+    $host = getenv('DATABASE_HOST');
+    $dbname = getenv('DATABASE_NAME');
+    $username = getenv('DATABASE_USERNAME');
+    $password = getenv('DATABASE_PASSWORD');
+}
+
+$dsn = "mysql:host=$host;charset=utf8";
     
     try {
         $pdo = new PDO($dsn, $username, $password);
