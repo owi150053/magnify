@@ -151,14 +151,14 @@
             return $app->redirect($app['webroot'].'banned');
         }
         $getUsers = getUsers();
-        $get_user_posts = getUserPosts($app['session']->get('id'));
+        $get_user_post = getUserPosts($app['session']->get('id'));
         $admin = checkIfAdmin($app['session']->get('admin'));
         $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
             'avatar' => $app['session']->get('avatar'),
             'id' => $app['session']->get('id'),
             'email' => $app['session']->get('email'),
-            'user_posts' => $get_user_posts,
+            'user_posts' => $get_user_post,
             'admin' => $admin,
             'users' => $getUsers,
             'ban' => $ban);
