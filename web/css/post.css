@@ -249,3 +249,6 @@ letter-spacing: 1px;
     vertical-align: middle;
     padding-top: -15px !important;
 }
+.comment-user-name{
+    float: right;
+}

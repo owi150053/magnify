@@ -49,7 +49,7 @@
             {% for comment in comments %}
             <div id="comment-wrapper">
                 <h4 class="comment-text">{{ comment.comment }}</h4>
-                <h4 class="comment-user-name">{{ comment.name }}</h4>
+                <h4 class="comment-user-name">{{ comment.name }} {{ comment.surname }}</h4>
             </div>
             {% endfor %}
             <div>
