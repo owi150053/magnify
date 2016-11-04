@@ -13,7 +13,7 @@
 
     $app = new Silex\Application();
 
-    $app['debug'] = true;
+    $app['debug'] = false;
     
     //SERVICE PROVIDER
     $app->register(new Silex\Provider\SessionServiceProvider());
