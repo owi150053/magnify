@@ -9,7 +9,7 @@ li {
 h3 {
     font-family: 'Raleway Regular', sans-serif;
     color: rgb(28, 44, 57);
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 #main-content {
@@ -130,7 +130,8 @@ nav li a:hover {
 .user-list {
     width: 45%;
     vertical-align: top;
-    display: inline-block;
+    display: block;
+    margin: auto;
     height: 50%;
     max-height: 50%;
     overflow-y: scroll;
