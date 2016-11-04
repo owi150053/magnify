@@ -370,13 +370,15 @@
     $app->get('/recent-posts', function(Request $request) use ($app) {
         $admin = checkIfAdmin($app['session']->get('admin'));
         $getPosts = getPosts();
+        $totalLikes = getTotalLikes($getPosts['post_id']);
         $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
             'avatar' => $app['session']->get('avatar'),
             'id' => $app['session']->get('id'),
             'email' => $app['session']->get('email'),
             'admin' => $admin,
-            'posts' => $getPosts);
+            'posts' => $getPosts,
+            'likes' => $totalLikes);
         return $app['twig']->render('recent_posts.twig', $model);
     });
 
