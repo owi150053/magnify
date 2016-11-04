@@ -340,7 +340,7 @@
 
     $app->get('/logout', function(Request $request) use ($app) {
        $app['session']->invalidate();
-        return $app->redirect($app['webroot'].'/');
+        return $app->redirect($app['webroot']);
     });
 
     $app->post('/upload/post', function(Request $request) use ($app) {
