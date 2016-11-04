@@ -674,8 +674,8 @@ Streaming
 It's possible to stream a response, which is important in cases when you don't
 want to buffer the data being sent::
 
-    $app->get('/images/{file}', function ($file) use ($app) {
-        if (!file_exists(__DIR__.'/images/'.$file)) {
+    $app->get('/Images/{file}', function ($file) use ($app) {
+        if (!file_exists(__DIR__.'/Images/'.$file)) {
             return $app->abort(404, 'The image was not found.');
         }
 

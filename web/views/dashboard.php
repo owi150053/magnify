@@ -30,7 +30,7 @@
             <li id="menu-btn" class="dash-right"><span class="fa fa-bars right menu-icon white" aria-hidden="true"></span></li>
         </nav>
         <div id="dash-side-bar">
-            <a href="{{ webroot }}"><img class="dash-logo" src="{{ webroot }}images/logos/LogoWhite-01.png"></a>
+            <a href="{{ webroot }}"><img class="dash-logo" src="{{ webroot }}Images/logos/LogoWhite-01.png"></a>
             <span class="fa fa-pencil fa-lg white edit-p"></span>
             <div id="update-avatar">
                 <div class="avatar" style="background:url({{ webroot }}{{ avatar }}) center;background-size:cover;">

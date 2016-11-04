@@ -48,7 +48,7 @@ $dsn = "mysql:host=$host;charset=utf8";
             $statement->bindValue(':name', 'Roger', PDO::PARAM_STR);
             $statement->bindValue(':surname', 'Ballen', PDO::PARAM_STR);
             $statement->bindValue(':email', 'roger@ballen.com', PDO::PARAM_STR);
-            $statement->bindValue(':avatar_path', '/images/roger.jpg', PDO::PARAM_STR);
+            $statement->bindValue(':avatar_path', '/Images/roger.jpg', PDO::PARAM_STR);
             $statement->bindValue(':password_hash', md5('roger'), PDO::PARAM_STR);
             $statement->bindValue(':admin', 1, PDO::PARAM_INT);
             $statement->bindValue(':ban', 0, PDO::PARAM_INT);
@@ -57,7 +57,7 @@ $dsn = "mysql:host=$host;charset=utf8";
             $statement->bindValue(':name', 'Annie', PDO::PARAM_STR);
             $statement->bindValue(':surname', 'Leibovitz', PDO::PARAM_STR);
             $statement->bindValue(':email', 'annie@leibovitz.com', PDO::PARAM_STR);
-            $statement->bindValue(':avatar_path', '/images/annie.jpg', PDO::PARAM_STR);
+            $statement->bindValue(':avatar_path', '/Images/annie.jpg', PDO::PARAM_STR);
             $statement->bindValue(':password_hash', md5('annie'), PDO::PARAM_STR);
             $statement->bindValue(':admin', 0, PDO::PARAM_INT);
             $statement->bindValue(':ban', 0, PDO::PARAM_INT);
@@ -93,7 +93,7 @@ Roger Ballen was born in New York in 1950 but for over 30 years he has lived and
 Over the past thirty years his distinctive style of photography has evolved using a simple square format in stark and beautiful black and white. In the earlier works in the exhibition his connection to the tradition of documentary photography is clear but through the 1990s he developed a style he describes as ‘documentary fiction’. After 2000 the people he first discovered and documented living on the margins of South African society increasingly became a cast of actors working with Ballen in the series’ Outland and Shadow Chamber collaborating to create powerful psychodramas.
 
 ', PDO::PARAM_STR);
-            $statement->bindValue(':image_path', '/images/content/roger_ballen.jpg', PDO::PARAM_STR);
+            $statement->bindValue(':image_path', '/Images/content/roger_ballen.jpg', PDO::PARAM_STR);
             $statement->bindValue(':author_id', 1, PDO::PARAM_INT);
             $statement->bindValue(':likes', 153, PDO::PARAM_INT);
             $statement->bindValue(':dislikes', 4, PDO::PARAM_INT);

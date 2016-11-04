@@ -31,7 +31,7 @@ Registering
         'assets.version_format' => '%s?version=%s',
         'assets.named_packages' => array(
             'css' => array('version' => 'css2', 'base_path' => '/whatever-makes-sense'),
-            'images' => array('base_urls' => array('https://img.example.com')),
+            'Images' => array('base_urls' => array('https://img.example.com')),
         ),
     ));
 
@@ -52,7 +52,7 @@ The AssetServiceProvider is mostly useful with the Twig provider:
 
     {{ asset('/css/foo.png') }}
     {{ asset('/css/foo.css', 'css') }}
-    {{ asset('/img/foo.png', 'images') }}
+    {{ asset('/img/foo.png', 'Images') }}
 
     {{ asset_version('/css/foo.png') }}
 
