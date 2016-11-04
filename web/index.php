@@ -409,7 +409,7 @@
         $postD = getPostDetail($id);
         $totalLikes = getTotalLikes($id);
         $totalDislikes = getTotalDislikes($id);
-        $getComments = getComments($post_id);
+        $getComments = getComments($id);
           $model = array('name' => $app['session']->get('name'),
             'surname' => $app['session']->get('surname'),
             'avatar' => $app['session']->get('avatar'),
