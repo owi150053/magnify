@@ -92,7 +92,7 @@
         $surname = $request->get('regSurname');
         $email = $request->get('regEmail');
         $password_hash = $request->get('regPassword');
-        $avatar_path = "/Images/default-pp.jpg";
+        $avatar_path = "/images/default-pp.jpg";
         $admin = 0;
         $ban = 0;
 
@@ -200,10 +200,10 @@
         
         if ($avatarFile == !null) {
         
-        $avatarFile->move('Images', $avatarFile->getClientOriginalName());
+        $avatarFile->move('images', $avatarFile->getClientOriginalName());
         $id = $app['session']->get('id');
 
-        $path = "/Images/".$avatarFile->getClientOriginalName();
+        $path = "/images/".$avatarFile->getClientOriginalName();
         updateAvatar($path, $id);
         $app['session']->set('avatar', $path);
         return $app->redirect($app['webroot'].'dashboard');
@@ -231,10 +231,10 @@
         $id = $app['session']->get('id');
 
         if ($avatarFile == !null) {
-            $avatarFile->move('Images', $avatarFile->getClientOriginalName());
+            $avatarFile->move('images', $avatarFile->getClientOriginalName());
             $id = $app['session']->get('id');
 
-            $path = "/Images/".$avatarFile->getClientOriginalName();
+            $path = "/images/".$avatarFile->getClientOriginalName();
             updateAvatar($path, $id);
             $app['session']->set('avatar', $path);
         }
@@ -357,8 +357,8 @@
         $avatarFile = $request->files->get('header-image-file');
 
         if ($avatarFile == !null && $title == !null && $content == !null) {
-            $avatarFile->move('Images/content', $avatarFile->getClientOriginalName());
-            $image_path = "/Images/content/" . $avatarFile->getClientOriginalName();
+            $avatarFile->move('images/content', $avatarFile->getClientOriginalName());
+            $image_path = "/images/content/" . $avatarFile->getClientOriginalName();
 
             uploadPost($title, $content, $image_path, $id);
 
