@@ -203,7 +203,7 @@
         $avatarFile->move('images', $avatarFile->getClientOriginalName());
         $id = $app['session']->get('id');
 
-        $path = "/images/".$avatarFile->getClientOriginalName();
+        $path = "images/".$avatarFile->getClientOriginalName();
         updateAvatar($path, $id);
         $app['session']->set('avatar', $path);
         return $app->redirect($app['webroot'].'dashboard');
@@ -234,7 +234,7 @@
             $avatarFile->move('images', $avatarFile->getClientOriginalName());
             $id = $app['session']->get('id');
 
-            $path = "/images/".$avatarFile->getClientOriginalName();
+            $path = "images/".$avatarFile->getClientOriginalName();
             updateAvatar($path, $id);
             $app['session']->set('avatar', $path);
         }
