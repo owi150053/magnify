@@ -358,7 +358,7 @@
 
         if ($avatarFile == !null && $title == !null && $content == !null) {
             $avatarFile->move('images/content', $avatarFile->getClientOriginalName());
-            $image_path = "images/content/" . $avatarFile->getClientOriginalName();
+            $image_path = "/images/content/" . $avatarFile->getClientOriginalName();
 
             uploadPost($title, $content, $image_path, $id);
 

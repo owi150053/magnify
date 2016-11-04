@@ -93,7 +93,7 @@ Roger Ballen was born in New York in 1950 but for over 30 years he has lived and
 Over the past thirty years his distinctive style of photography has evolved using a simple square format in stark and beautiful black and white. In the earlier works in the exhibition his connection to the tradition of documentary photography is clear but through the 1990s he developed a style he describes as ‘documentary fiction’. After 2000 the people he first discovered and documented living on the margins of South African society increasingly became a cast of actors working with Ballen in the series’ Outland and Shadow Chamber collaborating to create powerful psychodramas.
 
 ', PDO::PARAM_STR);
-            $statement->bindValue(':image_path', 'images/content/roger_ballen.jpg', PDO::PARAM_STR);
+            $statement->bindValue(':image_path', '/images/content/roger_ballen.jpg', PDO::PARAM_STR);
             $statement->bindValue(':author_id', 1, PDO::PARAM_INT);
             $statement->bindValue(':likes', 153, PDO::PARAM_INT);
             $statement->bindValue(':dislikes', 4, PDO::PARAM_INT);
