@@ -103,4 +103,13 @@
 
         $pdo = null;
     }
+    function postComment($post_id, $user_id, $comment_text){
+        require __DIR__.'/../seed.php';
+        $sql = "INSERT INTO comments (post_id, user_id, comment) VALUES(:post_id, :user_id, :comment_text) ";
+        $statement = $pdo->prepare($sql);
+        $statement->bindValue(':post_id', $post_id, PDO::PARAM_INT);
+        $statement->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+        $statement->bindValue(':comment_text', $comment_text, PDO::PARAM_STR);
+        $statement->execute();
+    }
 ?>

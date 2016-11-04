@@ -108,6 +108,7 @@ Over the past thirty years his distinctive style of photography has evolved usin
         $statement = $pdo->prepare("CREATE TABLE IF NOT EXISTS comments (
             id int NOT NULL AUTO_INCREMENT,
             post_id int,
+            user_id int,
             comment longtext, 
             PRIMARY KEY (id)
         );");
