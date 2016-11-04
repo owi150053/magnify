@@ -90,13 +90,13 @@ letter-spacing: 1px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 15px;
+    margin-top: -19px;
     outline: none;
 }
 .comment-arrow{
     display: none;
     padding-top: 15px;
-
+    margin: auto;
 }
 #comments:hover + .comment-arrow{
     display: inline;
@@ -133,26 +133,25 @@ letter-spacing: 1px;
 }
 
 .like{
-    float: right;
+    display: inline-block;
     border-radius: 15px;
     border: 1px solid white;
     padding: 7px;
     background: white;
     color: black;
-    display: inline;
     outline: none;
     margin: 7px;
     margin-top: 10px;
 }
 .dislike{
-    float: right;
+    display: inline-block;
     border-radius: 15px;
     border: 1px solid white;
     padding: 7px;
     background: white;
     color: black;
-    display: inline;
     outline: none;
+    margin: 7px;
     margin-top: 10px;
 }
 .like:hover{
@@ -173,4 +172,76 @@ letter-spacing: 1px;
 }
 .dislike-checked{
     color: #c75658;
+}
+#comment-btn{
+    width: 100%;
+    display: block;
+    color: white;
+}
+#like-form, #dislike-form{
+    width: 0px;
+    height: 0px;
+    display: inline;
+}
+#comment-section{
+    min-height: 100vh;
+    width: 100%;
+    background-color: #c7585b;
+    padding-top: 125px;
+}
+#entire-post{
+    min-height: 100vh;
+}
+#comment-wrapper{
+    width: 40%;
+    border: 1px solid white;
+    border-radius: 15px;
+    background-color: rgba(39, 19, 17, 0.13);
+    padding: 20px;
+    color: white;
+    display: block;
+    margin: auto;
+
+}
+#comment-header{
+    width: auto;
+    color: white;
+    display: block;
+    margin: auto;
+    padding-top: -100px !important;
+    padding-bottom: 20px;
+    text-align: center;
+}
+.comment-text-field{
+    margin-top: 25px;
+    width: 40%;
+    border: 1px solid white;
+    border-radius: 15px;
+    background-color: rgba(39, 19, 17, 0.13);
+    padding: 20px;
+    color: white;
+    display: block;
+    margin: auto;
+    outline: none;
+    word-break: break-word;
+}
+.comment-text-field::-webkit-input-placeholder {
+    color: #bbbbbb !important;
+    font-size: 18px !important;
+    -webkit-transform: translateY(0px)!important;
+    transform: translateY(0px) !important;
+}
+.submit-comment-btn{
+    height:25px;
+    width: 40%;
+    border: 1px solid white;
+    border-radius: 15px;
+    background-color: rgba(39, 19, 17, 0.31);
+    padding: 0px 40px;
+    color: white;
+    display: block;
+    margin: auto;
+    outline: none;
+    vertical-align: middle;
+    padding-top: -15px !important;
 }

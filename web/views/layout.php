@@ -18,6 +18,7 @@
     <script src="/magnify/web/js/animation.js" type="text/javascript"></script>
     <script src="/magnify/web/js/validation.js" type="text/javascript"></script>
     <script src="/magnify/web/js/file-upload.js" type="text/javascript"></script>
+    <script src="/magnify/web/js/jquery.scrollify.js" type="text/javascript"></script>
 </head>
 <body>
     <div id="preload">

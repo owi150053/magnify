@@ -3,40 +3,59 @@
 {% block content %}
     {% block title %}<title>{{ post.title }}</title>{% endblock %}
     <main id="post-page">
-        <div id="post-image">
-            <a href="/magnify/web" ><img src="/magnify/web/images/logos/LogoWhite-01.png" class="post-logo"></a>
-            <div id="image" style="background-image: url('/magnify/web{{ post.image_path }}'); background-size:cover; background-position:center;"></div>
-            <div id="title"><h1>{{ post.title }}</h1></div>
-        </div>
-        <div id="post">
-            <div id="content">
-                {{ post.content|raw }}
+        <div id="entire-post">
+            <div id="post-image">
+                <a href="/magnify/web" ><img src="/magnify/web/images/logos/LogoWhite-01.png" class="post-logo"></a>
+                <div id="image" style="background-image: url('/magnify/web{{ post.image_path }}'); background-size:cover; background-position:center;"></div>
+                <div id="title"><h1>{{ post.title }}</h1></div>
             </div>
-            <div id="author"><h1>written by: {{ post.name }} {{ post.surname }} | {{ post.post_date }}</h1></div>
-            <div id="return"><a href="/magnify/web/recent-posts"><h4><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> return back to posts page.</h4></a></div>
-            <div id="like-dislike">
-                <h4 class="likes">{{ likes | length }}</h4>
-                <h4 class="likes">{{ dislikes | length }}</h4>
-                <form id="like-form" action="/magnify/web/like" method="post">
-                    <input type="hidden" name="post-id" id="post-id" value="{{ post.id }}">
-                    <input type="hidden" name="post-like" id="post-like" value="1">
-                </form>
-                <button type="submit" class="like" id="post-like"form="like-form" ><span class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></span></button>
-                <form id="dislike-form" action="/magnify/web/like" method="post">
-                    <input type="hidden" name="post-id" id="post-id" value="{{ post.id }}">
-                    <input type="hidden" name="post-dislike" id="post-dislike" value="0">
-                </form>
-                <button type="submit" class="dislike" id="post-like" form="dislike-form"><span class="fa fa-thumbs-o-down fa-lg" aria-hidden="true"></span></button>
-                {#<button class="like" id="post-dislike"  value="0"><span class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></span></button>#}
+            <div id="post">
+                <div id="content">
+                    {{ post.content|raw }}
+                </div>
+                <div id="author"><h1>written by: {{ post.name }} {{ post.surname }} | {{ post.post_date }}</h1></div>
+                <div id="return"><a href="/magnify/web/recent-posts"><h4><i class="fa fa-arrow-circle-left" aria-hidden="true"></i> return back to posts page.</h4></a></div>
+                <div id="like-dislike">
+
+
+                    <form id="like-form" action="/magnify/web/like" method="post">
+                        <input type="hidden" name="post-id" id="post-id" value="{{ post.id }}">
+                        <input type="hidden" name="post-like" id="post-like" value="1">
+                    </form>
+
+                    <form id="dislike-form" action="/magnify/web/like" method="post">
+                        <input type="hidden" name="post-id" id="post-id" value="{{ post.id }}">
+                        <input type="hidden" name="post-dislike" id="post-dislike" value="0">
+                    </form>
+                    <h4 class="likes">{{ dislikes | length }}</h4>
+                    <button type="submit" class="dislike" id="post-like" form="dislike-form"><span class="fa fa-thumbs-o-down fa-lg" aria-hidden="true"></span></button>
+                    <h4 class="likes">{{ likes | length }}</h4>
+                    <button type="submit" class="like" id="post-like"form="like-form" ><span class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></span></button>
+
+                    {#<button class="like" id="post-dislike"  value="0"><span class="fa fa-thumbs-o-up fa-lg" aria-hidden="true"></span></button>#}
+                </div>
+
+
+
+
+
             </div>
-             <div id=""><button id="comments">VIEW COMMENTS</button><span class="fa fa-arrow-down comment-arrow" aria-hidden="true"></span></div>
-
-
-
-
+            <div id="comment-btn"><button id="comments">VIEW COMMENTS</button><span class="fa fa-arrow-down comment-arrow" aria-hidden="true"></span></div>
         </div>
-        
-       
+
+
+        <div id="comment-section">
+            <h1 id="comment-header">Comments</h1>
+            <div id="comment-wrapper">
+                <h4 class="comment-text">Comment Comment Comment Comment Comment Comment Comment Comment Comment Comment Comment Comment</h4>
+            </div>
+            <div>
+                <form style="margin-top: 35px">
+                    <textarea placeholder="Comment here..." class="comment-text-field" wrap="hard"></textarea>
+                    <input type="submit" class="submit-comment-btn" style="margin-top: 10px; padding-top: -10px;">
+                </form>
+            </div>
+        </div>
     </main>
     <script>
         $(document).ready(function () {

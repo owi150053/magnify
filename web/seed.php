@@ -104,6 +104,14 @@ Over the past thirty years his distinctive style of photography has evolved usin
             PRIMARY KEY (id)
         );");
         $statement->execute();
+
+        $statement = $pdo->prepare("CREATE TABLE IF NOT EXISTS comments (
+            id int NOT NULL AUTO_INCREMENT,
+            post_id int,
+            comment longtext, 
+            PRIMARY KEY (id)
+        );");
+        $statement->execute();
         
     } catch (PDOException $exception) {
         echo 'Database error: ' . $exception->getMessage();
