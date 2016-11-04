@@ -1,31 +1,31 @@
 @font-face {
     font-family: 'Raleway Medium';
-    src: url(/magnify/fonts/Raleway-Medium.ttf);
+    src: url(/fonts/Raleway-Medium.ttf);
 }
 
 @font-face {
     font-family: 'Raleway Medium Italic';
-    src: url(/magnify/web/fonts/Raleway-MediumItalic.ttf);
+    src: url(fonts/Raleway-MediumItalic.ttf);
 }
 
 @font-face {
     font-family: 'Raleway Regular';
-    src: url(/magnify/web/fonts/Raleway-Regular.ttf);
+    src: url(fonts/Raleway-Regular.ttf);
 }
 
 @font-face {
     font-family: 'Raleway Italic';
-    src: url(/magnify/web/fonts/Raleway-Italic.ttf);
+    src: url(fonts/Raleway-Italic.ttf);
 }
 
 @font-face {
     font-family: 'Raleway Bold';
-    src: url(/magnify/web/fonts/Raleway-Bold.ttf);
+    src: url(fonts/Raleway-Bold.ttf);
 }
 
 @font-face {
     font-family: 'Raleway Bold Italic';
-    src: url(/magnify/web/fonts/Raleway-BoldItalic.ttf);
+    src: url(fonts/Raleway-BoldItalic.ttf);
 }
 
 .med {
